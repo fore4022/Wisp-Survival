@@ -89,13 +89,13 @@ public class Monster : MonoBehaviour, IScriptableData
             this.col = gameObject.AddComponent<BoxCollider2D>();
         }
 
-        stat = new(monsterSO.stat);
+        stat = new(monsterSO.Stat);
         rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
         rigid.simulated = false;
         render.enabled = false;
         audioSource.playOnAwake = false;
-        user_Experience = monsterSO.user_Experience;
-        inGame_Experience = monsterSO.inGame_Experience;
+        user_Experience = monsterSO.User_Experience;
+        inGame_Experience = monsterSO.InGame_Experience;
     }
     // 현재 객체가 카메라 영역 내에 있는지 검사, 영역 내에 없다면 보일 때까지 애니메이션을 재생하지 않음
     private void IsInvisible()

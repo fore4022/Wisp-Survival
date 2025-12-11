@@ -8,8 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Skill_D : PlayerSkill, IPlayerSkill
 {
-    [SerializeField]
-    private string animationName;
+    [SerializeField] private string animationName;
 
     public bool Finished { get { return animator.GetCurrentAnimatorStateInfo(0).IsName(animationName); } }
     public void Set()

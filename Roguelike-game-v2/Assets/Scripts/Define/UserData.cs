@@ -9,23 +9,15 @@ using UnityEngine;
 /// </summary>
 public class UserData
 {
-    [SerializeField]
-    private List<StageClear_Information> stageClearInfos = new();
-    [SerializeField]
-    private Setting_Information _setting = new();
-    [SerializeField]
-    private PlayerStat _stat = new();
+    [SerializeField] private List<StageClear_Information> stageClearInfos = new();
+    [SerializeField] private Setting_Information _setting = new();
+    [SerializeField] private PlayerStat _stat = new();
 
-    [SerializeField]
-    private string current_StageName = "Prairie";
-    [SerializeField]
-    private int level = 1;
-    [SerializeField]
-    private int exp = 0;
-    [SerializeField]
-    private int statPoint = 1;
-    [SerializeField]
-    private bool tutorial = false;
+    [SerializeField] private string current_StageName = "Prairie";
+    [SerializeField] private int level = 1;
+    [SerializeField] private int exp = 0;
+    [SerializeField] private int statPoint = 1;
+    [SerializeField] private bool tutorial = false;
     
     public List<StageClear_Information> StageClearInfo { get { return stageClearInfos; } set { stageClearInfos = value; } }
     public PlayerStat Stat { get { return _stat; } }

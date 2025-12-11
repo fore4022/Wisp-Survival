@@ -8,12 +8,9 @@ using UnityEngine;
 /// </summary>
 public class Projectile_C : PlayerSkill_Projectile, IProjectile
 {
-    [SerializeField]
-    private float range;
-    [SerializeField]
-    private float min_Index;
-    [SerializeField]
-    private float max_Index;
+    [SerializeField] private float range;
+    [SerializeField] private float min_Index;
+    [SerializeField] private float max_Index;
 
     private float multiplier;
     private int sign;
@@ -45,7 +42,7 @@ public class Projectile_C : PlayerSkill_Projectile, IProjectile
     {
         while(true)
         {
-            transform.position += direction * so.projectile_Info.speed * multiplier * Time.deltaTime;
+            transform.position += direction * so.Projectile_Info.speed * multiplier * Time.deltaTime;
             multiplier -= Time.deltaTime;
 
             transform.Rotate(sign * Vector3.back * Time.timeScale);
@@ -68,6 +65,6 @@ public class Projectile_C : PlayerSkill_Projectile, IProjectile
 
         yield return new WaitUntil(() => multiplier <= 0.1f);
         
-        animator.Play(so.projectile_Info.animationName);
+        animator.Play(so.Projectile_Info.animationName);
     }
 }

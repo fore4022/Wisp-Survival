@@ -141,7 +141,7 @@ public class Game_Manager
     // 스테이지 클리어 여부 확인
     public void IsStageCleared(int minutes)
     {
-        if(minutes >= stageInformation.requiredTime)
+        if(minutes >= stageInformation.RequiredTime)
         {
             stageClear = true;
             isPlaying = false;

@@ -6,8 +6,7 @@ using UnityEngine;
 /// </summary>
 public class MonsterSpawner
 {
-    [HideInInspector]
-    public List<GameObject> monsterList = new();
+    [HideInInspector] public List<GameObject> monsterList = new();
 
     private Dictionary<string, ScriptableObject> monsterStats = new();
 
@@ -60,7 +59,7 @@ public class MonsterSpawner
     {
         int arrayIndexValue = monsterSpawnProbabilityArray[Random.Range(0, 100)];
 
-        Managers.Game.objectPool.ActiveObject(spawnInformation.monsterInformation[arrayIndexValue].monster.name);
+        Managers.Game.objectPool.ActiveObject(spawnInformation.MonsterInformation[arrayIndexValue].monster.name);
     }
     private IEnumerator SpawningSystem()
     {
@@ -68,7 +67,7 @@ public class MonsterSpawner
 
         while(!Managers.Game.GameOver)
         {
-            foreach(SpawnPattern_SO spawnInformation in Managers.Game.stageInformation.spawnPatternList.patterns)
+            foreach(SpawnPattern_SO spawnInformation in Managers.Game.stageInformation.SpawnPatternList.Patterns)
             {
                 spawnGroup = CoroutineHelper.Start(MonsterSpawning(spawnInformation), CoroutineType.InGameSystem);
 
@@ -86,7 +85,7 @@ public class MonsterSpawner
         int totalMinutes = Managers.Game.inGameTimer.GetTotalMinutes;
         int index = 0;
 
-        foreach(SpawnPattern_Information spawnInfo in spawnInformation.monsterInformation)
+        foreach(SpawnPattern_Information spawnInfo in spawnInformation.MonsterInformation)
         {
             for(int i = 0; i < spawnInfo.spawnProbability; i++)
             {
@@ -98,7 +97,7 @@ public class MonsterSpawner
 
         spawnDelay = Managers.Game.difficultyScaler.SpawnDelay;
 
-        while(Managers.Game.inGameTimer.GetTotalMinutes < totalMinutes + spawnInformation.duration)
+        while(Managers.Game.inGameTimer.GetTotalMinutes < totalMinutes + spawnInformation.Duration)
         {
             if(spawnDelay != minimumSpawnDelay)
             {

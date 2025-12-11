@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class MonsterSkill : MonoBehaviour
 {
-    [SerializeField, Min(0.01f)]
-    protected float animationSpeed = 1;
+    [SerializeField][Min(0.01f)] protected float animationSpeed = 1;
 
     protected SpriteRenderer render;
     protected Animator animator;

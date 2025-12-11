@@ -2,10 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StageInformation_Button : Button_Default
 {
-    [SerializeField]
-    private Color visible;
-    [SerializeField]
-    private Color invisible;
+    [SerializeField] private Color visible;
+    [SerializeField] private Color invisible;
 
     private Image image;
 

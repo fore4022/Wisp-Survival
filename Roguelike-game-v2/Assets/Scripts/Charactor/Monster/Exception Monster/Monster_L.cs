@@ -4,8 +4,7 @@ using UnityEngine;
 /// </summary>
 public class Monster_L : BasicMonster
 {
-    [SerializeField]
-    private new float directionMultiplierDefault;
+    [SerializeField] private new float directionMultiplierDefault;
 
     protected override void Enable()
     {

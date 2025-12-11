@@ -5,10 +5,8 @@ using UnityEngine;
 /// </summary>
 public class Monster_E : BasicMonster
 {
-    [SerializeField]
-    private float rushSpeed = 3;
-    [SerializeField]
-    private float rushCastingTime = 0.75f;
+    [SerializeField] private float rushSpeed = 3;
+    [SerializeField] private float rushCastingTime = 0.75f;
 
     protected override void Enable()
     {

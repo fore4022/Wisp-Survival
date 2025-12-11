@@ -8,14 +8,10 @@ using UnityEngine;
 /// </summary>
 public class Monster_C : BasicMonster
 {
-    [SerializeField]
-    private float dashSpeed;
-    [SerializeField]
-    private float dashDuration;
-    [SerializeField]
-    private float dashCooldownMax;
-    [SerializeField]
-    private float dashCastingTime;
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashCooldownMax;
+    [SerializeField] private float dashCastingTime;
 
     // 이동 속도 배율 재설정 및 행동 코루틴 호출
     protected override void Enable()

@@ -5,22 +5,15 @@ using UnityEngine;
 /// </summary>
 public class Monster_H : BasicMonster_WithObject
 {
-    [SerializeField]
-    private Vector3 skillPosition;
-    [SerializeField]
-    private string skillAnimation_Name;
-    [SerializeField]
-    private float skillDuration;
-    [SerializeField]
-    private float skillCooldown;
-    [SerializeField, Range(0, 100)]
-    private float skillCastChance;
-    [SerializeField]
-    private float skillDelay;
+    [SerializeField] private Vector3 skillPosition;
+    [SerializeField] private string skillAnimation_Name;
+    [SerializeField][Range(0, 100)] private float skillCastChance;
+    [SerializeField] private float skillDuration;
+    [SerializeField] private float skillCooldown;
+    [SerializeField] private float skillDelay;
 
     private const string defaultAnimation_Name = "Walk";
 
-    private WaitForSeconds duration;
     private WaitForSeconds cooldown;
     private WaitForSeconds delay;
     private string skillKey;
@@ -28,10 +21,9 @@ public class Monster_H : BasicMonster_WithObject
 
     protected override void Init()
     {
-        duration = new(skillDuration);
         cooldown = new(skillCooldown);
         delay = new(skillDelay);
-        skillKey = monsterSO.extraObjects[0].name;
+        skillKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
     }

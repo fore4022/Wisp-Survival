@@ -9,8 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public abstract class Button_Default : MonoBehaviour
 {
-    [SerializeField]
-    protected AudioSource audioSource;
+    [SerializeField] protected AudioSource audioSource;
 
     protected RectTransform rectTransform;
     protected Button button;

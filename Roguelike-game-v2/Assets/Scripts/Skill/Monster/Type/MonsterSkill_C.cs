@@ -3,14 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class MonsterSkill_C : MonsterSkill
 {
-    [SerializeField, Min(1)]
-    private float slowDown = 0;
-    [SerializeField, Min(0.1f)]
-    private float slowDuration;
-    [SerializeField]
-    private float offsetY;
-    [SerializeField]
-    private float targetScale;
+    [SerializeField][Min(1)] private float slowDown = 0;
+    [SerializeField][Min(0.1f)] private float slowDuration;
+    [SerializeField] private float offsetY;
+    [SerializeField] private float targetScale;
 
     private const float triggerTime = 0.975f;
 

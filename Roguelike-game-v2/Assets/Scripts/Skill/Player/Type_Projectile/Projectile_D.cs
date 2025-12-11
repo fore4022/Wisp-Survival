@@ -9,12 +9,9 @@ using UnityEngine;
 /// </summary>
 public class Projectile_D : PlayerSkill_Projectile, IProjectile
 {
-    [SerializeField, Range(0, 100)]
-    private float probability;
-    [SerializeField, Range(0.01f,10)]
-    private float targetScale;
-    [SerializeField, Min(0.01f)]
-    private float duration;
+    [SerializeField][Range(0, 100)] private float probability;
+    [SerializeField][Range(0.01f, 10)] private float targetScale;
+    [SerializeField][Min(0.01f)] private float duration;
 
     private bool isInit = false;
 
@@ -61,7 +58,7 @@ public class Projectile_D : PlayerSkill_Projectile, IProjectile
     {
         while(true)
         {
-            transform.position += direction * (Managers.Game.player.Stat.moveSpeed + so.projectile_Info.speed) * Time.deltaTime;
+            transform.position += direction * (Managers.Game.player.Stat.moveSpeed + so.Projectile_Info.speed) * Time.deltaTime;
 
             yield return null;
         }

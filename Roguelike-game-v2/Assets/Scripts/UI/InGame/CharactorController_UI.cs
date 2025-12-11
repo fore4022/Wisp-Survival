@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class CharactorController_UI : UserInterface
 {
-    [SerializeField]
-    private GameObject stick;
+    [SerializeField] private GameObject stick;
 
     private InputAction.CallbackContext? touchStart;
     private Vector2 enterPosition;

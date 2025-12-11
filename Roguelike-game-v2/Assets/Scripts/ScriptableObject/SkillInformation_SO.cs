@@ -2,6 +2,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillInformation", menuName = "Create New SO/Skill/Create New SkillInformation_SO")]
 public class SkillInformation_SO : ScriptableObject
 {
-    public Skill_Information info;
-    public Sprite sprite;
+    [SerializeField] private Skill_Information info;
+    [SerializeField] private Sprite icon;
+
+    public Skill_Information Info { get { return info; } }
+    public Sprite Icon { get { return icon; } }
 }

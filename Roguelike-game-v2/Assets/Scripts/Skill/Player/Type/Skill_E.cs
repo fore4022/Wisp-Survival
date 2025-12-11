@@ -7,10 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Skill_E : PlayerSkill, IPlayerSkill
 {
-    [SerializeField]
-    private int min_Index;
-    [SerializeField]
-    private int max_Index;
+    [SerializeField] private int min_Index;
+    [SerializeField] private int max_Index;
 
     public bool Finished { get { return true; } }
     public void Set()

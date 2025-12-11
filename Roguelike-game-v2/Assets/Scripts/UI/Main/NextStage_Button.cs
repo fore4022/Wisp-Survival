@@ -1,8 +1,7 @@
 using UnityEngine;
 public class NextStage_Button : Button_Default
 {
-    [SerializeField]
-    private int sign;
+    [SerializeField] private int sign;
 
     protected override void PointerClick()
     {

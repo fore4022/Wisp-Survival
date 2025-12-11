@@ -52,9 +52,9 @@ public class PoolingObject_Initializer
 
             if(so is MonsterStat_WithObject_SO exceptionMonsterStatSO)
             {
-                if(exceptionMonsterStatSO.extraObjects != null)
+                if(exceptionMonsterStatSO.ExtraObjects != null)
                 {
-                    foreach(GameObject extraObj in exceptionMonsterStatSO.extraObjects)
+                    foreach(GameObject extraObj in exceptionMonsterStatSO.ExtraObjects)
                     {
                         if(!Managers.Game.objectPool.PoolingObjects.ContainsKey(extraObj.name))
                         {

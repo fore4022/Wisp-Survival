@@ -20,14 +20,14 @@ public class Main_Scene : MonoBehaviour
 
         yield return new WaitUntil(() => Managers.UI.IsInitalized());
 
-        while(Managers.Data.user.Exp >= Managers.Data.UserExpTable.requiredEXP[Managers.Data.user.Level - 1])
+        while(Managers.Data.user.Exp >= Managers.Data.UserExpTable.RequiredEXP[Managers.Data.user.Level - 1])
         {
-            Managers.Data.user.Exp -= Managers.Data.UserExpTable.requiredEXP[Managers.Data.user.Level - 1];
+            Managers.Data.user.Exp -= Managers.Data.UserExpTable.RequiredEXP[Managers.Data.user.Level - 1];
             Managers.Data.user.Level++;
 
             levelUpCount++;
 
-            if(Managers.Data.user.Level == UserExpTable_SO.maxLevel)
+            if(Managers.Data.user.Level == GameUtil.maxLevel)
             {
                 break;
             }

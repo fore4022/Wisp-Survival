@@ -3,20 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Setting_UI : UserInterface
 {
-    [SerializeField]
-    private List<Sprite> _bgmSprite;
-    [SerializeField]
-    private List<Sprite> _fxSprite;
-    [SerializeField]
-    private Image _Bgm;
-    [SerializeField]
-    private Image _Fx;
-    [SerializeField]
-    private AudioClip onToggleSound;
-    [SerializeField]
-    private AudioClip offToggleSound;
-    [SerializeField]
-    private AudioClip confirmSound;
+    [SerializeField] private List<Sprite> _bgmSprite;
+    [SerializeField] private List<Sprite> _fxSprite;
+    [SerializeField] private Image _Bgm;
+    [SerializeField] private Image _Fx;
+    [SerializeField] private AudioClip onToggleSound;
+    [SerializeField] private AudioClip offToggleSound;
+    [SerializeField] private AudioClip confirmSound;
 
     private AudioSource audioSource;
 

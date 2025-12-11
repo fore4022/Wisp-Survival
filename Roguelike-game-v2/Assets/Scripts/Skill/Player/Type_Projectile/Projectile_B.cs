@@ -8,12 +8,11 @@ using UnityEngine;
 /// </summary>
 public class Projectile_B : PlayerSkill_Projectile, IProjectile
 {
-    [SerializeField]
-    private Collider2D effectCollider;
+    [SerializeField] private Collider2D effectCollider;
 
     private bool isExplosion = false;
 
-    public bool Finished { get { return isExplosion && animator.GetCurrentAnimatorStateInfo(0).IsName(so.projectile_Info.animationName); } }
+    public bool Finished { get { return isExplosion && animator.GetCurrentAnimatorStateInfo(0).IsName(so.Projectile_Info.animationName); } }
     public void Set()
     {
         animator.Play("default");
@@ -45,7 +44,7 @@ public class Projectile_B : PlayerSkill_Projectile, IProjectile
 
         if(!isExplosion)
         {
-            animator.Play(so.projectile_Info.animationName);
+            animator.Play(so.Projectile_Info.animationName);
             StopCoroutine(moving);
 
             moving = null;
@@ -61,7 +60,7 @@ public class Projectile_B : PlayerSkill_Projectile, IProjectile
     {
         while(true)
         {
-            transform.position += direction * so.projectile_Info.speed * Time.deltaTime;
+            transform.position += direction * so.Projectile_Info.speed * Time.deltaTime;
 
             yield return null;
         }

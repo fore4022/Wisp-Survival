@@ -5,14 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStat
 {
-    [SerializeField]
-    private int moveSpeed = 0;
-    [SerializeField]
-    private int increaseHealth = 0;
-    [SerializeField]
-    private int increaseDamage = 0;
-    [SerializeField]
-    private int healthRegenPerSec = 0;
+    [SerializeField] private int moveSpeed = 0;
+    [SerializeField] private int increaseHealth = 0;
+    [SerializeField] private int increaseDamage = 0;
+    [SerializeField] private int healthRegenPerSec = 0;
 
     public DefaultStat defaultStat;
 

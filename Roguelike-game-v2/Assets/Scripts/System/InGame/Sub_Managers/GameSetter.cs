@@ -30,10 +30,10 @@ public class GameSetter
         {
             userLevel = await AddressableHelper.LoadingToPath<UserLevel_SO>($"{i}{userLevelPath}");
 
-            foreach(string path in userLevel.pathList)
+            foreach(string path in userLevel.PathList)
             {
                 so = await AddressableHelper.LoadingToPath<SkillInformation_SO>(path);
-                skill = await AddressableHelper.LoadingToPath<GameObject>(so.info.type);
+                skill = await AddressableHelper.LoadingToPath<GameObject>(so.Info.type);
 
                 skillList.Add(skill);
                 Managers.Game.inGameData_Manage.skill.SetDictionaryItem(so);
@@ -46,7 +46,7 @@ public class GameSetter
     }
     private async Task LoadStage()
     {
-        stage = await AddressableHelper.LoadingToPath<GameObject>(Managers.Main.GetCurrentStageSO().stagePath);
+        stage = await AddressableHelper.LoadingToPath<GameObject>(Managers.Main.GetCurrentStageSO().StagePath);
     }
     public IEnumerator Initializing()
     {
@@ -86,7 +86,7 @@ public class GameSetter
     }
     private IEnumerator DataLoading()
     {
-        monsterList = Managers.Game.stageInformation.spawnMonsterList.monsters;
+        monsterList = Managers.Game.stageInformation.SpawnMonsterList.Monsters;
 
         Task loadStage = LoadStage();
         Task loadSkill = LoadSkillList();

@@ -11,13 +11,10 @@ using UnityEngine;
 /// </summary>
 public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
 {
-    [SerializeField]
-    protected Collider2D defaultCollider = null;
+    [SerializeField] protected Collider2D defaultCollider = null;
 
-    [SerializeField]
-    protected bool playAnimationOnEnable = true;
-    [SerializeField]
-    protected bool playColliderOnEnable = true;
+    [SerializeField] protected bool playAnimationOnEnable = true;
+    [SerializeField] protected bool playColliderOnEnable = true;
 
     protected IPlayerSkill skill;
     protected Skill_SO so;
@@ -31,7 +28,7 @@ public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
     private bool isMaxLevel = false;
 
     public ScriptableObject SO { set { so = value as Skill_SO; } }
-    public float DamageAmount { get { return Managers.Game.player.Stat.damage * so.damageCoefficient[level]; } }
+    public float DamageAmount { get { return Managers.Game.player.Stat.damage * so.DamageCoefficient[level]; } }
     protected void Awake()
     {
         Init();
@@ -83,15 +80,15 @@ public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
     }
     private IEnumerator CastSkill()
     {
-        level = Managers.Game.inGameData_Manage.skill.GetLevel(so.typePath);
+        level = Managers.Game.inGameData_Manage.skill.GetLevel(so.TypePath);
 
         if(level == Skill_SO.maxLevel - 1 && !isMaxLevel)
         {
-            render.color = so.maxLevelColor;
+            render.color = so.MaxLevelColor;
             isMaxLevel = true;
         }
 
-        if(so.flipX)
+        if(so.FlipX)
         {
             if(Random.Range(0, 2) == 1)
             {
@@ -103,7 +100,7 @@ public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
             }
         }
 
-        if(so.flipY)
+        if(so.FlipY)
         {
             if(Random.Range(0, 2) == 1)
             {

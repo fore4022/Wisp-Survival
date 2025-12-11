@@ -8,8 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Skill_F : PlayerSkill, IPlayerSkill
 {
-    [SerializeField]
-    private float speed;
+    [SerializeField] private float speed;
 
     private Coroutine colorVairation = null;
     private Vector3 direction;
@@ -17,12 +16,12 @@ public class Skill_F : PlayerSkill, IPlayerSkill
     private float totalTime = 0;
     private float targetTime = 0;
 
-    public bool Finished { get { return so.duration <= totalTime; } }
+    public bool Finished { get { return so.Duration <= totalTime; } }
     public void Set()
     {
         currentSpeed = speed;
         totalTime = 0;
-        targetTime = Mathf.Lerp(totalTime, so.duration, Random.Range(1, so.duration) / so.duration);
+        targetTime = Mathf.Lerp(totalTime, so.Duration, Random.Range(1, so.Duration) / so.Duration);
         transform.position = Managers.Game.player.gameObject.transform.position + (Vector3)Default_Calculate.GetRandomVector();
         direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition(), transform.position);
 
@@ -37,13 +36,13 @@ public class Skill_F : PlayerSkill, IPlayerSkill
     }
     private IEnumerator Attacking()
     {
-        while(totalTime < so.duration)
+        while(totalTime < so.Duration)
         {
             if(totalTime >= targetTime)
             {
-                if(totalTime < so.duration - 1)
+                if(totalTime < so.Duration - 1)
                 {
-                    targetTime = Mathf.Lerp(totalTime, so.duration, Random.Range(1, so.duration) / so.duration);
+                    targetTime = Mathf.Lerp(totalTime, so.Duration, Random.Range(1, so.Duration) / so.Duration);
                     direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition(), transform.position);
                 }
             }
@@ -53,7 +52,7 @@ public class Skill_F : PlayerSkill, IPlayerSkill
             
             yield return null;
 
-            if(totalTime > so.duration - 1)
+            if(totalTime > so.Duration - 1)
             {
                 currentSpeed -= Time.deltaTime;
 
@@ -64,7 +63,7 @@ public class Skill_F : PlayerSkill, IPlayerSkill
             }
             else
             {
-                currentSpeed = Default_Calculate.GetParabolicY(so.duration, speed, totalTime) + 1;
+                currentSpeed = Default_Calculate.GetParabolicY(so.Duration, speed, totalTime) + 1;
             }
         }
 

@@ -2,14 +2,10 @@ using TMPro;
 using UnityEngine;
 public class StageExitConfirm_UI : UserInterface
 {
-    [SerializeField]
-    private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip giveUpStage_Sound;
-    [SerializeField]
-    private AudioClip cancelStageExit_Sound;
-    [SerializeField]
-    private TextMeshProUGUI tmp;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip giveUpStage_Sound;
+    [SerializeField] private AudioClip cancelStageExit_Sound;
+    [SerializeField] private TextMeshProUGUI tmp;
 
     private const string exitAfterClearMessage = "스테이지가 클리어 되었습니다.";
     private const string exitWithoutClearWarning = "스테이지가 클리어하지 못했습니다.\n경험치를 휙득할 수 없습니다.";

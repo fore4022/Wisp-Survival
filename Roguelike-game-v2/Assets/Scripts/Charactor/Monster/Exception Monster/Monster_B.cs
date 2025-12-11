@@ -5,10 +5,8 @@ using UnityEngine;
 /// </summary>
 public class Monster_B : BasicMonster_WithObject
 {
-    [SerializeField]
-    private float coolTime = 3f;
-    [SerializeField, Range(0, 100)]
-    private float skillCastChance;
+    [SerializeField] private float coolTime = 3f;
+    [SerializeField][Range(0, 100)] private float skillCastChance;
 
     private Coroutine behavior = null;
     private WaitForSeconds delay;
@@ -18,8 +16,8 @@ public class Monster_B : BasicMonster_WithObject
     protected override void Init()
     {
         delay = new(coolTime);
-        skillKey = monsterSO.extraObjects[0].name;
-        visualizerKey = monsterSO.extraObjects[1].name;
+        skillKey = monsterSO.ExtraObjects[0].name;
+        visualizerKey = monsterSO.ExtraObjects[1].name;
 
         base.Init();
     }

@@ -6,8 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Monster_J : BasicMonster
 {
-    [SerializeField]
-    private float lifeTime;
+    [SerializeField] private float lifeTime;
 
     private WaitForSeconds delay;
 

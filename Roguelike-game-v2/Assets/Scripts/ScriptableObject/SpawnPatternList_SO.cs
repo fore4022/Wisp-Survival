@@ -3,5 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpawnPatternList", menuName = "Create New SO/Game Stage/Create New SpawnPatternList_SO")]
 public class SpawnPatternList_SO : ScriptableObject
 {
-    public List<SpawnPattern_SO> patterns;
+    [SerializeField] private List<SpawnPattern_SO> patterns;
+
+    public List<SpawnPattern_SO> Patterns { get { return patterns; } }
 }

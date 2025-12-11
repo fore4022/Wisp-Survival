@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PauseMenu_UI : UserInterface
 {
-    [SerializeField]
-    private Image[] icons;
+    [SerializeField] private Image[] icons;
 
     private bool attackSelectionActive = false;
 

@@ -5,14 +5,10 @@ using UnityEngine;
 /// </summary>
 public class Monster_K : BasicMonster
 {
-    [SerializeField]
-    private float dashSpeedMultiplier;
-    [SerializeField]
-    private float dashDuration;
-    [SerializeField]
-    private float dashCooldown;
-    [SerializeField]
-    private float targetDirectionMultiplier;
+    [SerializeField] private float dashSpeedMultiplier;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashCooldown;
+    [SerializeField] private float targetDirectionMultiplier;
 
     private Coroutine behavior = null;
     private WaitForSeconds delay;

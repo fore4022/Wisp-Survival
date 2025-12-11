@@ -5,8 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Skill_Information
 {
-    [HideInInspector]
-    public Sprite icon;
+    [HideInInspector] public Sprite icon;
 
     public GameObject go;
 
@@ -15,10 +14,10 @@ public class Skill_Information
 
     public Skill_Information(SkillInformation_SO so)
     {
-        icon = so.sprite;
-        go = so.info.go;
-        name = so.info.name;
-        explanation = so.info.explanation;
+        icon = so.Icon;
+        go = so.Info.go;
+        name = so.Info.name;
+        explanation = so.Info.explanation;
     }
     public string type { get { return go.name; } }
 }

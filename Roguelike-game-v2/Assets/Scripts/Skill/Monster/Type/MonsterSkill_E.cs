@@ -4,10 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class MonsterSkill_E : MonsterSkill_Damage
 {
-    [SerializeField]
-    private List<Color> colors;
-    [SerializeField]
-    private Vector3 skillOffset;
+    [SerializeField] private List<Color> colors;
+    [SerializeField] private Vector3 skillOffset;
 
     private const float triggerTime = 0.975f;
 

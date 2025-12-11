@@ -4,14 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerStat_Manage))]
 public class StatUpgrade_UI : UserInterface
 {
-    [SerializeField]
-    private Transform statElement_parent;
-    [SerializeField]
-    private AudioClip increaseSound;
-    [SerializeField]
-    private AudioClip decreaseSound;
-    [SerializeField]
-    private AudioClip actionUnavailableSound;
+    [SerializeField] private Transform statElement_parent;
+    [SerializeField] private AudioClip increaseSound;
+    [SerializeField] private AudioClip decreaseSound;
+    [SerializeField] private AudioClip actionUnavailableSound;
 
     public List<FileReference> files;
     public TextMeshProUGUI statPointText;

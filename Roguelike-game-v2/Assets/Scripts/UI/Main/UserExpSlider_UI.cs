@@ -14,10 +14,10 @@ public class UserExpSlider_UI : UserInterface
     }
     public void UpdateExp()
     {
-        if(Managers.Data.user.Level != UserExpTable_SO.maxLevel)
+        if(Managers.Data.user.Level != GameUtil.maxLevel)
         {
-            expSlider.value = (float)Managers.Data.user.Exp / Managers.Data.UserExpTable.requiredEXP[Managers.Data.user.Level - 1];
-            expText.text = $"{Managers.Data.user.Exp:N0} / {Managers.Data.UserExpTable.requiredEXP[Managers.Data.user.Level - 1]:N0}";
+            expSlider.value = (float)Managers.Data.user.Exp / Managers.Data.UserExpTable.RequiredEXP[Managers.Data.user.Level - 1];
+            expText.text = $"{Managers.Data.user.Exp:N0} / {Managers.Data.UserExpTable.RequiredEXP[Managers.Data.user.Level - 1]:N0}";
         }
         else
         {

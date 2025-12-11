@@ -19,6 +19,6 @@ public class Background_Music : MonoBehaviour
     {
         yield return new WaitUntil(() => Managers.Game.stageInformation != null);
 
-        audioSource.clip = Managers.Game.stageInformation.bgm;
+        audioSource.clip = Managers.Game.stageInformation.BGM;
     }
 }

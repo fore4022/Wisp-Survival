@@ -8,8 +8,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class EnterMainScene : MonoBehaviour, IPointerClickHandler
 {
-    [HideInInspector]
-    public bool isLoad = false;
+    [HideInInspector] public bool isLoad = false;
 
     public void OnPointerClick(PointerEventData eventData)
     {

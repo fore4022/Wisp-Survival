@@ -47,17 +47,17 @@ public class Data_Manager
         {
             user = new();
 
-            foreach(Stage_SO so in Managers.Main.stageDatas.Icons)
+            foreach(Stage_SO so in Managers.Main.stageDatas.StageList)
             {
-                if(Managers.Data.user.StageClearInfo.Find(info => info.name == so.stagePath) == null)
+                if(Managers.Data.user.StageClearInfo.Find(info => info.name == so.StagePath) == null)
                 {
                     if(user.StageClearInfo.Count == 0)
                     {
-                        user.StageClearInfo.Add(new(so.stagePath, StageState.Unlocked));
+                        user.StageClearInfo.Add(new(so.StagePath, StageState.Unlocked));
                     }
                     else
                     {
-                        user.StageClearInfo.Add(new(so.stagePath, StageState.Locked));
+                        user.StageClearInfo.Add(new(so.StagePath, StageState.Locked));
                     }
                 }
             }

@@ -4,8 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UserLevel", menuName = "Create New SO/User Level/Create New UserLevel_SO")]
 public class UserLevel_SO : ScriptableObject
 {
-    [ReadOnly]
-    public List<string> pathList;
+    [SerializeField][ReadOnly] private List<string> pathList;
+
+    public List<string> PathList { get { return pathList; } }
 
 #if UNITY_EDITOR
     public List<SkillInformation_SO> skillInformationList;

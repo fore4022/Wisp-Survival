@@ -10,15 +10,11 @@ using UnityEngine;
 [Serializable]
 public class FileReference
 {
-    [ShowInInspector]
-    public UnityEngine.Object component;
-    [ShowInInspector]
-    public string fieldName;
+    [ShowInInspector] public UnityEngine.Object component;
+    [ShowInInspector] public string fieldName;
 
-    [HideInInspector]
-    public Action GetAction = null;
-    [HideInInspector]
-    public Action SetAction = null;
+    [HideInInspector] public Action GetAction = null;
+    [HideInInspector] public Action SetAction = null;
 
     // 이벤트 호출, component에서 fieldName 필드를 리플렉션으로 접근해 값을 반환
     public object GetValue()

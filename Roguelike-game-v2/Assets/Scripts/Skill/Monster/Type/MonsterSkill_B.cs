@@ -3,10 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class MonsterSkill_B : MonsterSkill_Damage, IFakeShadowSource
 {
-    [SerializeField, Min(0.2f)]
-    private float duration = 0.5f;
-    [SerializeField]
-    private Vector3 skillOffset;
+    [SerializeField][Min(0.2f)] private float duration = 0.5f;
+    [SerializeField] private Vector3 skillOffset;
 
     private const float preActionDelay = 0.035f;
 

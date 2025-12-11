@@ -10,7 +10,7 @@ public class Skill_B : PlayerSkill, IPlayerSkill
     public bool Finished { get { return true; } }
     public void Set()
     {
-        transform.position = MonsterDetection.GetLargestMonsterGroup() + so.adjustmentPosition;
+        transform.position = MonsterDetection.GetLargestMonsterGroup() + so.AdjustmentPosition;
     }
     public void SetCollider()
     {

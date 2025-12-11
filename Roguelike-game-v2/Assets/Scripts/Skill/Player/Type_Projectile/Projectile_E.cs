@@ -8,13 +8,10 @@ using UnityEngine;
 /// </summary>
 public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
 {
-    [SerializeField]
-    private Collider2D effectCollider;
+    [SerializeField] private Collider2D effectCollider;
 
-    [SerializeField]
-    private Vector2 castRange;
-    [SerializeField, Min(0.01f)]
-    private float castDelay;
+    [SerializeField] private Vector2 castRange;
+    [SerializeField][Min(0.01f)] private float castDelay;
 
     private const int initialRotationAngle_Max = 1080;
     private const int initialRotationAngle_Min = 720;
@@ -25,12 +22,12 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
     private float sign_Angle;
     private bool isExplosion = false;
 
-    public bool Finished { get { return isExplosion && animator.GetCurrentAnimatorStateInfo(0).IsName(so.projectile_Info.animationName); } }
+    public bool Finished { get { return isExplosion && animator.GetCurrentAnimatorStateInfo(0).IsName(so.Projectile_Info.animationName); } }
     public void Set()
     {
         animator.Play("default");
 
-        castingPosition = so.adjustmentPosition + new Vector2(Random.Range(-castRange.x / 2, castRange.x / 2), Random.Range(-castRange.y / 2, castRange.y / 2));
+        castingPosition = so.AdjustmentPosition + new Vector2(Random.Range(-castRange.x / 2, castRange.x / 2), Random.Range(-castRange.y / 2, castRange.y / 2));
         transform.position = Managers.Game.player.transform.position;
         transform.rotation = Default_Calculate.GetQuaternion(Default_Calculate.GetRandomVector());
 
@@ -96,7 +93,7 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
 
         yield return new WaitForSeconds(castDelay * 3);
 
-        Vector3 remainingDistance = targetPosition - (transform.position + direction * so.projectile_Info.speed * Time.deltaTime);
+        Vector3 remainingDistance = targetPosition - (transform.position + direction * so.Projectile_Info.speed * Time.deltaTime);
         Vector3 afterPosition = new();
 
         totalTime = 0;
@@ -106,7 +103,7 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
         while(true)
         {
             totalTime += Time.deltaTime;
-            afterPosition = transform.position + direction * so.projectile_Info.speed * Time.deltaTime;
+            afterPosition = transform.position + direction * so.Projectile_Info.speed * Time.deltaTime;
 
             if(remainingDistance.sqrMagnitude >= (targetPosition - afterPosition).sqrMagnitude)
             {
@@ -123,7 +120,7 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
             yield return null;
         }
 
-        animator.Play(so.projectile_Info.animationName);
+        animator.Play(so.Projectile_Info.animationName);
 
         isExplosion = true;
     }

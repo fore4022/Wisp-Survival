@@ -9,14 +9,10 @@ using UnityEngine;
 /// </summary>
 public class Monster_F : BasicMonster_WithObject
 {
-    [SerializeField, Min(0.25f)]
-    private float defaultScale;
-    [SerializeField, Min(0.1f)]
-    private float splitScale;
-    [SerializeField, Min(2)]
-    private float splitInstanceCount;
-    [SerializeField, Range(0, 100)]
-    private float skillCastChance;
+    [SerializeField][Min(0.25f)] private float defaultScale;
+    [SerializeField][Min(0.1f)] private float splitScale;
+    [SerializeField][Min(2)] private float splitInstanceCount;
+    [SerializeField][Range(0, 100)] private float skillCastChance;
 
     private Vector3 _defaultScale;
     private string monsterKey;
@@ -27,7 +23,7 @@ public class Monster_F : BasicMonster_WithObject
     protected override void Init()
     {
         transform.localScale = _defaultScale = new(defaultScale, defaultScale);
-        monsterKey = monsterSO.extraObjects[0].name;
+        monsterKey = monsterSO.ExtraObjects[0].name;
         adjustmentScale = defaultScale / 20;
 
         base.Init();
@@ -57,7 +53,7 @@ public class Monster_F : BasicMonster_WithObject
         {
             if(Random.Range(0, 100) <= skillCastChance)
             {
-                user_Experience = monsterSO.user_Experience;
+                user_Experience = monsterSO.User_Experience;
 
                 StartCoroutine(RepeatBehavior());
 

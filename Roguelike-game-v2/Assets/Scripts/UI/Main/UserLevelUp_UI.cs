@@ -4,12 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class UserLevelUp_UI : UserInterface, IPointerClickHandler
 {
-    [SerializeField]
-    private GameObject[] particles;
-    [SerializeField]
-    private TextMeshProUGUI log;
-    [SerializeField]
-    private TextMeshProUGUI prompt;
+    [SerializeField] private GameObject[] particles;
+    [SerializeField] private TextMeshProUGUI log;
+    [SerializeField] private TextMeshProUGUI prompt;
 
     private const float delaySec = 0.8f;
     private const float duration = 1.5f;

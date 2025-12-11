@@ -3,19 +3,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Stage", menuName = "Create New SO/Game Stage/Create New Stage_SO")]
 public class Stage_SO : ScriptableObject
 {
-    [HideInInspector]
-    public string infoPath;
-    [HideInInspector]
-    public string iconPath;
+    [SerializeField][HideInInspector] private string infoPath;
+    [SerializeField][HideInInspector] private string iconPath;
 
+    [SerializeField] private string stagePath;
+    [SerializeField] private new string name;
+
+    public string InfoPath { get { return infoPath; } }
+    public string IconPath { get { return iconPath; } }
+    public string StagePath { get { return stagePath; } }
+    public string Name { get { return name; } }
+
+#if UNITY_EDITOR
     public StageInformation_SO information = null;
     public Icon_SO iconSprite = null;
 
-    public string stagePath;
-    public new string name;
-
-#if UNITY_EDITOR
-    public void OnValidate()
+    private void OnValidate()
     {
         ValidateUntilReady();
     }
@@ -33,7 +36,7 @@ public class Stage_SO : ScriptableObject
             }
         };
     }
-    public void Validate()
+    private void Validate()
     {
         infoPath = information.name;
         iconPath = iconSprite.name;

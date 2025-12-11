@@ -27,11 +27,11 @@ public class SkillCaster
     }
     private void Set()
     {
-        coolTime = new(so.coolTime[level]);
+        coolTime = new(so.CoolTime[level]);
 
-        if(so.isMultiCast)
+        if(so.IsMultiCast)
         {
-            delay = new(so.multiCast.delay[level]);
+            delay = new(so.MultiCast_Info.delay[level]);
         }
     }
     public void CastingStop()
@@ -46,7 +46,7 @@ public class SkillCaster
 
         Set();
 
-        if(!so.isMultiCast)
+        if(!so.IsMultiCast)
         {
             while (true)
             {
@@ -63,7 +63,7 @@ public class SkillCaster
             {
                 yield return coolTime;
 
-                for(i = 0; i < so.multiCast.count[level]; i++)
+                for(i = 0; i < so.MultiCast_Info.count[level]; i++)
                 {
                     Managers.Game.objectPool.ActiveObject(attackType);
 

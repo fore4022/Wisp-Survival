@@ -6,14 +6,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class GameOver_UI : UserInterface
 {
-    [SerializeField]
-    private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip clear;
-    [SerializeField]
-    private AudioClip failed;
-    [SerializeField]
-    private AudioClip buttonClickSfx;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clear;
+    [SerializeField] private AudioClip failed;
+    [SerializeField] private AudioClip buttonClickSfx;
 
     private List<TextMeshProUGUI> tmpList;
     private List<Image> imgList;
@@ -104,7 +100,7 @@ public class GameOver_UI : UserInterface
     }
     private IEnumerator ResultSequence()
     {
-        string required = $"목표 시간\n\n{(Managers.Game.stageInformation.requiredTime / 60):D2} : {Managers.Game.stageInformation.requiredTime:D2} : 00";
+        string required = $"목표 시간\n\n{(Managers.Game.stageInformation.RequiredTime / 60):D2} : {Managers.Game.stageInformation.RequiredTime:D2} : 00";
         string survival = $"생존 시간\n\n{Managers.Game.inGameTimer.GetHours:D2} : {Managers.Game.inGameTimer.GetMinutes:D2} : {Managers.Game.inGameTimer.GetSeconds:D2}";
         string gainExp = $"Experience\n\n+ {Managers.Game.UserExp:N0} EXP";
 

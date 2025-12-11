@@ -4,14 +4,13 @@ using UnityEngine;
 /// </summary>
 public class Monster_G : BasicMonster_WithObject
 {
-    [SerializeField, Range(0, 100)]
-    private float skillCastChance;
+    [SerializeField][Range(0, 100)] private float skillCastChance;
 
     protected string skillKey;
 
     protected override void Init()
     {
-        skillKey = monsterSO.extraObjects[0].name;
+        skillKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
     }

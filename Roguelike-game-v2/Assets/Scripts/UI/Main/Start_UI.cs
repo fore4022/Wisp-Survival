@@ -1,10 +1,8 @@
 using UnityEngine;
 public class Start_UI : Button_Default
 {
-    [SerializeField]
-    private AudioClip actionAvailableSound;
-    [SerializeField]
-    private AudioClip actionUnavailableSound;
+    [SerializeField] private AudioClip actionAvailableSound;
+    [SerializeField] private AudioClip actionUnavailableSound;
 
     private const string log = "You must clear the previous stage.";
 

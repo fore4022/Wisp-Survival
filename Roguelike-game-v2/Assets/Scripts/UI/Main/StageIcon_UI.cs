@@ -3,18 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StageIcon_UI : UserInterface
 {
-    [SerializeField]
-    private TextMeshProUGUI themaName;
-    [SerializeField]
-    private Image ground;
-    [SerializeField]
-    private Image cover;
-    [SerializeField]
-    private Image banner;
-    [SerializeField]
-    private Image monster;
-    [SerializeField]
-    private GameObject padlock;
+    [SerializeField] private TextMeshProUGUI themaName;
+    [SerializeField] private Image ground;
+    [SerializeField] private Image cover;
+    [SerializeField] private Image banner;
+    [SerializeField] private Image monster;
+    [SerializeField] private GameObject padlock;
 
     private Stage_SO so;
 
@@ -37,8 +31,8 @@ public class StageIcon_UI : UserInterface
         StageState state = Managers.Data.user.GetStageState();
         Icon_SO icon = so.iconSprite;
 
-        ground.sprite = icon.ground;
-        monster.sprite = icon.monster;
+        ground.sprite = icon.Ground;
+        monster.sprite = icon.Monster;
 
         if(state == StageState.Locked)
         {
@@ -60,7 +54,7 @@ public class StageIcon_UI : UserInterface
 
             if(state == StageState.Cleared)
             {
-                banner.sprite = icon.banner;
+                banner.sprite = icon.Banner;
                 banner.gameObject.SetActive(true);
                 monster.gameObject.SetActive(false);
             }
@@ -73,13 +67,13 @@ public class StageIcon_UI : UserInterface
             padlock.SetActive(false);
         }
 
-        if(icon.cover == null)
+        if(icon.Cover == null)
         {
             cover.gameObject.SetActive(false);
         }
         else
         {
-            cover.sprite = icon.cover;
+            cover.sprite = icon.Cover;
 
             cover.gameObject.SetActive(true);
         }

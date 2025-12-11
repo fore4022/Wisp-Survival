@@ -3,12 +3,9 @@ using TMPro;
 using UnityEngine;
 public class StageInformation_UI : UserInterface
 {
-    [SerializeField]
-    private List<GameObject> coverList;
-    [SerializeField]
-    private TextMeshProUGUI requiredTime;
-    [SerializeField]
-    private TextMeshProUGUI difficulty;
+    [SerializeField] private List<GameObject> coverList;
+    [SerializeField] private TextMeshProUGUI requiredTime;
+    [SerializeField] private TextMeshProUGUI difficulty;
 
     private StageInformation_SO so;
 
@@ -34,8 +31,8 @@ public class StageInformation_UI : UserInterface
     {
         so = Managers.Main.GetCurrentStageSO(0).information;
 
-        requiredTime.text = $"Required Time\n {so.requiredTime} : 00";
-        difficulty.text = $"Difficulty\n{so.difficulty}";
+        requiredTime.text = $"Required Time\n {so.RequiredTime} : 00";
+        difficulty.text = $"Difficulty\n{so.Difficulty}";
     }
     private void OnDisable()
     {

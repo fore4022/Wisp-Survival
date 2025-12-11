@@ -16,9 +16,9 @@ public class SkillDatas
     }
     public void SetDictionaryItem(SkillInformation_SO so)
     {
-        if(!infos.ContainsKey(so.info.type))
+        if(!infos.ContainsKey(so.Info.type))
         {
-            infos.Add(so.info.type, new SkillContext(so));
+            infos.Add(so.Info.type, new SkillContext(so));
         }
     }
     public void SetValue(string key, int levelDelta = 1)

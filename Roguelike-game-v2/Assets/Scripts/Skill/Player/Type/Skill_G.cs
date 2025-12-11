@@ -7,8 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Skill_G : PlayerSkill, IPlayerSkill
 {
-    [SerializeField]
-    private float skillRange;
+    [SerializeField] private float skillRange;
 
     public bool Finished { get { return true; } }
     public void Set()

@@ -6,10 +6,8 @@ using UnityEngine;
 /// </summary>
 public class InitGame : MonoBehaviour
 {
-    [SerializeField]
-    private EnterMainScene enterMainScene;
-    [SerializeField]
-    private AudioSource audioSource;
+    [SerializeField] private EnterMainScene enterMainScene;
+    [SerializeField] private AudioSource audioSource;
 
     private const string _stageDataPath = "StageDatas";
 
@@ -21,7 +19,7 @@ public class InitGame : MonoBehaviour
     }
     private async Task LoadStageDatas()
     {
-        Managers.Main.stageDatas.SO = await AddressableHelper.LoadingToPath<StageDatas_SO>(_stageDataPath, false);
+        Managers.Main.stageDatas.SO = await AddressableHelper.LoadingToPath<StageList_SO>(_stageDataPath, false);
     }
     private IEnumerator Initializing()
     {

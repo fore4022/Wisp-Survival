@@ -6,10 +6,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class Tutorial_MaskImage_UI : UserInterface, IPointerEnterHandler
 {
-    [SerializeField]
-    private List<Transform> targetList;
-    [SerializeField]
-    private List<TextMeshProUGUI> textList;
+    [SerializeField] private List<Transform> targetList;
+    [SerializeField] private List<TextMeshProUGUI> textList;
 
     private Image maskImage;
 

@@ -4,10 +4,8 @@ using UnityEngine;
 /// </summary>
 public class Monster_O : BasicMonster
 {
-    [SerializeField]
-    private Color targetColor;
-    [SerializeField]
-    private float multiplier;
+    [SerializeField] private Color targetColor;
+    [SerializeField] private float multiplier;
 
     private float healthLossRatio;
     

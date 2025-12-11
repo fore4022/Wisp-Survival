@@ -5,12 +5,9 @@ using UnityEngine;
 /// </summary>
 public class Monster_M : Monster_G
 {
-    [SerializeField]
-    private List<Color> colors;
-    [SerializeField]
-    private float scaleValue_Min;
-    [SerializeField]
-    private float scaleValue_Max;
+    [SerializeField] private List<Color> colors;
+    [SerializeField] private float scaleValue_Min;
+    [SerializeField] private float scaleValue_Max;
 
     private float value;
 

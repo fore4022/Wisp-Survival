@@ -6,12 +6,9 @@ using UnityEngine;
 /// </summary>
 public class Monster_I : BasicMonster_WithObject
 {
-    [SerializeField]
-    private List<Vector3> skillOffset;
-    [SerializeField]
-    private float coolTime;
-    [SerializeField]
-    private float monsterCount;
+    [SerializeField] private List<Vector3> skillOffset;
+    [SerializeField] private float coolTime;
+    [SerializeField] private float monsterCount;
 
     private Coroutine behavior = null;
     private WaitForSeconds delay;
@@ -20,7 +17,7 @@ public class Monster_I : BasicMonster_WithObject
     protected override void Init()
     {
         delay = new(coolTime);
-        monsterKey = monsterSO.extraObjects[0].name;
+        monsterKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
     }

@@ -5,12 +5,9 @@ using UnityEngine;
 /// </summary>
 public class Monster_D : BasicMonster
 {
-    [SerializeField]
-    private float dashSpeed;
-    [SerializeField]
-    private float dashDuration;
-    [SerializeField]
-    private float dashCooldown;
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashCooldown;
 
     private WaitForSeconds cooldown;
 

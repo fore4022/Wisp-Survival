@@ -5,18 +5,12 @@ using UnityEngine;
 /// </summary>
 public class Monster_N : BasicMonster_WithObject
 {
-    [SerializeField]
-    private Vector3 skillRotation;
-    [SerializeField]
-    private float skillPositionX;
-    [SerializeField]
-    private float skillPositionY;
-    [SerializeField]
-    private float skillDuration;
-    [SerializeField]
-    private float skillRange;
-    [SerializeField]
-    private float skillCooldown;
+    [SerializeField] private Vector3 skillRotation;
+    [SerializeField] private float skillPositionX;
+    [SerializeField] private float skillPositionY;
+    [SerializeField] private float skillDuration;
+    [SerializeField] private float skillRange;
+    [SerializeField] private float skillCooldown;
 
     private const float triggerTime = 0.975f;
 
@@ -29,7 +23,7 @@ public class Monster_N : BasicMonster_WithObject
     {
         delay = new(skillDuration);
         cooldown = new(skillCooldown);
-        skillKey = monsterSO.extraObjects[0].name;
+        skillKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
     }

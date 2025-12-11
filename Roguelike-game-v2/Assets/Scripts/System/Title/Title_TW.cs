@@ -6,10 +6,8 @@ using UnityEngine;
 /// </summary>
 public class Title_TW : MonoBehaviour
 {
-    [SerializeField]
-    private List<Transform> tweens;
-    [SerializeField]
-    private SpriteRenderer _explosion;
+    [SerializeField] private List<Transform> tweens;
+    [SerializeField] private SpriteRenderer _explosion;
 
     private void Start()
     {

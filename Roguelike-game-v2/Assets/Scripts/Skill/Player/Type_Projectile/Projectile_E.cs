@@ -8,26 +8,26 @@ using UnityEngine;
 /// </summary>
 public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
 {
-    [SerializeField] private Collider2D effectCollider;
+    [SerializeField] private Collider2D _effectCollider;
 
-    [SerializeField] private Vector2 castRange;
-    [SerializeField][Min(0.01f)] private float castDelay;
+    [SerializeField] private Vector2 _castRange;
+    [SerializeField][Min(0.01f)] private float _castDelay;
 
-    private const int initialRotationAngle_Max = 1080;
-    private const int initialRotationAngle_Min = 720;
-    private const int animation_Angle = 30;
+    private const int InitialRotationAngleMax = 1080;
+    private const int InitialRotationAngleMin = 720;
+    private const int AnimationAngle = 30;
 
-    private Vector3 targetPosition;
-    private Vector2 castingPosition;
-    private float sign_Angle;
-    private bool isExplosion = false;
+    private Vector3 _targetPosition;
+    private Vector2 _castingPosition;
+    private float _signAngle;
+    private bool _isExplosion = false;
 
-    public bool Finished { get { return isExplosion && animator.GetCurrentAnimatorStateInfo(0).IsName(so.Projectile_Info.animationName); } }
+    public bool Finished { get { return _isExplosion && _animator.GetCurrentAnimatorStateInfo(0).IsName(_so.Projectile_Info.animationName); } }
     public void Set()
     {
-        animator.Play("default");
+        _animator.Play("default");
 
-        castingPosition = so.AdjustmentPosition + new Vector2(Random.Range(-castRange.x / 2, castRange.x / 2), Random.Range(-castRange.y / 2, castRange.y / 2));
+        _castingPosition = _so.AdjustmentPosition + new Vector2(Random.Range(-_castRange.x / 2, _castRange.x / 2), Random.Range(-_castRange.y / 2, _castRange.y / 2));
         transform.position = Managers.Game.player.transform.position;
         transform.rotation = Default_Calculate.GetQuaternion(Default_Calculate.GetRandomVector());
 
@@ -35,15 +35,15 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
     }
     public void SetCollider()
     {
-        if(isExplosion)
+        if(_isExplosion)
         {
-            effectCollider.enabled = false;
-            defaultCollider.enabled = false;
+            _effectCollider.enabled = false;
+            _defaultCollider.enabled = false;
         }
         else
         {
-            effectCollider.enabled = true;
-            defaultCollider.enabled = false;
+            _effectCollider.enabled = true;
+            _defaultCollider.enabled = false;
         }
     }
     public void Enter(GameObject go)
@@ -58,61 +58,61 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
         transform.Kill();
 
         transform.rotation = Quaternion.identity;
-        effectCollider.enabled = false;
-        isExplosion = false;
+        _effectCollider.enabled = false;
+        _isExplosion = false;
     }
     private IEnumerator Attacking()
     {
         float totalTime = 0;
         
-        transform.SetRotation(new(0, 0, Random.Range(initialRotationAngle_Min, initialRotationAngle_Max)), castDelay * 2, EaseType.OutCubic);
+        transform.SetRotation(new(0, 0, Random.Range(InitialRotationAngleMin, InitialRotationAngleMax)), _castDelay * 2, EaseType.OutCubic);
 
-        while(totalTime != castDelay)
+        while(totalTime != _castDelay)
         {
             totalTime += Time.deltaTime;
 
-            if(totalTime > castDelay)
+            if(totalTime > _castDelay)
             {
-                totalTime = castDelay;
+                totalTime = _castDelay;
             }
 
-            transform.position = Managers.Game.player.transform.position + Vector3.Lerp(new(), castingPosition, totalTime / castDelay);
+            transform.position = Managers.Game.player.transform.position + Vector3.Lerp(new(), _castingPosition, totalTime / _castDelay);
 
             yield return null;
         }
 
-        targetPosition = MonsterDetection.GetNearestMonsterPosition(transform);
+        _targetPosition = MonsterDetection.GetNearestMonsterPosition(transform);
 
-        yield return new WaitForSeconds(castDelay);
+        yield return new WaitForSeconds(_castDelay);
 
-        direction = Default_Calculate.GetDirection(targetPosition, (Vector2)Managers.Game.player.transform.position + castingPosition);
-        sign_Angle = Random.Range(0, 2) == 1 ? -1 : 1;
+        direction = Default_Calculate.GetDirection(_targetPosition, (Vector2)Managers.Game.player.transform.position + _castingPosition);
+        _signAngle = Random.Range(0, 2) == 1 ? -1 : 1;
 
-        transform.SetRotation(Default_Calculate.GetQuaternion(direction).eulerAngles + new Vector3(0, 0, (360 + animation_Angle * sign_Angle) - transform.rotation.eulerAngles.z % 360), castDelay, EaseType.OutCirc)
-            .SetRotation(new(0, 0, animation_Angle * -sign_Angle), castDelay * 2, EaseType.OutCubic, TweenOperation.Append);
+        transform.SetRotation(Default_Calculate.GetQuaternion(direction).eulerAngles + new Vector3(0, 0, (360 + AnimationAngle * _signAngle) - transform.rotation.eulerAngles.z % 360), _castDelay, EaseType.OutCirc)
+            .SetRotation(new(0, 0, AnimationAngle * -_signAngle), _castDelay * 2, EaseType.OutCubic, TweenOperation.Append);
 
-        yield return new WaitForSeconds(castDelay * 3);
+        yield return new WaitForSeconds(_castDelay * 3);
 
-        Vector3 remainingDistance = targetPosition - (transform.position + direction * so.Projectile_Info.speed * Time.deltaTime);
+        Vector3 remainingDistance = _targetPosition - (transform.position + direction * _so.Projectile_Info.speed * Time.deltaTime);
         Vector3 afterPosition = new();
 
         totalTime = 0;
-        animator.speed = 1;
-        defaultCollider.enabled = true;
+        _animator.speed = 1;
+        _defaultCollider.enabled = true;
 
         while(true)
         {
             totalTime += Time.deltaTime;
-            afterPosition = transform.position + direction * so.Projectile_Info.speed * Time.deltaTime;
+            afterPosition = transform.position + direction * _so.Projectile_Info.speed * Time.deltaTime;
 
-            if(remainingDistance.sqrMagnitude >= (targetPosition - afterPosition).sqrMagnitude)
+            if(remainingDistance.sqrMagnitude >= (_targetPosition - afterPosition).sqrMagnitude)
             {
-                remainingDistance = targetPosition - afterPosition;
+                remainingDistance = _targetPosition - afterPosition;
                 transform.position = afterPosition;
             }
             else
             {
-                transform.position = targetPosition;
+                transform.position = _targetPosition;
 
                 break;
             }
@@ -120,8 +120,8 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
             yield return null;
         }
 
-        animator.Play(so.Projectile_Info.animationName);
+        _animator.Play(_so.Projectile_Info.animationName);
 
-        isExplosion = true;
+        _isExplosion = true;
     }
 }

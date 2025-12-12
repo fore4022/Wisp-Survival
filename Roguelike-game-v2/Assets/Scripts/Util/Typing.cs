@@ -10,21 +10,21 @@ using UnityEngine;
 /// </summary>
 public static class Typing
 {
-    private static WaitForSecondsRealtime waitRealSec = new(0.03f);
+    private static WaitForSecondsRealtime _waitRealSec = new(0.03f);
 
     // 타이핑 실행 및 소요 시간 반환
     public static WaitForSecondsRealtime EffectAndGetWaiting(TextMeshProUGUI tmp, string str, float delay = 0, bool recursive = false, string currentStr = "")
     {
         CoroutineHelper.Start(TypeEffecting(tmp, str, recursive, currentStr), CoroutineType.UserInterface);
 
-        return new(waitRealSec.waitTime * str.Length + delay);
+        return new(_waitRealSec.waitTime * str.Length + delay);
     }
     // 타이핑 실행 및 코루틴과 소요 시간 반환
     public static (Coroutine, WaitForSecondsRealtime) GetEffectAndWaiting(TextMeshProUGUI tmp, string str, float delay = 0, bool recursive = false, string currentStr = "")
     {
         Coroutine coroutine = CoroutineHelper.Start(TypeEffecting(tmp, str, recursive, currentStr), CoroutineType.UserInterface);
 
-        return (coroutine, new(waitRealSec.waitTime * str.Length + delay));
+        return (coroutine, new(_waitRealSec.waitTime * str.Length + delay));
     }
     // 타이핑 효과, 하위 텍스트까지 적용 가능, 기존 문자열에 더해서 사용 가능
     public static IEnumerator TypeEffecting(TextMeshProUGUI tmp, string str, bool recursive = false, string currentStr = "")
@@ -47,7 +47,7 @@ public static class Typing
 
             for(int i = 0; i < str.Length; i++)
             {
-                yield return waitRealSec;
+                yield return _waitRealSec;
 
                 builder.Append(str[i]);
 
@@ -63,7 +63,7 @@ public static class Typing
         {
             for(int i = 0; i < str.Length; i++)
             {
-                yield return waitRealSec;
+                yield return _waitRealSec;
 
                 builder.Append(str[i]);
 
@@ -110,7 +110,7 @@ public static class Typing
 
         while(builder.Length > targetCount)
         {
-            yield return waitRealSec;
+            yield return _waitRealSec;
 
             IsNewLineStart(ref builder);
 

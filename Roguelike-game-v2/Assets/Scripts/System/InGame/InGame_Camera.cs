@@ -7,9 +7,9 @@ using UnityEngine;
 /// </summary>
 public class InGame_Camera : MonoBehaviour
 {
-    private GameObject player = null;
+    private GameObject _player = null;
 
-    private const float zpos = -10;
+    private const float ZPos = -10;
 
     private void Awake()
     {
@@ -17,11 +17,11 @@ public class InGame_Camera : MonoBehaviour
     }
     private void Update()
     {
-        if(player == null)
+        if(_player == null)
         {
             if(Managers.Game.player != null)
             {
-                player = Managers.Game.player.gameObject;
+                _player = Managers.Game.player.gameObject;
             }
             else
             {
@@ -39,6 +39,6 @@ public class InGame_Camera : MonoBehaviour
     }
     private void PositionUpdate()
     {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, zpos);
+        transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, ZPos);
     }
 }

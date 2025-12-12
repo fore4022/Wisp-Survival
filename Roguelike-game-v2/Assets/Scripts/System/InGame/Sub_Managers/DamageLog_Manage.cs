@@ -4,13 +4,13 @@ public class DamageLog_Manage
 {
     public Dictionary<PoolingObject, DamageLog> damageLogs = new();
 
-    public const string prefabName = "DamageLog";
+    public const string PrefabName = "DamageLog";
 
     public bool isSet = false;
 
     public void Set()
     {
-        foreach(PoolingObject obj in Managers.Game.objectPool.GetObjects(prefabName))
+        foreach(PoolingObject obj in Managers.Game.objectPool.GetObjects(PrefabName))
         {
             damageLogs.Add(obj, obj.GetComponent<DamageLog>());
         }
@@ -19,7 +19,7 @@ public class DamageLog_Manage
     }
     public void Show(Vector3 position, float damage)
     {
-        PoolingObject obj = Managers.Game.objectPool.GetObject(prefabName);
+        PoolingObject obj = Managers.Game.objectPool.GetObject(PrefabName);
 
         damageLogs[obj].SetInformation(position, damage);
         obj.SetActive(true);

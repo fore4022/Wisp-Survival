@@ -13,15 +13,15 @@ public class Scene_Manager
     public Action onLoad = null;
     public Action loadComplete = null;
 
-    private string sceneName = "Title";
-    private bool hasInitialization;
+    private string _sceneName = "Title";
+    private bool _hasInitialization;
 
-    public string CurrentSceneName { get { return sceneName; } }
+    public string CurrentSceneName { get { return _sceneName; } }
     // 이벤트 호출 및 기존 씬의 UI 정보 해제
     public void LoadScene(SceneNames sceneName, bool hasInitialization = true)
     {
-        this.sceneName = sceneName.ToString();
-        this.hasInitialization = hasInitialization;
+        _sceneName = sceneName.ToString();
+        _hasInitialization = hasInitialization;
 
         onLoad?.Invoke();
 
@@ -43,11 +43,11 @@ public class Scene_Manager
 
         yield return new WaitUntil(() => !Managers.UI.Get<LoadingOverlay_UI>().IsFadeIn);
 
-        AddressableHelper.LoadingScene(sceneName.ToString());
+        AddressableHelper.LoadingScene(_sceneName.ToString());
 
-        yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName);
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().name == _sceneName);
 
-        if(!hasInitialization)
+        if(!_hasInitialization)
         {
             LoadComplete();
         }

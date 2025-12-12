@@ -23,16 +23,16 @@ public class Game_Manager
     public Action restart;
     public Action over;
 
-    private Coroutine reSetting = null;
-    private int userExp = 0;
-    private bool isPlaying = false;
-    private bool gameOver = false;
-    private bool stageClear = false;
+    private Coroutine _reSetting = null;
+    private int _userExp = 0;
+    private bool _isPlaying = false;
+    private bool _gameOver = false;
+    private bool _stageClear = false;
 
-    public int UserExp { get { return userExp; } set { userExp = value; } }
-    public bool Playing { get { return isPlaying; } set { isPlaying = value; } }
-    public bool GameOver { get { return gameOver; } }
-    public bool IsStageClear { get { return stageClear; } }
+    public int UserExp { get { return _userExp; } set { _userExp = value; } }
+    public bool Playing { get { return _isPlaying; } set { _isPlaying = value; } }
+    public bool GameOver { get { return _gameOver; } }
+    public bool IsStageClear { get { return _stageClear; } }
     // 서브 매니저, 게임 시스템 초기화
     private void Init()
     {
@@ -65,7 +65,7 @@ public class Game_Manager
     public void InitGame()
     {
         stageInformation = Managers.Main.GetCurrentStageSO().information;
-        isPlaying = false;
+        _isPlaying = false;
 
         Init();
         CoroutineHelper.Start(gameSetter.Initializing(), CoroutineType.Manage);
@@ -73,9 +73,9 @@ public class Game_Manager
     // 이벤트 호출 및 UI 활성화
     public void Start()
     {
-        isPlaying = true;
-        gameOver = false;
-        stageClear = false;
+        _isPlaying = true;
+        _gameOver = false;
+        _stageClear = false;
 
         start.Invoke();
 
@@ -85,16 +85,16 @@ public class Game_Manager
     // 이벤트 호출, 게임 상태 및 정보 재설정
     public void ReStart()
     {
-        isPlaying = false;
-        gameOver = false;
+        _isPlaying = false;
+        _gameOver = false;
 
         CoroutineHelper.Start(ReStarting(), CoroutineType.Manage);
     }
     // 이벤트 호출, 종료 효과 재생, 결과 표시
     public void Over()
     {
-        Managers.Data.user.Exp += userExp;
-        isPlaying = false;
+        Managers.Data.user.Exp += _userExp;
+        _isPlaying = false;
 
         if(!player.Death)
         {
@@ -102,7 +102,7 @@ public class Game_Manager
         }
         else
         {
-            gameOver = true;
+            _gameOver = true;
             effect.StageFailed();
         }
 
@@ -136,15 +136,15 @@ public class Game_Manager
         objectPool = null;
         gameSetter = null;
         stageInformation = null;
-        userExp = 0;
+        _userExp = 0;
     }
     // 스테이지 클리어 여부 확인
     public void IsStageCleared(int minutes)
     {
         if(minutes >= stageInformation.RequiredTime)
         {
-            stageClear = true;
-            isPlaying = false;
+            _stageClear = true;
+            _isPlaying = false;
             Managers.Game.inGameTimer.minuteUpdate -= IsStageCleared;
 
             Over();
@@ -153,15 +153,15 @@ public class Game_Manager
     // 게임 재설정 대기 이후 재시작
     private IEnumerator ReStarting()
     {
-        reSetting = CoroutineHelper.Start(ReSetting(), CoroutineType.Manage);
+        _reSetting = CoroutineHelper.Start(ReSetting(), CoroutineType.Manage);
 
         yield return null;
 
-        yield return new WaitUntil(() => reSetting == null);
+        yield return new WaitUntil(() => _reSetting == null);
 
         Time.timeScale = 1;
-        userExp = 0;
-        stageClear = false;
+        _userExp = 0;
+        _stageClear = false;
 
         monsterSpawner.ReStart();
         inGameData_Manage.player.SetLevel();
@@ -178,9 +178,9 @@ public class Game_Manager
 
         yield return new WaitUntil(() => !Managers.UI.Get<LoadingOverlay_UI>().IsFadeIn);
 
-        Camera.main.orthographicSize = CameraSizes.inGame * Camera_SizeScale.orthographicSizeScale;
+        Camera.main.orthographicSize = CameraSizes.InGame * Camera_SizeScale.orthographicSizeScale;
         Managers.Game.inGameData_Manage.player.Experience = 0;
-        isPlaying = true;
+        _isPlaying = true;
 
         restart.Invoke();
 
@@ -192,6 +192,6 @@ public class Game_Manager
         inGameTimer.ReStart();
         Input_Manage.EnableInputAction<TouchControls>();
 
-        reSetting = null;
+        _reSetting = null;
     }
 }

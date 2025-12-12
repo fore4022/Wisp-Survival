@@ -3,20 +3,20 @@ using UnityEngine;
 using UnityEngine.UI;
 public class LoadingOverlay_UI : UserInterface
 {
-    private const float limitTime = 0.5f;
+    private const float LimitTime = 0.5f;
 
-    private Image background;
+    private Image _background;
 
-    private const float minAlpha = 0;
-    private const float maxAlpha = 255;
+    private const float MinAlpha = 0;
+    private const float MaxAlpha = 255;
 
-    private bool isFadeIn = true;
-    private bool isFadeOut = false;
+    private bool _isFadeIn = true;
+    private bool _isFadeOut = false;
 
-    public bool IsFadeIn { get { return isFadeIn; } }
+    public bool IsFadeIn { get { return _isFadeIn; } }
     public override void SetUserInterface()
     {
-        background = transform.GetComponentInChild<Image>();
+        _background = transform.GetComponentInChild<Image>();
 
         transform.SetParent(null, false);
         DontDestroyOnLoad(gameObject);
@@ -24,23 +24,23 @@ public class LoadingOverlay_UI : UserInterface
     }
     public void FadeOut()
     {
-        isFadeOut = true;
+        _isFadeOut = true;
     }
     private IEnumerator Effecting()
     {
         yield return new WaitUntil(() => Managers.UI.IsInitalized());
 
-        UIElementUtility.SetImageAlpha(background, maxAlpha, limitTime, false);
+        UIElementUtility.SetImageAlpha(_background, MaxAlpha, LimitTime, false);
 
-        yield return new WaitForSecondsRealtime(limitTime);
+        yield return new WaitForSecondsRealtime(LimitTime);
 
-        isFadeIn = false;
+        _isFadeIn = false;
 
-        yield return new WaitUntil(() => isFadeOut);
+        yield return new WaitUntil(() => _isFadeOut);
 
-        UIElementUtility.SetImageAlpha(background, minAlpha, limitTime);
+        UIElementUtility.SetImageAlpha(_background, MinAlpha, LimitTime);
 
-        yield return new WaitForSecondsRealtime(limitTime);
+        yield return new WaitForSecondsRealtime(LimitTime);
 
         Managers.UI.Destroy<LoadingOverlay_UI>();
     }

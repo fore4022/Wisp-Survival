@@ -4,14 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UserLevel", menuName = "Create New SO/User Level/Create New UserLevel_SO")]
 public class UserLevel_SO : ScriptableObject
 {
-    [SerializeField][ReadOnly] private List<string> pathList;
+    [SerializeField][ReadOnly] private List<string> _pathList;
 
-    public List<string> PathList { get { return pathList; } }
+    public List<string> PathList { get { return _pathList; } }
 
 #if UNITY_EDITOR
     public List<SkillInformation_SO> skillInformationList;
 
-    private string path;
+    private string _path;
 
     private int count { get { return skillInformationList.Count; } }
     private void OnValidate()
@@ -22,7 +22,7 @@ public class UserLevel_SO : ScriptableObject
     {
         EditorApplication.delayCall += () =>
         {
-            if(pathList.Count != skillInformationList.Count)
+            if(_pathList.Count != skillInformationList.Count)
             {
                 Validate();
             }
@@ -38,20 +38,20 @@ public class UserLevel_SO : ScriptableObject
         {
             for(int i = count; i < skillInformationList.Count; i++)
             {
-                path = $"Assets/SO/SkillInformation/{skillInformationList[i].name}.asset";
+                _path = $"Assets/SO/SkillInformation/{skillInformationList[i].name}.asset";
 
-                pathList.Add(path);
+                _pathList.Add(_path);
             }
         }
         else
         {
-            pathList = new();
+            _pathList = new();
 
             foreach(SkillInformation_SO so in skillInformationList)
             {
-                path = $"Assets/SO/SkillInformation/{so.name}.asset";
+                _path = $"Assets/SO/SkillInformation/{so.name}.asset";
 
-                pathList.Add(path);
+                _pathList.Add(_path);
             }
         }
     }

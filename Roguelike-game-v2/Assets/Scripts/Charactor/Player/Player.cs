@@ -12,42 +12,42 @@ public class Player : MonoBehaviour, IDamageReceiver
     public Action maxHealthUpdate = null;
     public Action healthUpdate = null;
 
-    private const float duration = 0.4f;
+    private const float Duration = 0.4f;
 
-    private Player_Information information = new();
-    private DefaultStat stat = null;
-    private SpriteRenderer render;
-    private Animator animator;
+    private Player_Information _information = new();
+    private DefaultStat _stat = null;
+    private SpriteRenderer _render;
+    private Animator _animator;
 
-    private bool death = false;
+    private bool _death = false;
 
-    public DefaultStat Stat { get { return stat; } }
+    public DefaultStat Stat { get { return _stat; } }
     public float MaxHealth
     {
-        get { return stat.maxHealth; }
+        get { return _stat.maxHealth; }
         set
         {
-            stat.maxHealth = value;
+            _stat.maxHealth = value;
 
             maxHealthUpdate?.Invoke();
         }
     }
     public float Health
     {
-        get { return stat.health; }
+        get { return _stat.health; }
         set
         {
-            stat.health = value;
+            _stat.health = value;
 
             healthUpdate?.Invoke();
         }
     }
-    public bool Death { get { return death; } }
+    public bool Death { get { return _death; } }
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        render = GetComponent<SpriteRenderer>();
-        move = new(render, new DefaultMoveable());
+        _animator = GetComponent<Animator>();
+        _render = GetComponent<SpriteRenderer>();
+        move = new(_render, new DefaultMoveable());
     }
     private void Start()
     {
@@ -55,16 +55,16 @@ public class Player : MonoBehaviour, IDamageReceiver
     }
     private void Update()
     {
-        Health = Mathf.Min(Health + (stat.healthRegenPerSec + ((MaxHealth - 50) % 20 / 200)) * Time.deltaTime, MaxHealth);
+        Health = Mathf.Min(Health + (_stat.healthRegenPerSec + ((MaxHealth - 50) % 20 / 200)) * Time.deltaTime, MaxHealth);
         move.IsPointerOverUI = EventSystem.current.IsPointerOverGameObject();
     }
     public void TakeDamage(IDamage damage)
     {
         Health -= damage.DamageAmount;
         
-        if(information.stat.health <= 0 && !death)
+        if(_information.stat.health <= 0 && !_death)
         {
-            death = true;
+            _death = true;
 
             Die();
             Managers.Game.Over();
@@ -74,39 +74,39 @@ public class Player : MonoBehaviour, IDamageReceiver
     {
         transform.localScale = new Vector2(3, 3);
         transform.rotation = Quaternion.Euler(Vector3.zero);
-        death = false;
+        _death = false;
 
         LoadPlayerStat();
         maxHealthUpdate?.Invoke();
         healthUpdate?.Invoke();
-        animator.Play("idle");
+        _animator.Play("idle");
     }
     public void AnimationPlay(string animationName)
     {
-        animator.Play(animationName);
+        _animator.Play(animationName);
     }
     private void LoadPlayerStat()
     {
-        stat = information.stat = new(Managers.Data.user.Stat.defaultStat, true);
+        _stat = _information.stat = new(Managers.Data.user.Stat.defaultStat, true);
     }
     private void Die()
     {
-        render.sortingLayerID = SortingLayer.NameToID("AboveEffect");
-        render.flipX = false;
+        _render.sortingLayerID = SortingLayer.NameToID("AboveEffect");
+        _render.flipX = false;
 
-        animator.Play("death");
+        _animator.Play("death");
         transform.SetRotation(new(0, 0, 0))
-            .SetScale(10, duration)
-            .SetPosition(transform.position + new Vector3(0, 0.5f), duration)
-            .SetRotation(new(0, 0, 370), duration);
+            .SetScale(10, Duration)
+            .SetPosition(transform.position + new Vector3(0, 0.5f), Duration)
+            .SetRotation(new(0, 0, 370), Duration);
     }
     private IEnumerator Init()
     {
         LoadPlayerStat();
 
-        Managers.Game.inGameData_Manage.player.Info = information;
+        Managers.Game.inGameData_Manage.player.Info = _information;
 
-        yield return new WaitUntil(() => information.stat != null);
+        yield return new WaitUntil(() => _information.stat != null);
 
         Managers.Game.player = this;
 

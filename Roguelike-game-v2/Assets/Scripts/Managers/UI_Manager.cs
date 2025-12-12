@@ -12,16 +12,16 @@ using Object = UnityEngine.Object;
 /// </summary>
 public class UI_Manager
 {
-    private Dictionary<string, UserInterface> uiDictionary = new();
+    private Dictionary<string, UserInterface> _uiDictionary = new();
 
-    private Transform root;
+    private Transform _root;
     
     // 생성된 UI가 위치하는 Root 반환
     private Transform Transform
     {
         get 
         {
-            if(root == null)
+            if(_root == null)
             {
                 GameObject go = GameObject.Find("UI");
 
@@ -30,16 +30,16 @@ public class UI_Manager
                     go = new GameObject { name = "UI" };
                 }
 
-                root = go.transform;
+                _root = go.transform;
             }
 
-            return root;
+            return _root;
         }
     }
     // 모든 UI의 초기화 여부를 확인, 초기화되지 않은 UI의 초기화를 실행
     public bool IsInitalized()
     {
-        foreach(UserInterface ui in uiDictionary.Values)
+        foreach(UserInterface ui in _uiDictionary.Values)
         {
             if(!ui.IsInitalized)
             {
@@ -56,7 +56,7 @@ public class UI_Manager
     {
         string name = GetName<T>();
 
-        if(uiDictionary.TryGetValue(name, out UserInterface ui))
+        if(_uiDictionary.TryGetValue(name, out UserInterface ui))
         {
             ui.gameObject.SetActive(true);
         }
@@ -70,7 +70,7 @@ public class UI_Manager
     {
         string name = GetName<T>();
 
-        if(uiDictionary.TryGetValue(name, out UserInterface ui))
+        if(_uiDictionary.TryGetValue(name, out UserInterface ui))
         {
             ui.gameObject.SetActive(false);
         }
@@ -80,7 +80,7 @@ public class UI_Manager
     {
         string name = GetName<T>();
 
-        if(!uiDictionary.ContainsKey(name))
+        if(!_uiDictionary.ContainsKey(name))
         {
             Creating(name, isActive);
         }
@@ -90,9 +90,9 @@ public class UI_Manager
     {
         string name = GetName<T>();
 
-        if(uiDictionary.ContainsKey(name))
+        if(_uiDictionary.ContainsKey(name))
         {
-            return uiDictionary[name].GetComponentInChildren<T>();
+            return _uiDictionary[name].GetComponentInChildren<T>();
         }
 
         return null;
@@ -102,11 +102,11 @@ public class UI_Manager
     {
         string name = GetName<T>();
 
-        if(uiDictionary.ContainsKey(name))
+        if(_uiDictionary.ContainsKey(name))
         {
-            Object.Destroy(uiDictionary[name].gameObject);
+            Object.Destroy(_uiDictionary[name].gameObject);
 
-            uiDictionary.Remove(name);
+            _uiDictionary.Remove(name);
         }
     }
     // UI 등록
@@ -114,9 +114,9 @@ public class UI_Manager
     {
         string name = ui.GetType().ToString().Replace("_UI", "");
 
-        if(!uiDictionary.ContainsKey(name))
+        if(!_uiDictionary.ContainsKey(name))
         {
-            uiDictionary.Add(name, ui);
+            _uiDictionary.Add(name, ui);
         }
     }
     // 타입에 해당하는 UI 활성화 및 인스턴스 반환
@@ -124,11 +124,11 @@ public class UI_Manager
     {
         string name = GetName<T>();
 
-        if(uiDictionary.ContainsKey(name))
+        if(_uiDictionary.ContainsKey(name))
         {
-            uiDictionary[name].gameObject.SetActive(true);
+            _uiDictionary[name].gameObject.SetActive(true);
 
-            return uiDictionary[name].GetComponentInChildren<T>();
+            return _uiDictionary[name].GetComponentInChildren<T>();
         }
 
         return null;
@@ -136,7 +136,7 @@ public class UI_Manager
     // UI 등록 초기화
     public void Clear()
     {
-        uiDictionary = new();
+        _uiDictionary = new();
     }
     // 타입을 통해서 UI 딕셔너리 키 반환
     private string GetName<T>() where T : UserInterface
@@ -148,9 +148,9 @@ public class UI_Manager
     {
         GameObject go = await AddressableHelper.LoadingToPath<GameObject>(uiName);
 
-        if(!uiDictionary.ContainsKey(uiName))
+        if(!_uiDictionary.ContainsKey(uiName))
         {
-            uiDictionary.Add(uiName, go.GetComponent<UserInterface>());
+            _uiDictionary.Add(uiName, go.GetComponent<UserInterface>());
         }
     }
     // 입력받은 키의 UI 로드 대기 이후 생성 및 활성화 상태 설정
@@ -162,15 +162,15 @@ public class UI_Manager
 
         yield return new WaitUntil(() => loadUI.IsCompleted);
 
-        ui = uiDictionary[uiName];
+        ui = _uiDictionary[uiName];
 
         if(ui == null)
         {
-            uiDictionary.Remove(uiName);
+            _uiDictionary.Remove(uiName);
         }
         else
         {
-            ui = uiDictionary[uiName] = Object.Instantiate(uiDictionary[uiName], Transform);
+            ui = _uiDictionary[uiName] = Object.Instantiate(_uiDictionary[uiName], Transform);
 
             ui.gameObject.SetActive(isActive);
 

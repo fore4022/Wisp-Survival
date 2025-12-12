@@ -5,21 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class MonsterSkill : MonoBehaviour
 {
-    [SerializeField][Min(0.01f)] protected float animationSpeed = 1;
+    [SerializeField][Min(0.01f)] protected float _animationSpeed = 1;
 
-    protected SpriteRenderer render;
-    protected Animator animator;
-    protected AudioSource audioSource;
-    protected Rigidbody2D rigid;
-    protected Collider2D col;
+    protected SpriteRenderer _render;
+    protected Animator _animator;
+    protected AudioSource _audioSource;
+    protected Rigidbody2D _rigid;
+    protected Collider2D _col;
 
-    protected bool isInit = false;
+    protected bool _isInit = false;
 
-    private const float collectDelay = 3;
+    private const float CollectDelay = 3;
 
-    private Coroutine collect;
-    private WaitForSeconds delay = new(collectDelay);
-    private Plane[] planes = new Plane[6];
+    private Coroutine _collect;
+    private WaitForSeconds _delay = new(CollectDelay);
+    private Plane[] _planes = new Plane[6];
     
     protected void Awake()
     {
@@ -27,11 +27,11 @@ public abstract class MonsterSkill : MonoBehaviour
     }
     protected void OnEnable()
     {
-        if(!isInit)
+        if(!_isInit)
         {
             Init();
 
-            isInit = true;
+            _isInit = true;
 
             SetActive(false);
         }
@@ -44,26 +44,26 @@ public abstract class MonsterSkill : MonoBehaviour
     }
     protected virtual void Init()
     {
-        render = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody2D>();
+        _render = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _rigid = GetComponent<Rigidbody2D>();
 
-        if(col == null)
+        if(_col == null)
         {
-            col = GetComponent<Collider2D>();
+            _col = GetComponent<Collider2D>();
         }
 
-        rigid.gravityScale = 0;
-        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        _rigid.gravityScale = 0;
+        _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     protected virtual void SetActive(bool isActive)
     {
-        render.enabled = isActive;
-        animator.speed = isActive ? animationSpeed : 0;
+        _render.enabled = isActive;
+        _animator.speed = isActive ? _animationSpeed : 0;
     }
     private void OnDisable()
     {
-        if(isInit)
+        if(_isInit)
         {
             Disable();
         }
@@ -89,29 +89,29 @@ public abstract class MonsterSkill : MonoBehaviour
     }
     private void IsInvisible()
     {
-        planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        _planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
 
-        if(GeometryUtility.TestPlanesAABB(planes, col.bounds))
+        if(GeometryUtility.TestPlanesAABB(_planes, _col.bounds))
         {
-            if(collect != null)
+            if(_collect != null)
             {
-                StopCoroutine(collect);
+                StopCoroutine(_collect);
 
-                collect = null;
+                _collect = null;
             }
 
-            animator.speed = 1;
+            _animator.speed = 1;
         }
         else
         {
-            collect = StartCoroutine(Collecting());
+            _collect = StartCoroutine(Collecting());
 
-            animator.speed = 0;
+            _animator.speed = 0;
         }
     }
     private IEnumerator Collecting()
     {
-        yield return delay;
+        yield return _delay;
 
         gameObject.SetActive(false);
     }

@@ -9,11 +9,11 @@ using UnityEngine;
 /// </summary>
 public class Projectile_D : PlayerSkill_Projectile, IProjectile
 {
-    [SerializeField][Range(0, 100)] private float probability;
-    [SerializeField][Range(0.01f, 10)] private float targetScale;
-    [SerializeField][Min(0.01f)] private float duration;
+    [SerializeField][Range(0, 100)] private float _probability;
+    [SerializeField][Range(0.01f, 10)] private float _targetScale;
+    [SerializeField][Min(0.01f)] private float _duration;
 
-    private bool isInit = false;
+    private bool _isInit = false;
 
     public bool Finished { get { return moving == null; } }
     public void Set()
@@ -21,9 +21,9 @@ public class Projectile_D : PlayerSkill_Projectile, IProjectile
         transform.position = Managers.Game.player.gameObject.transform.position;
         direction = Default_Calculate.GetRandomDirection();
 
-        transform.SetScale(5.75f, duration, EaseType.OutCubic);
+        transform.SetScale(5.75f, _duration, EaseType.OutCubic);
         
-        if(Random.Range(0, 100) <= probability)
+        if(Random.Range(0, 100) <= _probability)
         {
             direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition());
         }
@@ -43,22 +43,22 @@ public class Projectile_D : PlayerSkill_Projectile, IProjectile
     }
     private void OnDisable()
     {
-        if(isInit)
+        if(_isInit)
         {
-            defaultCollider.enabled = false;
+            _defaultCollider.enabled = false;
 
             transform.Kill().SetScale(1);
         }
         else
         {
-            isInit = true;
+            _isInit = true;
         }
     }
     public IEnumerator Moving()
     {
         while(true)
         {
-            transform.position += direction * (Managers.Game.player.Stat.moveSpeed + so.Projectile_Info.speed) * Time.deltaTime;
+            transform.position += direction * (Managers.Game.player.Stat.moveSpeed + _so.Projectile_Info.speed) * Time.deltaTime;
 
             yield return null;
         }

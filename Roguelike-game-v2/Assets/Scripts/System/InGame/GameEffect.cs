@@ -5,8 +5,8 @@ using UnityEngine;
 /// </summary>
 public class GameEffect
 {
-    private readonly WaitForSeconds delay = new(duration);
-    private const float duration = 0.4f;
+    private readonly WaitForSeconds _delay = new(Duration);
+    private const float Duration = 0.4f;
 
     private float MaxOrthographicSize { get { return 6 * Camera_SizeScale.orthographicSizeScale; } }
     private float MinOrthographicSize { get { return 1.25f * Camera_SizeScale.orthographicSizeScale; } }
@@ -29,16 +29,16 @@ public class GameEffect
         float totalTime = 0;
         float currentCameraSize = Camera.main.orthographicSize;
 
-        while(totalTime != duration)
+        while(totalTime != Duration)
         {
             totalTime += Time.unscaledDeltaTime;
 
-            if(totalTime > duration)
+            if(totalTime > Duration)
             {
-                totalTime = duration;
+                totalTime = Duration;
             }
 
-            Camera.main.orthographicSize = Mathf.Lerp(currentCameraSize, 1.25f * Camera_SizeScale.orthographicSizeScale, totalTime / duration);
+            Camera.main.orthographicSize = Mathf.Lerp(currentCameraSize, 1.25f * Camera_SizeScale.orthographicSizeScale, totalTime / Duration);
 
             yield return null;
         }
@@ -52,23 +52,23 @@ public class GameEffect
 
         float totalTime = 0;
 
-        cam.SetPosition(cam.position + new Vector3(0, -0.3f), duration);
+        cam.SetPosition(cam.position + new Vector3(0, -0.3f), Duration);
 
-        while(totalTime != duration)
+        while(totalTime != Duration)
         {
             totalTime += Time.deltaTime;
 
-            if(totalTime >= duration)
+            if(totalTime >= Duration)
             {
-                totalTime = duration;
+                totalTime = Duration;
             }
 
-            Camera.main.orthographicSize = Mathf.Lerp(MaxOrthographicSize, MinOrthographicSize, totalTime / duration);
+            Camera.main.orthographicSize = Mathf.Lerp(MaxOrthographicSize, MinOrthographicSize, totalTime / Duration);
 
             yield return null;
         }
 
-        yield return delay;
+        yield return _delay;
 
         Managers.UI.Show<GameOver_UI>();
     }
@@ -78,18 +78,18 @@ public class GameEffect
 
         float totalTime = 0;
 
-        cam.SetPosition(cam.position + new Vector3(0, 0.3f), duration);
+        cam.SetPosition(cam.position + new Vector3(0, 0.3f), Duration);
 
-        while (totalTime != duration)
+        while (totalTime != Duration)
         {
             totalTime += Time.deltaTime;
 
-            if (totalTime >= duration)
+            if (totalTime >= Duration)
             {
-                totalTime = duration;
+                totalTime = Duration;
             }
 
-            Camera.main.orthographicSize = Mathf.Lerp(MinOrthographicSize, MaxOrthographicSize, totalTime / duration);
+            Camera.main.orthographicSize = Mathf.Lerp(MinOrthographicSize, MaxOrthographicSize, totalTime / Duration);
 
             yield return null;
         }

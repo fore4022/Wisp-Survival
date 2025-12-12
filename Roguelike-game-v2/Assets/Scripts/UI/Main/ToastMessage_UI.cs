@@ -4,59 +4,59 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ToastMessage_UI : UserInterface
 {
-    private Image img;
-    private TextMeshProUGUI toast;
+    private Image _img;
+    private TextMeshProUGUI _toast;
 
-    private Coroutine coroutine_img = null;
-    private Coroutine coroutine_text = null;
-    private Coroutine coroutine = null;
+    private Coroutine _coroutineImg = null;
+    private Coroutine _coroutineText = null;
+    private Coroutine _coroutine = null;
 
-    private const float delay = 1.25f;
+    private const float Delay = 1.25f;
 
     public override void SetUserInterface()
     {
-        img = GetComponent<Image>();
-        toast = transform.GetComponentInChild<TextMeshProUGUI>();
+        _img = GetComponent<Image>();
+        _toast = transform.GetComponentInChild<TextMeshProUGUI>();
 
         Managers.UI.Hide<ToastMessage_UI>();
     }
     protected override void Enable()
     {
-        coroutine = StartCoroutine(ToastHide());
+        _coroutine = StartCoroutine(ToastHide());
     }
     public void SetText(string text)
     {
-        toast.text = text;
+        _toast.text = text;
     }
     private void OnDisable()
     {
-        if(coroutine != null)
+        if(_coroutine != null)
         {
-            if(coroutine_img != null)
+            if(_coroutineImg != null)
             {
-                CoroutineHelper.Stop(coroutine_img);
-                CoroutineHelper.Stop(coroutine_text);
+                CoroutineHelper.Stop(_coroutineImg);
+                CoroutineHelper.Stop(_coroutineText);
             }
 
-            coroutine = null;
+            _coroutine = null;
         }
     }
     private IEnumerator ToastHide()
     {
-        yield return new WaitUntil(() => toast.text != "");
+        yield return new WaitUntil(() => _toast.text != "");
 
-        UIElementUtility.SetImageAlpha(img, 50);
-        UIElementUtility.SetTextAlpha(toast, 255);
+        UIElementUtility.SetImageAlpha(_img, 50);
+        UIElementUtility.SetTextAlpha(_toast, 255);
 
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(Delay);
 
-        coroutine_img = UIElementUtility.SetImageAlpha(img, 0, delay);
-        coroutine_text = UIElementUtility.SetTextAlpha(toast, 0, delay);
+        _coroutineImg = UIElementUtility.SetImageAlpha(_img, 0, Delay);
+        _coroutineText = UIElementUtility.SetTextAlpha(_toast, 0, Delay);
 
-        yield return new WaitForSeconds(delay + 0.5f);
+        yield return new WaitForSeconds(Delay + 0.5f);
 
-        coroutine = null;
-        toast.text = "";
+        _coroutine = null;
+        _toast.text = "";
 
         Managers.UI.Hide<ToastMessage_UI>();
     }

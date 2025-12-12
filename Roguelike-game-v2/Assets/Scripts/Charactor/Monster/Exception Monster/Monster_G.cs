@@ -4,25 +4,25 @@ using UnityEngine;
 /// </summary>
 public class Monster_G : BasicMonster_WithObject
 {
-    [SerializeField][Range(0, 100)] private float skillCastChance;
+    [SerializeField][Range(0, 100)] private float _skillCastChance;
 
-    protected string skillKey;
+    protected string _skillKey;
 
     protected override void Init()
     {
-        skillKey = monsterSO.ExtraObjects[0].name;
+        _skillKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
     }
     protected override void Die()
     {
-        if(skillCastChance == 100)
+        if(_skillCastChance == 100)
         {
             SkillCast();
         }
         else
         {
-            if(Random.Range(0, 100) <= skillCastChance)
+            if(Random.Range(0, 100) <= _skillCastChance)
             {
                 SkillCast();
             }
@@ -32,7 +32,7 @@ public class Monster_G : BasicMonster_WithObject
     }
     protected virtual void SkillCast()
     {
-        PoolingObject go = Managers.Game.objectPool.GetObject(skillKey);
+        PoolingObject go = Managers.Game.objectPool.GetObject(_skillKey);
 
         go.Transform.position = transform.position;
 

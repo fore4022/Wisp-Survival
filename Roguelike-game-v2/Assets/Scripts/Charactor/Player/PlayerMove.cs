@@ -7,96 +7,96 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerMove : IMoveable
 {
-    private IMoveable moveable;
-    private TouchControls touchControl;
-    private CharactorController_UI charactorController;
-    private SpriteRenderer render;
+    private IMoveable _moveable;
+    private TouchControls _touchControl;
+    private CharactorController_UI _charactorController;
+    private SpriteRenderer _render;
 
-    private InputAction.CallbackContext context;
-    private Coroutine moving;
-    private Vector3 direction;
-    private Vector2 enterTouchPosition;
-    private Vector2 touchPosition;
-    private bool isPointerOverUI;
-    private bool active = false;
-    private bool didStartMove = false;
+    private InputAction.CallbackContext _context;
+    private Coroutine _moving;
+    private Vector3 _direction;
+    private Vector2 _enterTouchPosition;
+    private Vector2 _touchPosition;
+    private bool _isPointerOverUI;
+    private bool _active = false;
+    private bool _didStartMove = false;
 
-    public Vector2 Direction { get { return direction; } }
+    public Vector2 Direction { get { return _direction; } }
     public float SpeedAmount { get { return Managers.Game.player.Stat.moveSpeed * SlowDownAmount * Time.deltaTime; } }
-    public float SlowDownAmount { get { return moveable.SlowDownAmount; } }
-    public bool IsPointerOverUI { set { isPointerOverUI = value; } }
+    public float SlowDownAmount { get { return _moveable.SlowDownAmount; } }
+    public bool IsPointerOverUI { set { _isPointerOverUI = value; } }
     public void Init()
     {
         CoroutineHelper.Start(Initalization(), CoroutineType.Manage);
     }
     public void OnMove()
     {
-        touchPosition = context.ReadValue<Vector2>();
-        direction = Default_Calculate.GetDirection(touchPosition, enterTouchPosition, false);
+        _touchPosition = _context.ReadValue<Vector2>();
+        _direction = Default_Calculate.GetDirection(_touchPosition, _enterTouchPosition, false);
     }
     public void SetSlowDown(float slowDown, float duration)
     {
-        moveable.SetSlowDown(slowDown, duration);
+        _moveable.SetSlowDown(slowDown, duration);
     }
     public void SetDirection()
     {
-        if(direction.x > 0)
+        if(_direction.x > 0)
         {
-            render.flipX = false;
+            _render.flipX = false;
         }
-        else if(direction.x < 0)
+        else if(_direction.x < 0)
         {
-            render.flipX = true;
+            _render.flipX = true;
         }
     }
     private void CancelMove()
     {
         Managers.UI.Hide<CharactorController_UI>();
 
-        if(moving != null)
+        if(_moving != null)
         {
-            CoroutineHelper.Stop(moving);
+            CoroutineHelper.Stop(_moving);
         }
 
-        moving = null;
-        active = false;
-        didStartMove = false;
+        _moving = null;
+        _active = false;
+        _didStartMove = false;
 
         Managers.Game.player.AnimationPlay("idle");
     }
     private IEnumerator Initalization()
     {
-        touchControl = Input_Manage.CreateAndGetInputAction<TouchControls>();
+        _touchControl = Input_Manage.CreateAndGetInputAction<TouchControls>();
 
-        touchControl.Enable();
+        _touchControl.Enable();
 
         yield return new WaitUntil(() => Managers.UI.Get<CharactorController_UI>() != null);
 
-        charactorController = Managers.UI.Get<CharactorController_UI>();
+        _charactorController = Managers.UI.Get<CharactorController_UI>();
 
-        touchControl.Touch.TouchPress.started += (ctx =>
+        _touchControl.Touch.TouchPress.started += (ctx =>
         {
-            if(!isPointerOverUI)
+            if(!_isPointerOverUI)
             {
-                active = true;
+                _active = true;
             }
         });
 
-        touchControl.Touch.TouchPress.canceled += (ctx =>
+        _touchControl.Touch.TouchPress.canceled += (ctx =>
         {
             CancelMove();
         });
 
-        touchControl.Touch.TouchPosition.performed += (ctx =>
+        _touchControl.Touch.TouchPosition.performed += (ctx =>
         {
-            if(!active)
+            if(!_active)
             {
                 return;
             }
 
-            context = ctx;
+            _context = ctx;
 
-            if(!didStartMove)
+            if(!_didStartMove)
             {
                 StartMove();
             }
@@ -108,27 +108,27 @@ public class PlayerMove : IMoveable
     {
         Managers.UI.Show<CharactorController_UI>();
 
-        enterTouchPosition = context.ReadValue<Vector2>();
-        charactorController.EnterPosition = enterTouchPosition;
-        moving = CoroutineHelper.Start(Moving(), CoroutineType.Etc);
+        _enterTouchPosition = _context.ReadValue<Vector2>();
+        _charactorController.EnterPosition = _enterTouchPosition;
+        _moving = CoroutineHelper.Start(Moving(), CoroutineType.Etc);
     }
     public PlayerMove(SpriteRenderer render, DefaultMoveable moveable)
     {
-        this.render = render;
-        this.moveable = moveable;
+        this._render = render;
+        this._moveable = moveable;
     }
     private IEnumerator Moving()
     {
-        didStartMove = true;
+        _didStartMove = true;
 
         Managers.Game.player.AnimationPlay("walk");
 
         while(true)
         {
-            Managers.Game.player.gameObject.transform.position += direction.normalized * SpeedAmount;
+            Managers.Game.player.gameObject.transform.position += _direction.normalized * SpeedAmount;
 
             SetDirection();
-            charactorController.SetJoyStick();
+            _charactorController.SetJoyStick();
 
             yield return null;
         }

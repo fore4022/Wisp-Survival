@@ -7,22 +7,22 @@ using UnityEngine;
 /// </summary>
 public class Skill_E : PlayerSkill, IPlayerSkill
 {
-    [SerializeField] private int min_Index;
-    [SerializeField] private int max_Index;
+    [SerializeField] private int _minIndex;
+    [SerializeField] private int _maxIndex;
 
     public bool Finished { get { return true; } }
     public void Set()
     {
-        int rand = Random.Range(min_Index, max_Index + 1);
+        int rand = Random.Range(_minIndex, _maxIndex + 1);
 
         transform.position = MonsterDetection.GetLargestMonsterGroup();
 
-        animator.Play($"default_{rand}");
+        _animator.Play($"default_{rand}");
     }
     public void SetCollider()
     {
-        playColliderOnEnable = !playColliderOnEnable;
-        defaultCollider.enabled = playColliderOnEnable;
+        _playColliderOnEnable = !_playColliderOnEnable;
+        _defaultCollider.enabled = _playColliderOnEnable;
     }
     public void Enter(GameObject go)
     {

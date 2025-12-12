@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PauseMenu_UI : UserInterface
 {
-    [SerializeField] private Image[] icons;
+    [SerializeField] private Image[] _icons;
 
-    private bool attackSelectionActive = false;
+    private bool _attackSelectionActive = false;
 
     public override void SetUserInterface()
     {
@@ -12,16 +12,16 @@ public class PauseMenu_UI : UserInterface
     }
     protected override void Enable()
     {
-        attackSelectionActive = Managers.UI.Get<SkillSelection_UI>().gameObject.activeSelf;
+        _attackSelectionActive = Managers.UI.Get<SkillSelection_UI>().gameObject.activeSelf;
 
-        if(attackSelectionActive)
+        if(_attackSelectionActive)
         {
             Managers.UI.Get<SkillSelection_UI>().SkillOptionToggle(false);
         }
     }
     private void OnDisable()
     {
-        if(attackSelectionActive)
+        if(_attackSelectionActive)
         {
             Managers.UI.Get<SkillSelection_UI>().SkillOptionToggle(true);
         }
@@ -32,14 +32,14 @@ public class PauseMenu_UI : UserInterface
     }
     public void ShowIcons()
     {
-        foreach(Image icon in icons)
+        foreach(Image icon in _icons)
         {
             icon.gameObject.SetActive(true);
         }
     }
     public void HideIcons()
     {
-        foreach(Image icon in icons)
+        foreach(Image icon in _icons)
         {
             icon.gameObject.SetActive(false);
         }

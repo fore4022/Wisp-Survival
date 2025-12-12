@@ -5,15 +5,15 @@ using UnityEngine;
 /// </summary>
 public class Monster_D : BasicMonster
 {
-    [SerializeField] private float dashSpeed;
-    [SerializeField] private float dashDuration;
-    [SerializeField] private float dashCooldown;
+    [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _dashDuration;
+    [SerializeField] private float _dashCooldown;
 
-    private WaitForSeconds cooldown;
+    private WaitForSeconds _cooldown;
 
     protected override void Init()
     {
-        cooldown = new(dashCooldown);
+        _cooldown = new(_dashCooldown);
 
         base.Init();
     }
@@ -25,31 +25,31 @@ public class Monster_D : BasicMonster
     }
     private IEnumerator RepeatBehavior()
     {
-        canSwitchDirection = true;
+        _canSwitchDirection = true;
 
-        yield return cooldown;
+        yield return _cooldown;
 
-        if(isVisible)
+        if(_isVisible)
         {
             float totalTime = 0;
 
-            canSwitchDirection = false;
+            _canSwitchDirection = false;
 
-            while(totalTime != dashDuration)
+            while(totalTime != _dashDuration)
             {
                 totalTime += Time.deltaTime;
 
-                if(totalTime > dashDuration)
+                if(totalTime > _dashDuration)
                 {
-                    totalTime = dashDuration;
+                    totalTime = _dashDuration;
                 }
 
-                speedMultiplier = Mathf.Lerp(dashSpeed, speedMultiplierDefault, Ease.InExpo(totalTime / dashDuration));
+                _speedMultiplier = Mathf.Lerp(_dashSpeed, SpeedMultiplierDefault, Ease.InExpo(totalTime / _dashDuration));
 
                 yield return null;
             }
 
-            canSwitchDirection = true;
+            _canSwitchDirection = true;
         }
 
         StartCoroutine(RepeatBehavior());

@@ -4,18 +4,18 @@ using UnityEngine;
 /// </summary>
 public class Camera_SizeScale : MonoBehaviour
 {
-    public static readonly float deviceScale = (float)Screen.width / Screen.height;
+    public static readonly float _deviceScale = (float)Screen.width / Screen.height;
     
-    private const float defaultScale = (float)1080 / 1920;
+    private const float DefaultScale = (float)1080 / 1920;
 
-    private static bool isDeviceScaleSmaller;
+    private static bool _isDeviceScaleSmaller;
 
-    private InGame_Camera inGameCamera;
+    private InGame_Camera _inGameCamera;
 
-    public static float orthographicSizeScale { get { return isDeviceScaleSmaller ? defaultScale / deviceScale : 1; } }
+    public static float orthographicSizeScale { get { return _isDeviceScaleSmaller ? DefaultScale / _deviceScale : 1; } }
     private void Awake()
     {
-        inGameCamera = GetComponent<InGame_Camera>();
+        _inGameCamera = GetComponent<InGame_Camera>();
 
         DontDestroyOnLoad(gameObject);
     }
@@ -23,10 +23,10 @@ public class Camera_SizeScale : MonoBehaviour
     {
         Managers.Scene.loadComplete += OrthographicsSizeUpdate;
 
-        isDeviceScaleSmaller = deviceScale <= defaultScale;
+        _isDeviceScaleSmaller = _deviceScale <= DefaultScale;
 
 #if UNITY_EDITOR
-        isDeviceScaleSmaller = false;
+        _isDeviceScaleSmaller = false;
 #endif
 
         OrthographicsSizeUpdate();
@@ -38,17 +38,17 @@ public class Camera_SizeScale : MonoBehaviour
             case "Title":
             case "Main":
                 transform.position = new(0, 0, -10);
-                inGameCamera.enabled = false;
+                _inGameCamera.enabled = false;
 
                 ResizeOrthographicSize(CameraSizes.Common);
                 break;
             case "InGame":
-                if(!inGameCamera.enabled)
+                if(!_inGameCamera.enabled)
                 {
-                    inGameCamera.enabled = true;
+                    _inGameCamera.enabled = true;
                 }
 
-                ResizeOrthographicSize(CameraSizes.inGame);
+                ResizeOrthographicSize(CameraSizes.InGame);
                 break;
         }
     }

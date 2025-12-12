@@ -4,14 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class MonsterSkill_E : MonsterSkill_Damage
 {
-    [SerializeField] private List<Color> colors;
-    [SerializeField] private Vector3 skillOffset;
-
-    private const float triggerTime = 0.975f;
+    [SerializeField] private List<Color> _colors;
+    [SerializeField] private Vector3 _skillOffset;
 
     protected override void Enable()
     {
-        render.color = colors[Random.Range(0, colors.Count)];
+        _render.color = _colors[Random.Range(0, _colors.Count)];
 
         SetActive(true);
         StartCoroutine(Casting());
@@ -25,7 +23,7 @@ public class MonsterSkill_E : MonsterSkill_Damage
     }
     private IEnumerator Casting()
     {
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= triggerTime);
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= GameUtil.AnimationEndTime);
 
         gameObject.SetActive(false);
     }

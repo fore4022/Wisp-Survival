@@ -6,18 +6,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class Tutorial_MaskImage_UI : UserInterface, IPointerEnterHandler
 {
-    [SerializeField] private List<Transform> targetList;
-    [SerializeField] private List<TextMeshProUGUI> textList;
+    [SerializeField] private List<Transform> _targetList;
+    [SerializeField] private List<TextMeshProUGUI> _textList;
 
-    private Image maskImage;
+    private Image _maskImage;
 
-    private const string stepName = "Step_";
-    private const float targetAlpha = 165;
+    private const string StepName = "Step_";
 
-    private Coroutine step = null;
-    private Coroutine typing = null;
-    private string targetStr =  "";
-    private int stepIndex = 0;
+    private Coroutine _step = null;
+    private Coroutine _typing = null;
+    private string _targetStr =  "";
+    private int _stepIndex = 0;
 
     public override void SetUserInterface()
     {
@@ -25,37 +24,37 @@ public class Tutorial_MaskImage_UI : UserInterface, IPointerEnterHandler
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(step == null)
+        if(_step == null)
         {
-            StartCoroutine($"{stepName}{stepIndex}");
+            StartCoroutine($"{StepName}{_stepIndex}");
 
-            stepIndex++;
+            _stepIndex++;
         }
         else
         {
-            StopCoroutine(typing);
+            StopCoroutine(_typing);
         }
     }
     protected override void Enable()
     {
-        stepIndex = 0;
+        _stepIndex = 0;
 
-        UIElementUtility.SetImageAlpha(maskImage, 0);
+        UIElementUtility.SetImageAlpha(_maskImage, 0);
 
-        step = StartCoroutine(Step_0());
+        _step = StartCoroutine(Step_0());
     }
     private IEnumerator Step_0()
     {
         // parent SetAsLastbinding
 
-        transform.SetParent(targetList[stepIndex]);
+        transform.SetParent(_targetList[_stepIndex]);
 
-        targetStr = "아래 플레이 버튼으로\n게임을 시작할 수 있습니다.";
-        typing = StartCoroutine(Typing.TypeEffecting(textList[0], targetStr));
+        _targetStr = "아래 플레이 버튼으로\n게임을 시작할 수 있습니다.";
+        _typing = StartCoroutine(Typing.TypeEffecting(_textList[0], _targetStr));
 
         yield return null;
 
-        step = null;
+        _step = null;
     }
 }
 

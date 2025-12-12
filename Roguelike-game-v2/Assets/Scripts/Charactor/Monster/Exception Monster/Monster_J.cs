@@ -6,19 +6,19 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Monster_J : BasicMonster
 {
-    [SerializeField] private float lifeTime;
+    [SerializeField] private float _lifeTime;
 
-    private WaitForSeconds delay;
+    private WaitForSeconds _delay;
 
     protected override void Init()
     {
-        delay = new(lifeTime);
+        _delay = new(_lifeTime);
 
         base.Init();
     }
     protected override void Enable()
     {
-        speedMultiplier = speedMultiplierDefault;
+        _speedMultiplier = SpeedMultiplierDefault;
 
         base.Enable();
         StartCoroutine(RepeatBehavior());
@@ -30,7 +30,7 @@ public class Monster_J : BasicMonster
     }
     private IEnumerator RepeatBehavior()
     {
-        yield return delay;
+        yield return _delay;
 
         Die();
     }
@@ -38,16 +38,16 @@ public class Monster_J : BasicMonster
     {
         float totalTime = 0;
 
-        while(totalTime != death_AnimationDuration)
+        while(totalTime != Death_AnimationDuration)
         {
             totalTime += Time.deltaTime;
 
-            if(totalTime > death_AnimationDuration)
+            if(totalTime > Death_AnimationDuration)
             {
-                totalTime = death_AnimationDuration;
+                totalTime = Death_AnimationDuration;
             }
 
-            speedMultiplier = Mathf.Lerp(0, speedMultiplierDefault, Ease.InCirc(totalTime / death_AnimationDuration));
+            _speedMultiplier = Mathf.Lerp(0, SpeedMultiplierDefault, Ease.InCirc(totalTime / Death_AnimationDuration));
 
             yield return null;
         }

@@ -8,71 +8,71 @@ using UnityEngine;
 /// </summary>
 public class Monster_C : BasicMonster
 {
-    [SerializeField] private float dashSpeed;
-    [SerializeField] private float dashDuration;
-    [SerializeField] private float dashCooldownMax;
-    [SerializeField] private float dashCastingTime;
+    [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _dashDuration;
+    [SerializeField] private float _dashCooldownMax;
+    [SerializeField] private float _dashCastingTime;
 
     // 이동 속도 배율 재설정 및 행동 코루틴 호출
     protected override void Enable()
     {
         base.Enable();
 
-        speedMultiplier = speedMultiplierDefault;
+        _speedMultiplier = SpeedMultiplierDefault;
 
         StartCoroutine(RepeatBehavior());
     }
     // 일정 시간 간격으로 속도 배율 조절을 통해서 돌진
     private IEnumerator RepeatBehavior()
     {
-        yield return new WaitForSeconds(Random.Range(0, dashCooldownMax));
+        yield return new WaitForSeconds(Random.Range(0, _dashCooldownMax));
 
         float totalTime = 0;
 
-        while(totalTime != dashCastingTime)
+        while(totalTime != _dashCastingTime)
         {
             totalTime += Time.deltaTime;
 
-            if(totalTime > dashCastingTime)
+            if(totalTime > _dashCastingTime)
             {
-                totalTime = dashCastingTime;
+                totalTime = _dashCastingTime;
             }
 
-            speedMultiplier = Mathf.Lerp(0, speedMultiplierDefault, totalTime / dashCastingTime);
+            _speedMultiplier = Mathf.Lerp(0, SpeedMultiplierDefault, totalTime / _dashCastingTime);
 
             yield return null;
         }
 
         totalTime = 0;
 
-        yield return new WaitForSeconds(dashCastingTime / 4);
+        yield return new WaitForSeconds(_dashCastingTime / 4);
 
-        while(totalTime != dashDuration)
+        while(totalTime != _dashDuration)
         {
             totalTime += Time.deltaTime;
 
-            if(totalTime > dashDuration)
+            if(totalTime > _dashDuration)
             {
-                totalTime = dashDuration;
+                totalTime = _dashDuration;
             }
 
-            speedMultiplier = Mathf.Lerp(dashSpeed, 0, totalTime / dashDuration);
+            _speedMultiplier = Mathf.Lerp(_dashSpeed, 0, totalTime / _dashDuration);
 
             yield return null;
         }
 
         totalTime = 0;
 
-        while(totalTime != dashCastingTime)
+        while(totalTime != _dashCastingTime)
         {
             totalTime += Time.deltaTime;
 
-            if(totalTime > dashCastingTime)
+            if(totalTime > _dashCastingTime)
             {
-                totalTime = dashCastingTime;
+                totalTime = _dashCastingTime;
             }
 
-            speedMultiplier = Mathf.Lerp(speedMultiplierDefault, 0, totalTime / dashCastingTime);
+            _speedMultiplier = Mathf.Lerp(SpeedMultiplierDefault, 0, totalTime / _dashCastingTime);
 
             yield return null;
         }

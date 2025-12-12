@@ -11,7 +11,7 @@ public class UserLevelText_UI : UserInterface
     }
     public void LevelUpdate()
     {
-        if(Managers.Data.user.Level != GameUtil.maxLevel)
+        if(Managers.Data.user.Level != GameUtil.MaxLevel)
         {
             _levelText.text = $"Lv. {Managers.Data.user.Level}";
         }

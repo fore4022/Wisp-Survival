@@ -5,22 +5,22 @@ public class Setting_UI : UserInterface
 {
     [SerializeField] private List<Sprite> _bgmSprite;
     [SerializeField] private List<Sprite> _fxSprite;
-    [SerializeField] private Image _Bgm;
-    [SerializeField] private Image _Fx;
-    [SerializeField] private AudioClip onToggleSound;
-    [SerializeField] private AudioClip offToggleSound;
-    [SerializeField] private AudioClip confirmSound;
+    [SerializeField] private Image _bgm;
+    [SerializeField] private Image _fx;
+    [SerializeField] private AudioClip _onToggleSound;
+    [SerializeField] private AudioClip _offToggleSound;
+    [SerializeField] private AudioClip _confirmSound;
 
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
-    private const string _sceneName = "InGame";
+    private const string SceneName = "InGame";
 
     private bool _isInGame;
 
     public override void SetUserInterface()
     {
-        audioSource = transform.parent.GetComponent<AudioSource>();
-        _isInGame = Managers.Scene.CurrentSceneName == _sceneName ? true : false;
+        _audioSource = transform.parent.GetComponent<AudioSource>();
+        _isInGame = Managers.Scene.CurrentSceneName == SceneName ? true : false;
 
         Managers.UI.Hide<Setting_UI>();
     }
@@ -38,38 +38,38 @@ public class Setting_UI : UserInterface
     {
         Managers.Audio.SetGroup(SoundTypes.BGM);
         BgmUpdate();
-        audioSource.Play();
+        _audioSource.Play();
     }
     public void ToggleSFX()
     {
         Managers.Audio.SetGroup(SoundTypes.FX);
         SfxUpdate();
-        audioSource.Play();
+        _audioSource.Play();
     }
     private void BgmUpdate()
     {
         if(Managers.Data.user.BGM)
         {
-            audioSource.clip = onToggleSound;
-            _Bgm.sprite = _bgmSprite[0];
+            _audioSource.clip = _onToggleSound;
+            _bgm.sprite = _bgmSprite[0];
         }
         else
         {
-            audioSource.clip = offToggleSound;
-            _Bgm.sprite = _bgmSprite[1];
+            _audioSource.clip = _offToggleSound;
+            _bgm.sprite = _bgmSprite[1];
         }
     }
     private void SfxUpdate()
     {
         if(Managers.Data.user.FX)
         {
-            audioSource.clip = onToggleSound;
-            _Fx.sprite = _fxSprite[0];
+            _audioSource.clip = _onToggleSound;
+            _fx.sprite = _fxSprite[0];
         }
         else
         {
-            audioSource.clip = offToggleSound;
-            _Fx.sprite = _fxSprite[1];
+            _audioSource.clip = _offToggleSound;
+            _fx.sprite = _fxSprite[1];
         }
     }
     public void Confirm()
@@ -79,9 +79,9 @@ public class Setting_UI : UserInterface
             Managers.UI.Get<PauseMenu_UI>().ShowIcons();
         }
 
-        audioSource.clip = confirmSound;
+        _audioSource.clip = _confirmSound;
 
-        audioSource.Play();
+        _audioSource.Play();
         Managers.UI.Hide<Setting_UI>();
     }
 }

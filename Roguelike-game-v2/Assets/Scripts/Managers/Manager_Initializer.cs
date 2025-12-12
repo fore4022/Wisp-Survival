@@ -5,10 +5,10 @@ using UnityEngine.Audio;
 /// </summary>
 public class Manager_Initializer : MonoBehaviour
 {
-    [SerializeField]
-    private AudioMixer audioMixer;
+    [SerializeField] private AudioMixer _audioMixer;
+
     private void Awake()
     {
-        Managers.Audio.Mixer = audioMixer;
+        Managers.Audio.Mixer = _audioMixer;
     }
 }

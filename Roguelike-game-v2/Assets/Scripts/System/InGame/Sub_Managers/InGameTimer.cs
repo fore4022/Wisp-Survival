@@ -9,14 +9,14 @@ public class InGameTimer
     public Action<int> minuteUpdate = null;
     public Action timerUpdate = null;
 
-    private Coroutine inGameTimer;
-    private int seconds = 0;
-    private int minutes = 0;
-    private int hours = 0;
+    private Coroutine _inGameTimer;
+    private int _seconds = 0;
+    private int _minutes = 0;
+    private int _hours = 0;
 
-    public int GetSeconds { get { return seconds; } }
-    public int GetMinutes { get { return minutes; } }
-    public int GetHours { get { return hours; } }
+    public int GetSeconds { get { return _seconds; } }
+    public int GetMinutes { get { return _minutes; } }
+    public int GetHours { get { return _hours; } }
     public int GetTotalMinutes { get { return GetMinutes + GetHours * 60; } }
     public InGameTimer()
     {
@@ -25,37 +25,37 @@ public class InGameTimer
     }
     public void StartTimer()
     {
-        inGameTimer = CoroutineHelper.Start(Timer(), CoroutineType.InGameSystem);
+        _inGameTimer = CoroutineHelper.Start(Timer(), CoroutineType.InGameSystem);
     }
     public void StopTimer()
     {
-        CoroutineHelper.Stop(inGameTimer);
+        CoroutineHelper.Stop(_inGameTimer);
     }
     public void ReStart()
     {
-        seconds = minutes = hours = 0;
+        _seconds = _minutes = _hours = 0;
 
-        CoroutineHelper.Stop(inGameTimer);
+        CoroutineHelper.Stop(_inGameTimer);
 
-        inGameTimer = CoroutineHelper.Start(Timer(), CoroutineType.InGameSystem);
+        _inGameTimer = CoroutineHelper.Start(Timer(), CoroutineType.InGameSystem);
     }
     private IEnumerator Timer()
     {
         while(!Managers.Game.GameOver)
         {
-            seconds++;
+            _seconds++;
 
-            if(seconds == 60)
+            if(_seconds == 60)
             {
-                seconds = 0;
-                minutes++;
+                _seconds = 0;
+                _minutes++;
 
-                minuteUpdate?.Invoke(minutes);
+                minuteUpdate?.Invoke(_minutes);
 
-                if(minutes == 60)
+                if(_minutes == 60)
                 {
-                    minutes = 0;
-                    hours++;
+                    _minutes = 0;
+                    _hours++;
                 }
             }
 

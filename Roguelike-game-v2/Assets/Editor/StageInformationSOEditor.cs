@@ -7,13 +7,13 @@ public class StageInformationSOEditor : Editor
 
     private void OnEnable()
     {
-        show = serializedObject.FindProperty("isDefaultColor");
-        value = serializedObject.FindProperty("skillRangeVisualizerColor");
+        show = serializedObject.FindProperty("_isDefaultColor");
+        value = serializedObject.FindProperty("_skillRangeVisualizerColor");
     }
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        DrawPropertiesExcluding(serializedObject, "skillRangeVisualizerColor");
+        DrawPropertiesExcluding(serializedObject, "_skillRangeVisualizerColor");
 
         if(!show.boolValue)
         {

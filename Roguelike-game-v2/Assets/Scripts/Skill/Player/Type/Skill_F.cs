@@ -8,22 +8,22 @@ using UnityEngine;
 /// </summary>
 public class Skill_F : PlayerSkill, IPlayerSkill
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float _speed;
 
-    private Coroutine colorVairation = null;
-    private Vector3 direction;
-    private float currentSpeed;
-    private float totalTime = 0;
-    private float targetTime = 0;
+    private Coroutine _colorVairation = null;
+    private Vector3 _direction;
+    private float _currentSpeed;
+    private float _totalTime = 0;
+    private float _targetTime = 0;
 
-    public bool Finished { get { return so.Duration <= totalTime; } }
+    public bool Finished { get { return _so.Duration <= _totalTime; } }
     public void Set()
     {
-        currentSpeed = speed;
-        totalTime = 0;
-        targetTime = Mathf.Lerp(totalTime, so.Duration, Random.Range(1, so.Duration) / so.Duration);
+        _currentSpeed = _speed;
+        _totalTime = 0;
+        _targetTime = Mathf.Lerp(_totalTime, _so.Duration, Random.Range(1, _so.Duration) / _so.Duration);
         transform.position = Managers.Game.player.gameObject.transform.position + (Vector3)Default_Calculate.GetRandomVector();
-        direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition(), transform.position);
+        _direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition(), transform.position);
 
         StartCoroutine(Attacking());
     }
@@ -36,40 +36,40 @@ public class Skill_F : PlayerSkill, IPlayerSkill
     }
     private IEnumerator Attacking()
     {
-        while(totalTime < so.Duration)
+        while(_totalTime < _so.Duration)
         {
-            if(totalTime >= targetTime)
+            if(_totalTime >= _targetTime)
             {
-                if(totalTime < so.Duration - 1)
+                if(_totalTime < _so.Duration - 1)
                 {
-                    targetTime = Mathf.Lerp(totalTime, so.Duration, Random.Range(1, so.Duration) / so.Duration);
-                    direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition(), transform.position);
+                    _targetTime = Mathf.Lerp(_totalTime, _so.Duration, Random.Range(1, _so.Duration) / _so.Duration);
+                    _direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition(), transform.position);
                 }
             }
 
-            transform.position += direction * currentSpeed * Time.deltaTime;
-            totalTime += Time.deltaTime;
+            transform.position += _direction * _currentSpeed * Time.deltaTime;
+            _totalTime += Time.deltaTime;
             
             yield return null;
 
-            if(totalTime > so.Duration - 1)
+            if(_totalTime > _so.Duration - 1)
             {
-                currentSpeed -= Time.deltaTime;
+                _currentSpeed -= Time.deltaTime;
 
-                if(colorVairation == null)
+                if(_colorVairation == null)
                 {
-                    colorVairation = StartCoroutine(ColorUtil.ChangeAlpha(render, 0, render.color.a, 1));
+                    _colorVairation = StartCoroutine(ColorUtil.ChangeAlpha(_render, 0, _render.color.a, 1));
                 }
             }
             else
             {
-                currentSpeed = Default_Calculate.GetParabolicY(so.Duration, speed, totalTime) + 1;
+                _currentSpeed = Default_Calculate.GetParabolicY(_so.Duration, _speed, _totalTime) + 1;
             }
         }
 
-        StopCoroutine(colorVairation);
+        StopCoroutine(_colorVairation);
 
-        colorVairation = null;
-        render.color = Color.white;
+        _colorVairation = null;
+        _render.color = Color.white;
     }
 }

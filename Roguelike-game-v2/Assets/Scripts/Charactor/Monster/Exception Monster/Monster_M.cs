@@ -5,28 +5,28 @@ using UnityEngine;
 /// </summary>
 public class Monster_M : Monster_G
 {
-    [SerializeField] private List<Color> colors;
-    [SerializeField] private float scaleValue_Min;
-    [SerializeField] private float scaleValue_Max;
+    [SerializeField] private List<Color> _colors;
+    [SerializeField] private float _scaleValueMin;
+    [SerializeField] private float _scaleValueMax;
 
-    private float value;
+    private float _value;
 
     protected override void Enable()
     {
-        value = Random.Range(scaleValue_Min, scaleValue_Max + 1);
-        transform.localScale = new(value, value);
-        defaultColor = colors[Random.Range(0, colors.Count)];
+        _value = Random.Range(_scaleValueMin, _scaleValueMax + 1);
+        transform.localScale = new(_value, _value);
+        _defaultColor = _colors[Random.Range(0, _colors.Count)];
      
         base.Enable();
     }
     protected override void SkillCast()
     {
-        PoolingObject go = Managers.Game.objectPool.GetObject(skillKey);
+        PoolingObject go = Managers.Game.objectPool.GetObject(_skillKey);
 
-        value /= 3;
+        _value /= 3;
         go.Transform.position = transform.position;
-        go.Transform.localScale = new(value, value);
-        go.SpriteRenderer.color = render.color;
+        go.Transform.localScale = new(_value, _value);
+        go.SpriteRenderer.color = _render.color;
 
         go.SetActive(true);
     }

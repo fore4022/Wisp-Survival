@@ -9,72 +9,72 @@ public class PlayerData
     public Action experienceUpdate = null;
     public Action levelUpdate = null;
 
-    private Player_Information info = null;
+    private Player_Information _info = null;
 
-    private const float baseExperience = 5;
+    private const float BaseExperience = 5;
 
-    private Coroutine levelCalculation = null;
-    private int increaseValue;
-    private int maxLevel;
-    private int levelUpCount = 1;
+    private Coroutine _levelCalculation = null;
+    private int _increaseValue;
+    private int _maxLevel;
+    private int _levelUpCount = 1;
 
-    public Player_Information Info { set { info = value; } }
-    public int IncreaseValue { get { return increaseValue; } }
-    public int MaxLevel { get { return maxLevel; } set { maxLevel = value * Skill_SO.maxLevel; } }
-    public int LevelUpCount { get { return levelUpCount; } set { levelUpCount = value; } }
+    public Player_Information Info { set { _info = value; } }
+    public int IncreaseValue { get { return _increaseValue; } }
+    public int MaxLevel { get { return _maxLevel; } set { _maxLevel = value * Skill_SO.MaxLevel; } }
+    public int LevelUpCount { get { return _levelUpCount; } set { _levelUpCount = value; } }
     public int Level
     {
-        get { return info.level; }
+        get { return _info.level; }
         set
         {
-            info.level = value;
-            increaseValue = value;
+            _info.level = value;
+            _increaseValue = value;
             
             levelUpdate?.Invoke();
         }
     }
     public float Experience
     {
-        get { return info.experience; }
+        get { return _info.experience; }
         set
         {
-            info.experience = value;
+            _info.experience = value;
 
-            if(Experience >= info.experienceForLevelUp)
+            if(Experience >= _info.experienceForLevelUp)
             {
-                while(Experience >= info.experienceForLevelUp)
+                while(Experience >= _info.experienceForLevelUp)
                 {
                     Level++;
-                    info.experience -= info.experienceForLevelUp;
+                    _info.experience -= _info.experienceForLevelUp;
                     
-                    if(Level <= maxLevel)
+                    if(Level <= _maxLevel)
                     {
-                        levelUpCount++;
+                        _levelUpCount++;
                     }
                  
                     SetRequiredExperience();
                 }
 
-                if(levelCalculation != null)
+                if(_levelCalculation != null)
                 {
-                    CoroutineHelper.Stop(levelCalculation);
+                    CoroutineHelper.Stop(_levelCalculation);
                 }
 
-                levelCalculation = CoroutineHelper.Start(WaitLevelCalculation(), CoroutineType.Manage);
+                _levelCalculation = CoroutineHelper.Start(WaitLevelCalculation(), CoroutineType.Manage);
             }
 
             experienceUpdate?.Invoke();
         }
     }
-    public float ExperienceForLevelUp { get { return info.experienceForLevelUp; } }
+    public float ExperienceForLevelUp { get { return _info.experienceForLevelUp; } }
     private void SetRequiredExperience()
     {
-        info.experienceForLevelUp += ExperienceForLevelUp * MathF.Max(0.75f - 0.195f * (Level - 1), 0.115f);
+        _info.experienceForLevelUp += ExperienceForLevelUp * MathF.Max(0.75f - 0.195f * (Level - 1), 0.115f);
     }
     public void SetLevel()
     {
-        info.experienceForLevelUp = baseExperience;
-        info.experience = 0;
+        _info.experienceForLevelUp = BaseExperience;
+        _info.experience = 0;
         Level = 1;
 
         Managers.UI.Get<LevelText_UI>().LevelUpdate();
@@ -88,6 +88,6 @@ public class PlayerData
 
         levelUpdate.Invoke();
 
-        levelCalculation = null;
+        _levelCalculation = null;
     }
 }

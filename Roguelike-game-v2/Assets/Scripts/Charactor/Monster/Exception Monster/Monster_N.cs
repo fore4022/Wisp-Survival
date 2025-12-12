@@ -5,33 +5,31 @@ using UnityEngine;
 /// </summary>
 public class Monster_N : BasicMonster_WithObject
 {
-    [SerializeField] private Vector3 skillRotation;
-    [SerializeField] private float skillPositionX;
-    [SerializeField] private float skillPositionY;
-    [SerializeField] private float skillDuration;
-    [SerializeField] private float skillRange;
-    [SerializeField] private float skillCooldown;
+    [SerializeField] private Vector3 _skillRotation;
+    [SerializeField] private float _skillPositionX;
+    [SerializeField] private float _skillPositionY;
+    [SerializeField] private float _skillDuration;
+    [SerializeField] private float _skillRange;
+    [SerializeField] private float _skillCooldown;
 
-    private const float triggerTime = 0.975f;
-
-    private Coroutine behavior = null;
-    private WaitForSeconds cooldown;
-    private WaitForSeconds delay;
-    private string skillKey;
+    private Coroutine _behavior = null;
+    private WaitForSeconds _cooldown;
+    private WaitForSeconds _delay;
+    private string _skillKey;
 
     protected override void Init()
     {
-        delay = new(skillDuration);
-        cooldown = new(skillCooldown);
-        skillKey = monsterSO.ExtraObjects[0].name;
+        _delay = new(_skillDuration);
+        _cooldown = new(_skillCooldown);
+        _skillKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
     }
     protected override void Enable()
     {
-        speedMultiplier = 1;
-        canSwitchDirection = true;
-        behavior = StartCoroutine(RepeatBehavior());
+        _speedMultiplier = 1;
+        _canSwitchDirection = true;
+        _behavior = StartCoroutine(RepeatBehavior());
 
         base.Enable();
     }
@@ -39,38 +37,38 @@ public class Monster_N : BasicMonster_WithObject
     {
         base.Die();
 
-        StopCoroutine(behavior);
+        StopCoroutine(_behavior);
     }
     private IEnumerator RepeatBehavior()
     {
-        yield return cooldown;
+        yield return _cooldown;
 
-        if(isVisible)
+        if(_isVisible)
         {
             float sign;
 
-            speedMultiplier = 0;
-            canSwitchDirection = false;
-            sign = render.flipX ? 1 : -1;
+            _speedMultiplier = 0;
+            _canSwitchDirection = false;
+            sign = _render.flipX ? 1 : -1;
 
-            transform.SetRotation(-skillRotation * sign, skillDuration, EaseType.InQuad)
-                .SetRotation(skillRotation * sign, skillDuration * 2, EaseType.InQuad, TweenOperation.Append);
+            transform.SetRotation(-_skillRotation * sign, _skillDuration, EaseType.InQuad)
+                .SetRotation(_skillRotation * sign, _skillDuration * 2, EaseType.InQuad, TweenOperation.Append);
 
-            yield return delay;
+            yield return _delay;
 
-            PoolingObject go = Managers.Game.objectPool.GetObject(skillKey);
+            PoolingObject go = Managers.Game.objectPool.GetObject(_skillKey);
 
             go.SpriteRenderer.flipX = sign == 1 ? false : true;
-            go.Transform.position = transform.position + new Vector3(skillPositionX * sign, skillPositionY);
+            go.Transform.position = transform.position + new Vector3(_skillPositionX * sign, _skillPositionY);
 
             go.SetActive(true);
 
             yield return new WaitUntil(() => !go.activeSelf);
 
-            speedMultiplier = 1;
-            canSwitchDirection = true;
+            _speedMultiplier = 1;
+            _canSwitchDirection = true;
         }
 
-        behavior = StartCoroutine(RepeatBehavior());
+        _behavior = StartCoroutine(RepeatBehavior());
     }
 }

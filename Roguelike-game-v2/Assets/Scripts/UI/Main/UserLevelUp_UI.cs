@@ -4,27 +4,27 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class UserLevelUp_UI : UserInterface, IPointerClickHandler
 {
-    [SerializeField] private GameObject[] particles;
-    [SerializeField] private TextMeshProUGUI log;
-    [SerializeField] private TextMeshProUGUI prompt;
+    [SerializeField] private GameObject[] _particles;
+    [SerializeField] private TextMeshProUGUI _log;
+    [SerializeField] private TextMeshProUGUI _prompt;
 
-    private const float delaySec = 0.8f;
-    private const float duration = 1.5f;
-    private const int maxCount = 6;
+    private const float DelaySec = 0.8f;
+    private const float Duration = 1.5f;
+    private const int MaxCount = 6;
 
-    private WaitForSeconds delay = new(delaySec);
-    private bool allowClose = false;
+    private WaitForSeconds _delay = new(DelaySec);
+    private bool _allowClose = false;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(!allowClose)
+        if(!_allowClose)
         {
             return;
         }
 
-        for(int i = 0; i < maxCount; i++)
+        for(int i = 0; i < MaxCount; i++)
         {
-            particles[i].SetActive(false);
+            _particles[i].SetActive(false);
         }
 
         Managers.UI.Get<StatUpgrade_UI>().TextUpdate();
@@ -36,7 +36,7 @@ public class UserLevelUp_UI : UserInterface, IPointerClickHandler
     }
     public void OnValidate()
     {
-        ArrayUtil.ResizeArray(ref particles, maxCount);
+        ArrayUtil.ResizeArray(ref _particles, MaxCount);
     }
     public void PlayEffect(int levelUpCount)
     {
@@ -48,36 +48,36 @@ public class UserLevelUp_UI : UserInterface, IPointerClickHandler
         string str = $"Lv. {Managers.Data.user.Level - levelUpCount}";
         int length = str.Length;
 
-        log.text = str;
+        _log.text = str;
 
-        yield return delay;
+        yield return _delay;
 
         str = $"Lv. {Managers.Data.user.Level}";
 
-        StartCoroutine(Typing.TypeEffecting(log, " -> " + str));
+        StartCoroutine(Typing.TypeEffecting(_log, " -> " + str));
 
-        yield return delay;
+        yield return _delay;
 
-        prompt.gameObject.SetActive(true);
-        StartCoroutine(Typing.EraseEffecting(log, length));
-        StartCoroutine(UIElementUtility.BlinkText(prompt, duration, false, 65));
+        _prompt.gameObject.SetActive(true);
+        StartCoroutine(Typing.EraseEffecting(_log, length));
+        StartCoroutine(UIElementUtility.BlinkText(_prompt, Duration, false, 65));
 
-        allowClose = true;
+        _allowClose = true;
     }
     private IEnumerator ParticleEffecting()
     {
-        int[] indexs = Default_Calculate.GetRandomValues(maxCount);
+        int[] indexs = Default_Calculate.GetRandomValues(MaxCount);
 
         while(true)
         {
-            for(int i = 0; i < maxCount; i++)
+            for(int i = 0; i < MaxCount; i++)
             {
-                if(!particles[i].activeSelf)
+                if(!_particles[i].activeSelf)
                 {
-                    particles[i].SetActive(true);
-                    particles[i].transform.position = Default_Calculate.GetRandomVector();
+                    _particles[i].SetActive(true);
+                    _particles[i].transform.position = Default_Calculate.GetRandomVector();
 
-                    yield return delay;
+                    yield return _delay;
                 }
                 else
                 {

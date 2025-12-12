@@ -5,40 +5,40 @@ using UnityEngine;
 /// </summary>
 public class DefaultMoveable : IMoveable, IDefaultImplementable
 {
-    private MonoBehaviour mono;
+    private MonoBehaviour _mono;
 
-    private float slowDown = 0;
+    private float _slowDown = 0;
 
     public float SpeedAmount { get; }
     public float SlowDownAmount
     {
         get
         {
-            if(slowDown == 0)
+            if(_slowDown == 0)
             {
                 return 1;
             }
 
-            return 1 - (slowDown / (slowDown + 100));
+            return 1 - (_slowDown / (_slowDown + 100));
         }
     }
     public IDefaultImplementable Set(Transform transform)
     {
-        mono = transform.GetComponent<MonoBehaviour>();
+        _mono = transform.GetComponent<MonoBehaviour>();
 
         return this;
     }
     public void OnMove() { }
     public void SetSlowDown(float slowDown, float duration)
     {
-        mono.StartCoroutine(HandleSlow(slowDown, duration));
+        _mono.StartCoroutine(HandleSlow(slowDown, duration));
     }
     public IEnumerator HandleSlow(float slowDown, float duration)
     {
-        this.slowDown += slowDown;
+        this._slowDown += slowDown;
 
         yield return new WaitForSeconds(duration);
 
-        this.slowDown -= slowDown;
+        this._slowDown -= slowDown;
     }
 }

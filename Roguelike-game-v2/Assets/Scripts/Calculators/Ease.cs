@@ -4,12 +4,12 @@ using UnityEngine;
 /// </summary>
 public static class Ease
 {
-    private const float _start = 0;
-    private const float _end = 1;
+    private const float Start = 0;
+    private const float End = 1;
 
     public static float Linear(float value)
     {
-        return Mathf.Lerp(_start, _end, value);
+        return Mathf.Lerp(Start, End, value);
     }
     public static float InQuad(float value)
     {
@@ -103,7 +103,7 @@ public static class Ease
     }
     public static float InSine(float value)
     {
-        return -Mathf.Cos(value * (Mathf.PI * 0.5f)) + _end;
+        return -Mathf.Cos(value * (Mathf.PI * 0.5f)) + End;
     }
     public static float OutSine(float value)
     {
@@ -161,7 +161,7 @@ public static class Ease
     {
         float d = 1f;
 
-        return _end - OutBounce(d - value);
+        return End - OutBounce(d - value);
     }
     public static float OutBounce(float value)
     {
@@ -244,22 +244,22 @@ public static class Ease
 
         if(value == 0)
         {
-            return _start;
+            return Start;
         }
 
         if((value /= d) == 1)
         {
-            return _end;
+            return End;
         }
 
-        if(a == 0f || a < Mathf.Abs(_end))
+        if(a == 0f || a < Mathf.Abs(End))
         {
-            a = _end;
+            a = End;
             s = p / 4;
         }
         else
         {
-            s = p / (2 * Mathf.PI) * Mathf.Asin(_end / a);
+            s = p / (2 * Mathf.PI) * Mathf.Asin(End / a);
         }
 
         return -(a * Mathf.Pow(2, 10 * (value -= 1)) * Mathf.Sin((value * d - s) * (2 * Mathf.PI) / p));
@@ -273,25 +273,25 @@ public static class Ease
 
         if(value == 0)
         {
-            return _start;
+            return Start;
         }
 
         if((value /= d) == 1)
         {
-            return _end;
+            return End;
         }
 
-        if(a == 0f || a < Mathf.Abs(_end))
+        if(a == 0f || a < Mathf.Abs(End))
         {
-            a = _end;
+            a = End;
             s = p * 0.25f;
         }
         else
         {
-            s = p / (2 * Mathf.PI) * Mathf.Asin(_end / a);
+            s = p / (2 * Mathf.PI) * Mathf.Asin(End / a);
         }
 
-        return (a * Mathf.Pow(2, -10 * value) * Mathf.Sin((value * d - s) * (2 * Mathf.PI) / p) + _end);
+        return (a * Mathf.Pow(2, -10 * value) * Mathf.Sin((value * d - s) * (2 * Mathf.PI) / p) + End);
     }
     public static float InOutElastic(float value)
     {
@@ -302,22 +302,22 @@ public static class Ease
 
         if(value == 0)
         {
-            return _start;
+            return Start;
         }
 
         if((value /= d * 0.5f) == 2)
         {
-            return _end;
+            return End;
         }
 
-        if(a == 0f || a < Mathf.Abs(_end))
+        if(a == 0f || a < Mathf.Abs(End))
         {
-            a = _end;
+            a = End;
             s = p / 4;
         }
         else
         {
-            s = p / (2 * Mathf.PI) * Mathf.Asin(_end / a);
+            s = p / (2 * Mathf.PI) * Mathf.Asin(End / a);
         }
 
         if(value < 1)
@@ -325,12 +325,12 @@ public static class Ease
             return -0.5f * (a * Mathf.Pow(2, 10 * (value -= 1)) * Mathf.Sin((value * d - s) * (2 * Mathf.PI) / p));
         }
 
-        return a * Mathf.Pow(2, -10 * (value -= 1)) * Mathf.Sin((value * d - s) * (2 * Mathf.PI) / p) * 0.5f + _end;
+        return a * Mathf.Pow(2, -10 * (value -= 1)) * Mathf.Sin((value * d - s) * (2 * Mathf.PI) / p) * 0.5f + End;
     }
 
     //Additional
     public static float AcceleratedFall(float value)
     {
-        return Mathf.Lerp(_start, _end, value * value);
+        return Mathf.Lerp(Start, End, value * value);
     }
 }

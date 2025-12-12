@@ -4,36 +4,36 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerStat_Manage))]
 public class StatUpgrade_UI : UserInterface
 {
-    [SerializeField] private Transform statElement_parent;
-    [SerializeField] private AudioClip increaseSound;
-    [SerializeField] private AudioClip decreaseSound;
-    [SerializeField] private AudioClip actionUnavailableSound;
+    [SerializeField] private Transform _statElement_parent;
+    [SerializeField] private AudioClip _increaseSound;
+    [SerializeField] private AudioClip _decreaseSound;
+    [SerializeField] private AudioClip _actionUnavailableSound;
 
     public List<FileReference> files;
     public TextMeshProUGUI statPointText;
     public GameObject background;
 
-    private PlayerStat_Manage statSelection;
+    private PlayerStat_Manage _statSelection;
 
-    private const float duration = 0.2f;
+    private const float Duration = 0.2f;
 
-    private bool toggle = false;
+    private bool _toggle = false;
 
-    public AudioClip IncreaseSound { get { return increaseSound; } }
-    public AudioClip DecreaseSound { get { return decreaseSound; } }
-    public AudioClip ActionUnavailableSound { get { return actionUnavailableSound; } }
+    public AudioClip IncreaseSound { get { return _increaseSound; } }
+    public AudioClip DecreaseSound { get { return _decreaseSound; } }
+    public AudioClip ActionUnavailableSound { get { return _actionUnavailableSound; } }
     public override void SetUserInterface()
     {
-        statSelection = GetComponent<PlayerStat_Manage>();
+        _statSelection = GetComponent<PlayerStat_Manage>();
         statPointText = transform.GetComponentInChild<TextMeshProUGUI>();
 
-        statSelection.Set(Managers.Data.user.Stat);
+        _statSelection.Set(Managers.Data.user.Stat);
 
-        for(int i = 0; i < statElement_parent.childCount; i++)
+        for(int i = 0; i < _statElement_parent.childCount; i++)
         {
-            statElement_parent.GetChild(i).GetComponent<StatElementUpgrade_UI>().Set(files[i]);
+            _statElement_parent.GetChild(i).GetComponent<StatElementUpgrade_UI>().Set(files[i]);
 
-            files[i].SetAction += statSelection.Save;
+            files[i].SetAction += _statSelection.Save;
         }
 
         background.SetActive(false);
@@ -44,17 +44,17 @@ public class StatUpgrade_UI : UserInterface
     }
     public void ToggleUI()
     {
-        toggle = !toggle;
+        _toggle = !_toggle;
 
-        background.SetActive(toggle);
+        background.SetActive(_toggle);
         
-        if(toggle)
+        if(_toggle)
         {
-            transform.SetPosition(new(0, 40), duration, EaseType.OutSine);
+            transform.SetPosition(new(0, 40), Duration, EaseType.OutSine);
         }
         else
         {
-            transform.SetPosition(new(0, -1125), duration, EaseType.OutSine);
+            transform.SetPosition(new(0, -1125), Duration, EaseType.OutSine);
         }
     }
 }

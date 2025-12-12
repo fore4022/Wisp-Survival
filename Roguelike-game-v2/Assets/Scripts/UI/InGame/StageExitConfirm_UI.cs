@@ -2,13 +2,13 @@ using TMPro;
 using UnityEngine;
 public class StageExitConfirm_UI : UserInterface
 {
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip giveUpStage_Sound;
-    [SerializeField] private AudioClip cancelStageExit_Sound;
-    [SerializeField] private TextMeshProUGUI tmp;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _giveUpStage_Sound;
+    [SerializeField] private AudioClip _cancelStageExit_Sound;
+    [SerializeField] private TextMeshProUGUI _tmp;
 
-    private const string exitAfterClearMessage = "스테이지가 클리어 되었습니다.";
-    private const string exitWithoutClearWarning = "스테이지가 클리어하지 못했습니다.\n경험치를 휙득할 수 없습니다.";
+    private const string ExitAfterClearMessage = "스테이지가 클리어 되었습니다.";
+    private const string ExitWithoutClearWarning = "스테이지가 클리어하지 못했습니다.\n경험치를 휙득할 수 없습니다.";
 
     public override void SetUserInterface()
     {
@@ -18,11 +18,11 @@ public class StageExitConfirm_UI : UserInterface
     {
         if(Managers.Game.IsStageClear)
         {
-            tmp.text = exitAfterClearMessage;
+            _tmp.text = ExitAfterClearMessage;
         }
         else
         {
-            tmp.text = exitWithoutClearWarning;
+            _tmp.text = ExitWithoutClearWarning;
         }
 
         Managers.UI.Get<PauseMenu_UI>().HideIcons();
@@ -30,18 +30,18 @@ public class StageExitConfirm_UI : UserInterface
     public void OnGiveUpStage()
     {
         Managers.Data.user.Exp += Managers.Game.UserExp;
-        audioSource.clip = giveUpStage_Sound;
+        _audioSource.clip = _giveUpStage_Sound;
 
-        audioSource.Play();
+        _audioSource.Play();
         Managers.UI.Hide<HeadUpDisplay_UI>();
         Managers.Game.Clear();
         Managers.Scene.LoadScene(SceneNames.Main, false);
     }
     public void OnCancelStageExit()
     {
-        audioSource.clip = cancelStageExit_Sound;
+        _audioSource.clip = _cancelStageExit_Sound;
 
-        audioSource.Play();
+        _audioSource.Play();
         Managers.UI.Get<PauseMenu_UI>().ShowIcons();
         Managers.UI.Hide<StageExitConfirm_UI>();
     }

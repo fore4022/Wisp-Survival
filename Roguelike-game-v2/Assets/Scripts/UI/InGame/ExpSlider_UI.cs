@@ -1,11 +1,11 @@
 using UnityEngine.UI;
 public class ExpSlider_UI : UserInterface
 {
-    private Slider expSlider;
+    private Slider _expSlider;
 
     public override void SetUserInterface()
     {
-        expSlider = GetComponent<Slider>();
+        _expSlider = GetComponent<Slider>();
 
         Init();
     }
@@ -19,10 +19,10 @@ public class ExpSlider_UI : UserInterface
     }
     private void MaxValueUpdate()
     {
-        expSlider.maxValue = Managers.Game.inGameData_Manage.player.ExperienceForLevelUp;
+        _expSlider.maxValue = Managers.Game.inGameData_Manage.player.ExperienceForLevelUp;
     }
     private void ValueUpdate()
     {
-        expSlider.value = Managers.Game.inGameData_Manage.player.Experience;
+        _expSlider.value = Managers.Game.inGameData_Manage.player.Experience;
     }
 }

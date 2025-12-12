@@ -8,11 +8,11 @@ using UnityEngine;
 /// </summary>
 public static class CoroutineHelper
 {
-    private static Manage_Mono manage_Mono = null;
-    private static UserInterface_Mono userInterface_Mono = null;
-    private static InGameSystem_Mono inGameSystem_Mono = null;
-    private static Tween_Mono tween_Mono = null;
-    private static Etc_Mono etc_Mono = null;
+    private static Manage_Mono _manageMono = null;
+    private static UserInterface_Mono _userInterfaceMono = null;
+    private static InGameSystem_Mono _inGameSystemMono = null;
+    private static Tween_Mono _tweenMono = null;
+    private static Etc_Mono _etcMono = null;
 
     // 코루틴 실행
     public static Coroutine Start(IEnumerator coroutine, CoroutineType type = CoroutineType.Etc)
@@ -32,15 +32,15 @@ public static class CoroutineHelper
     // Type에 해당하는 MonoScript를 반환, MonoScript가 Null인 경우에 빈 객체에 MonoScript들을 생성 후 반환
     private static MonoBehaviour GetMonoBehaviour(CoroutineType type = CoroutineType.Etc)
     {
-        if(manage_Mono = null)
+        if(_manageMono = null)
         {
             GameObject go = new GameObject("@MonoScript");
 
-            manage_Mono = go.AddComponent<Manage_Mono>();
-            userInterface_Mono = go.AddComponent<UserInterface_Mono>();
-            inGameSystem_Mono = go.AddComponent<InGameSystem_Mono>();
-            tween_Mono = go.AddComponent<Tween_Mono>();
-            etc_Mono = go.AddComponent<Etc_Mono>();
+            _manageMono = go.AddComponent<Manage_Mono>();
+            _userInterfaceMono = go.AddComponent<UserInterface_Mono>();
+            _inGameSystemMono = go.AddComponent<InGameSystem_Mono>();
+            _tweenMono = go.AddComponent<Tween_Mono>();
+            _etcMono = go.AddComponent<Etc_Mono>();
 
             Object.DontDestroyOnLoad(go);
         }
@@ -48,15 +48,15 @@ public static class CoroutineHelper
         switch(type)
         {
             case CoroutineType.Manage:
-                return manage_Mono;
+                return _manageMono;
             case CoroutineType.UserInterface:
-                return userInterface_Mono;
+                return _userInterfaceMono;
             case CoroutineType.InGameSystem:
-                return inGameSystem_Mono;
+                return _inGameSystemMono;
             case CoroutineType.Tween:
-                return tween_Mono;
+                return _tweenMono;
         }
 
-        return etc_Mono;
+        return _etcMono;
     }
 }

@@ -23,14 +23,14 @@ public class PlayerSkill_Projectile : PlayerSkill
     }
     private void IsInvisible()
     {
-        if(baseCast == null)
+        if(_baseCast == null)
         {
             return;
         }
 
         planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
 
-        if(GeometryUtility.TestPlanesAABB(planes, defaultCollider.bounds))
+        if(GeometryUtility.TestPlanesAABB(planes, _defaultCollider.bounds))
         {
             if(collect != null)
             {
@@ -51,6 +51,6 @@ public class PlayerSkill_Projectile : PlayerSkill
     {
         yield return delay;
 
-        collect = baseCast = null;
+        collect = _baseCast = null;
     }
 }

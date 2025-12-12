@@ -3,21 +3,21 @@ using TMPro;
 using UnityEngine;
 public class DamageLog : MonoBehaviour
 {
-    private TextMeshProUGUI log;
+    private TextMeshProUGUI _log;
 
-    private readonly Vector3 adjustmentPosition = new(0, adjustmentYPos, 0);
-    private readonly Vector3 defaultScale = new(defaultScaleSize, defaultScaleSize);
-    private const float defaultFontSize = 36;
-    private const float duration = 0.35f;
-    private const float targetScale = 0.003f;
-    private const float defaultScaleSize = 0.005f;
-    private const float adjustmentYPos = 0.075f;
+    private readonly Vector3 _adjustmentPosition = new(0, AdjustmentYPos, 0);
+    private readonly Vector3 _defaultScale = new(DefaultScaleSize, DefaultScaleSize);
+    private const float DefaultFontSize = 36;
+    private const float Duration = 0.35f;
+    private const float TargetScale = 0.003f;
+    private const float DefaultScaleSize = 0.005f;
+    private const float AdjustmentYPos = 0.075f;
 
     private void Awake()
     {
-        log = GetComponent<TextMeshProUGUI>();  
+        _log = GetComponent<TextMeshProUGUI>();  
 
-        log.enabled = false;
+        _log.enabled = false;
 
         gameObject.SetActive(false);
     }
@@ -32,35 +32,35 @@ public class DamageLog : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        float adjustmentFontSize = defaultFontSize;
+        float adjustmentFontSize = DefaultFontSize;
 
         transform.position = position;
-        log.text = $"{(int)damage:N0}";
+        _log.text = $"{(int)damage:N0}";
 
-        for(int i = 1; i < log.text.Length - ((log.text.Length - 1) % 3); i++)
+        for(int i = 1; i < _log.text.Length - ((_log.text.Length - 1) % 3); i++)
         {
             adjustmentFontSize /= 2;
         }
 
-        log.fontSize = defaultFontSize + adjustmentFontSize;
+        _log.fontSize = DefaultFontSize + adjustmentFontSize;
     }
     private IEnumerator Effecting()
     {
-        Vector3 targetPosition = transform.position + adjustmentPosition;
+        Vector3 targetPosition = transform.position + _adjustmentPosition;
 
-        transform.localScale = defaultScale;
+        transform.localScale = _defaultScale;
 
-        UIElementUtility.SetTextAlpha(log, 255);
-        UIElementUtility.SetTextAlpha(log, 150, duration);
-        transform.SetPosition(targetPosition, duration).
-            SetScale(targetScale, duration);
+        UIElementUtility.SetTextAlpha(_log, 255);
+        UIElementUtility.SetTextAlpha(_log, 150, Duration);
+        transform.SetPosition(targetPosition, Duration).
+            SetScale(TargetScale, Duration);
 
-        log.enabled = true;
+        _log.enabled = true;
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(Duration);
 
-        log.enabled = false;
+        _log.enabled = false;
 
-        Managers.Game.objectPool.DisableObject(gameObject, DamageLog_Manage.prefabName);
+        Managers.Game.objectPool.DisableObject(gameObject, DamageLog_Manage.PrefabName);
     }
 }

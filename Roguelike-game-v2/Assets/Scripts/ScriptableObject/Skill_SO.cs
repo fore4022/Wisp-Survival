@@ -3,50 +3,50 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Skill", menuName = "Create New SO/Skill/Create New Skill_SO")]
 public class Skill_SO : ScriptableObject
 {
-    public const int maxLevel = 5;
+    public const int MaxLevel = 5;
 
-    [SerializeField] private Projectile_Information projectile_Info;
-    [SerializeField] private MultiCast multiCast_Info;
+    [SerializeField] private Projectile_Information _projectileInfo;
+    [SerializeField] private MultiCast _multiCastInfo;
 
 
-    [SerializeField] private Color maxLevelColor = default;
-    [SerializeField] private Vector3 adjustmentRotation;
-    [SerializeField] private Vector2 adjustmentPosition;
-    [SerializeField] private string typePath;
-    [SerializeField] private float[] damageCoefficient = new float[maxLevel];
-    [SerializeField] private float[] coolTime = new float[maxLevel];
-    [SerializeField] private float duration;
-    [SerializeField] private bool flipX = false;
-    [SerializeField] private bool flipY = false;
-    [SerializeField] private bool isProjectile;
-    [SerializeField] private bool isMultiCast;
+    [SerializeField] private Color _maxLevelColor = default;
+    [SerializeField] private Vector3 _adjustmentRotation;
+    [SerializeField] private Vector2 _adjustmentPosition;
+    [SerializeField] private string _typePath;
+    [SerializeField] private float[] _damageCoefficient = new float[MaxLevel];
+    [SerializeField] private float[] _coolTime = new float[MaxLevel];
+    [SerializeField] private float _duration;
+    [SerializeField] private bool _flipX = false;
+    [SerializeField] private bool _flipY = false;
+    [SerializeField] private bool _isProjectile;
+    [SerializeField] private bool _isMultiCast;
 
-    public Projectile_Information Projectile_Info { get { return projectile_Info; } }
-    public MultiCast MultiCast_Info { get { return multiCast_Info; } }
-    public Color MaxLevelColor { get { return maxLevelColor; } }
-    public Vector3 AdjustmentRotation { get { return adjustmentRotation; } }
-    public Vector2 AdjustmentPosition { get { return adjustmentPosition; } }
-    public string TypePath { get { return typePath; } }
-    public float[] DamageCoefficient { get { return damageCoefficient; } }
-    public float[] CoolTime { get { return coolTime; } }
-    public float Duration { get { return duration; } }
-    public bool FlipX { get { return flipX; } }
-    public bool FlipY { get { return flipY; } }
-    public bool IsProjectile { get { return isProjectile; } }
-    public bool IsMultiCast { get { return isMultiCast; } }
+    public Projectile_Information Projectile_Info { get { return _projectileInfo; } }
+    public MultiCast MultiCast_Info { get { return _multiCastInfo; } }
+    public Color MaxLevelColor { get { return _maxLevelColor; } }
+    public Vector3 AdjustmentRotation { get { return _adjustmentRotation; } }
+    public Vector2 AdjustmentPosition { get { return _adjustmentPosition; } }
+    public string TypePath { get { return _typePath; } }
+    public float[] DamageCoefficient { get { return _damageCoefficient; } }
+    public float[] CoolTime { get { return _coolTime; } }
+    public float Duration { get { return _duration; } }
+    public bool FlipX { get { return _flipX; } }
+    public bool FlipY { get { return _flipY; } }
+    public bool IsProjectile { get { return _isProjectile; } }
+    public bool IsMultiCast { get { return _isMultiCast; } }
 
 #if UNITY_EDITOR
     public GameObject go;
 
     private void OnValidate()
     {
-        ArrayUtil.ResizeArray(ref damageCoefficient, maxLevel);
-        ArrayUtil.ResizeArray(ref coolTime, maxLevel);
+        ArrayUtil.ResizeArray(ref _damageCoefficient, MaxLevel);
+        ArrayUtil.ResizeArray(ref _coolTime, MaxLevel);
 
-        if(isMultiCast)
+        if(_isMultiCast)
         {
-            ArrayUtil.ResizeArray(ref multiCast_Info.delay, maxLevel);
-            ArrayUtil.ResizeArray(ref multiCast_Info.count, maxLevel);
+            ArrayUtil.ResizeArray(ref _multiCastInfo.delay, MaxLevel);
+            ArrayUtil.ResizeArray(ref _multiCastInfo.count, MaxLevel);
         }
 
         ValidateUntilReady();
@@ -67,7 +67,7 @@ public class Skill_SO : ScriptableObject
     }
     private void Validate()
     {
-        typePath = go.name;
+        _typePath = go.name;
     }
 #endif
 }

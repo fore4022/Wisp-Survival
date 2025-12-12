@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Skill_G : PlayerSkill, IPlayerSkill
 {
-    [SerializeField] private float skillRange;
+    [SerializeField] private float _skillRange;
 
     public bool Finished { get { return true; } }
     public void Set()
@@ -15,11 +15,11 @@ public class Skill_G : PlayerSkill, IPlayerSkill
         Vector3 direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition());
 
         transform.rotation = Default_Calculate.GetQuaternion(direction);
-        transform.position = Managers.Game.player.transform.position + direction * skillRange;
+        transform.position = Managers.Game.player.transform.position + direction * _skillRange;
     }
     public void SetCollider()
     {
-        defaultCollider.enabled = !defaultCollider.enabled;
+        _defaultCollider.enabled = !_defaultCollider.enabled;
     }
     public void Enter(GameObject go)
     {

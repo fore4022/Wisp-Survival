@@ -2,15 +2,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public abstract class Button_A : Button_Default, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-    protected float minScale = 1f;
-    protected float maxScale = 1.075f;
-    protected float minAlpha = 205f;
-    protected float maxAlpha = 255f;
-    protected float duration = 0.1f;
+    protected float _minScale = 1f;
+    protected float _maxScale = 1.075f;
+    protected float _minAlpha = 205f;
+    protected float _maxAlpha = 255f;
+    protected float _duration = 0.1f;
 
-    private Image image;
+    private Image _image;
 
-    private bool isPointerDown = false;
+    private bool _isPointerDown = false;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -30,33 +30,33 @@ public abstract class Button_A : Button_Default, IPointerEnterHandler, IPointerE
     }
     protected virtual void PointerEnter()
     {
-        rectTransform.SkipToEnd()
-            .SetScale(maxScale, duration);
+        _rectTransform.SkipToEnd()
+            .SetScale(_maxScale, _duration);
     }
     protected virtual void PointerExit()
     {
-        if(isPointerDown) { return; }
+        if(_isPointerDown) { return; }
 
-        rectTransform.SkipToEnd()
-            .SetScale(minScale, duration);
+        _rectTransform.SkipToEnd()
+            .SetScale(_minScale, _duration);
     }
     protected virtual void PointerDown()
     {
-        isPointerDown = true;
+        _isPointerDown = true;
     }
     protected virtual void PointerUp()
     {
-        rectTransform.SetScale(minScale, 0);
+        _rectTransform.SetScale(_minScale, 0);
 
-        isPointerDown = false;
+        _isPointerDown = false;
     }
     private void Set()
     {
-        UIElementUtility.SetImageAlpha(image, maxAlpha, duration);
+        UIElementUtility.SetImageAlpha(_image, _maxAlpha, _duration);
     }
     protected override void Init()
     {
-        image = GetComponent<Image>();
+        _image = GetComponent<Image>();
 
         base.Init();
         Set();

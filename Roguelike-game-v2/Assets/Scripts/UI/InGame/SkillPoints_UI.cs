@@ -1,11 +1,11 @@
 using TMPro;
 public class SkillPoints_UI : UserInterface
 {
-    private TextMeshProUGUI skillPoints;
+    private TextMeshProUGUI _skillPoints;
 
     public override void SetUserInterface()
     {
-        skillPoints = GetComponent<TextMeshProUGUI>();
+        _skillPoints = GetComponent<TextMeshProUGUI>();
 
         Managers.UI.Hide<SkillPoints_UI>();
     }
@@ -15,6 +15,6 @@ public class SkillPoints_UI : UserInterface
     }
     public void SkillPointsUpdate()
     {
-        skillPoints.text = $"Skill Points : {Managers.Game.inGameData_Manage.player.LevelUpCount}";
+        _skillPoints.text = $"Skill Points : {Managers.Game.inGameData_Manage.player.LevelUpCount}";
     }
 }

@@ -9,16 +9,16 @@ using UnityEngine;
 /// </summary>
 public class FakeShadow : MonoBehaviour
 {
-    private const float alphaMin = 155;
-    private readonly float alphaRange = 255 - alphaMin;
+    private const float _alphaMin = 155;
+    private readonly float _alphaRange = 255 - _alphaMin;
 
-    private IFakeShadowSource source = null;
-    private SpriteRenderer render;
+    private IFakeShadowSource _source = null;
+    private SpriteRenderer _render;
 
-    private Sprite sprite;
-    private Color alphaColor;
-    private Vector3 vec = default;
-    private float value;
+    private Sprite _sprite;
+    private Color _alphaColor;
+    private Vector3 _vec = default;
+    private float _value;
 
     private void Awake()
     {
@@ -30,13 +30,13 @@ public class FakeShadow : MonoBehaviour
     }
     private void Init()
     {
-        render = GetComponent<SpriteRenderer>();
+        _render = GetComponent<SpriteRenderer>();
 
         if(transform.parent != null)
         {
-            transform.parent.TryGetComponent(out source);
+            transform.parent.TryGetComponent(out _source);
 
-            if(source == null)
+            if(_source == null)
             {
                 gameObject.SetActive(false);
             }
@@ -48,30 +48,30 @@ public class FakeShadow : MonoBehaviour
     }
     private void AdjustmentPosition()
     {
-        vec = new Vector3(0, sprite.rect.height / sprite.pixelsPerUnit) * transform.parent.localScale.x;
-        transform.position = source.CurrentPosition - vec * (1 - value);
+        _vec = new Vector3(0, _sprite.rect.height / _sprite.pixelsPerUnit) * transform.parent.localScale.x;
+        transform.position = _source.CurrentPosition - _vec * (1 - _value);
     }
     private void AdjustmentScale()
     {
-        transform.localScale = new Vector3(0.65f + value / 2, 0.65f + value / 2);
+        transform.localScale = new Vector3(0.65f + _value / 2, 0.65f + _value / 2);
     }
     private void AdjustmentAlpha()
     {
-        alphaColor = render.color;
-        alphaColor.a = ((alphaMin + alphaRange * value) / 255);
-        render.color = alphaColor;
+        _alphaColor = _render.color;
+        _alphaColor.a = ((_alphaMin + _alphaRange * _value) / 255);
+        _render.color = _alphaColor;
     }
     private void Factor()
     {
-        value = Mathf.InverseLerp(source.InitialPosition.y, source.TargetPosition.y, source.CurrentPosition.y);
+        _value = Mathf.InverseLerp(_source.InitialPosition.y, _source.TargetPosition.y, _source.CurrentPosition.y);
     }
     private IEnumerator AnimatedShadowDrop()
     {
         while(true)
         {
-            if(render.sprite != source.SpriteRender.sprite)
+            if(_render.sprite != _source.SpriteRender.sprite)
             {
-                sprite = render.sprite = source.SpriteRender.sprite;
+                _sprite = _render.sprite = _source.SpriteRender.sprite;
             }
 
             Factor();

@@ -9,24 +9,24 @@ using UnityEngine;
 /// </summary>
 public class UserData
 {
-    [SerializeField] private List<StageClear_Information> stageClearInfos = new();
+    [SerializeField] private List<StageClear_Information> _stageClearInfos = new();
     [SerializeField] private Setting_Information _setting = new();
     [SerializeField] private PlayerStat _stat = new();
 
-    [SerializeField] private string current_StageName = "Prairie";
-    [SerializeField] private int level = 1;
-    [SerializeField] private int exp = 0;
-    [SerializeField] private int statPoint = 1;
-    [SerializeField] private bool tutorial = false;
+    [SerializeField] private string _currentStageName = "Prairie";
+    [SerializeField] private int _level = 1;
+    [SerializeField] private int _exp = 0;
+    [SerializeField] private int _statPoint = 1;
+    [SerializeField] private bool _tutorial = false;
     
-    public List<StageClear_Information> StageClearInfo { get { return stageClearInfos; } set { stageClearInfos = value; } }
+    public List<StageClear_Information> StageClearInfo { get { return _stageClearInfos; } set { _stageClearInfos = value; } }
     public PlayerStat Stat { get { return _stat; } }
     public string StageName
     {
-        get { return current_StageName; }
+        get { return _currentStageName; }
         set 
         {
-            current_StageName = value;
+            _currentStageName = value;
 
             if(GetStageState() != StageState.Locked)
             {
@@ -36,41 +36,41 @@ public class UserData
     }
     public int Level 
     {
-        get { return level; }
+        get { return _level; }
         set
         { 
-            level = value;
+            _level = value;
             
             Managers.Data.Save();
         } 
     }
     public int Exp
     {
-        get { return exp; } 
+        get { return _exp; } 
         set
         {
-            exp = value;
+            _exp = value;
 
             Managers.Data.Save();
         }
     }
     public int StatPoint
     {
-        get { return statPoint; }
+        get { return _statPoint; }
         set
         {
-            statPoint = value;
+            _statPoint = value;
 
             Managers.Data.Save();
         }
     }
-    public bool Tutorial { get { return tutorial; } set { tutorial = value; } }
+    public bool Tutorial { get { return _tutorial; } set { _tutorial = value; } }
     public bool BGM { get { return _setting.BGM; } }
     public bool FX { get { return _setting.FX; } }
     // 현재 스테이지 상태(잠김, 해제, 클리어)
     public StageState GetStageState()
     {
-        return stageClearInfos.Find(info => info.name == current_StageName).state;
+        return _stageClearInfos.Find(info => info.name == _currentStageName).state;
     }
     // BGM 토글
     public bool SetBGM()
@@ -93,17 +93,17 @@ public class UserData
     // 스테이지 상태를 클리어로 변경, 다음 스테이지가 존재하는 경우에 해당 스테이지의 상태를 해제로 변경
     public void Clear(string stageName)
     {
-        StageClear_Information info = stageClearInfos.Find(o => o.name == stageName);
+        StageClear_Information info = _stageClearInfos.Find(o => o.name == stageName);
 
         if(info != null)
         {
-            int index = stageClearInfos.IndexOf(info) + 1;
+            int index = _stageClearInfos.IndexOf(info) + 1;
 
-            if(index < stageClearInfos.Count)
+            if(index < _stageClearInfos.Count)
             {
-                if(stageClearInfos[index].state == StageState.Locked)
+                if(_stageClearInfos[index].state == StageState.Locked)
                 {
-                    stageClearInfos[index].state = StageState.Unlocked;
+                    _stageClearInfos[index].state = StageState.Unlocked;
                 }
             }
 

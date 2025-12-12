@@ -5,9 +5,9 @@ public class Audio_Manager
 {
     private AudioMixer _audioMixer;
 
-    private const float _maxValue_BGM = -5;
-    private const float _maxValue_FX = 2.5f;
-    private const float _minValue = -80;
+    private const float MaxValue_BGM = -5;
+    private const float MaxValue_FX = 2.5f;
+    private const float MinValue = -80;
 
     public AudioMixer Mixer { get { return _audioMixer; } set { _audioMixer = value; } }
     public void Init()
@@ -57,16 +57,16 @@ public class Audio_Manager
         {
             if(type == SoundTypes.FX)
             {
-                value = _maxValue_FX;
+                value = MaxValue_FX;
             }
             else if(type == SoundTypes.BGM)
             {
-                value = _maxValue_BGM;
+                value = MaxValue_BGM;
             }
         }
         else
         {
-            value = _minValue;
+            value = MinValue;
         }
 
         _audioMixer.SetFloat(type.ToString(), value);

@@ -5,16 +5,16 @@ using UnityEngine;
 /// </summary>
 public class Monster_A : BasicMonster_WithObject
 {
-    [SerializeField] private float coolTime = 2.5f;
+    [SerializeField] private float _coolTime = 2.5f;
 
-    private Coroutine behavior = null;
-    private WaitForSeconds delay;
-    private string skillKey;
+    private Coroutine _behavior = null;
+    private WaitForSeconds _delay;
+    private string _skillKey;
 
     protected override void Init()
     {
-        delay = new(coolTime);
-        skillKey = monsterSO.ExtraObjects[0].name;
+        _delay = new(_coolTime);
+        _skillKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
     }
@@ -22,13 +22,13 @@ public class Monster_A : BasicMonster_WithObject
     {
         base.Enable();
 
-        behavior = StartCoroutine(RepeatBehavior());
+        _behavior = StartCoroutine(RepeatBehavior());
     }
     protected override void Die()
     {
         base.Die();
 
-        StopCoroutine(behavior);
+        StopCoroutine(_behavior);
     }
     private IEnumerator RepeatBehavior()
     {
@@ -36,11 +36,11 @@ public class Monster_A : BasicMonster_WithObject
 
         while(true)
         {
-            yield return delay;
+            yield return _delay;
 
             if((Managers.Game.player.transform.position - transform.position).magnitude <= CameraUtil.CameraHeight / 2)
             {
-                go = Managers.Game.objectPool.GetObject(skillKey);
+                go = Managers.Game.objectPool.GetObject(_skillKey);
                 go.Transform.position = transform.position;
 
                 go.SetActive(true);

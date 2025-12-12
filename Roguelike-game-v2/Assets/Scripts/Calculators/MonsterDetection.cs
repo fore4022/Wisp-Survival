@@ -8,7 +8,7 @@ public static class MonsterDetection
 {
     public static float largeastRange = 1.15f;
 
-    private static Vector2 vec = new();
+    private static Vector2 _vec = new();
 
     public static Vector2 GetNearestMonsterPosition(Transform transform = null)
     {
@@ -83,10 +83,10 @@ public static class MonsterDetection
     }
     public static Vector2 GetRandomVector()
     {
-        vec.x = Random.Range(-Default_Calculate.width, Default_Calculate.width);
-        vec.y = Random.Range(-Default_Calculate.height, Default_Calculate.height);
+        _vec.x = Random.Range(-Default_Calculate.width, Default_Calculate.width);
+        _vec.y = Random.Range(-Default_Calculate.height, Default_Calculate.height);
 
-        return vec + (Vector2)Managers.Game.player.gameObject.transform.position;
+        return _vec + (Vector2)Managers.Game.player.gameObject.transform.position;
     }
     private static List<GameObject> FindLargestMonsterGroup(int count)
     {

@@ -7,50 +7,50 @@ using UnityEngine;
 /// </summary>
 public class PoolingObject_Initializer
 {
-    private List<PoolingObject> objs;
-    private ScriptableObject so;
+    private List<PoolingObject> _objs;
+    private ScriptableObject _so;
 
-    private Coroutine coroutine = null;
-    private string key;
-    private bool isInit = false;
+    private Coroutine _coroutine = null;
+    private string _key;
+    private bool _isInit = false;
 
-    public bool Init { get { return isInit; } }
+    public bool Init { get { return _isInit; } }
     public void Start(List<GameObject> monsterList, List<GameObject> skillList)
     {
         CoroutineHelper.Start(Initializing(monsterList, skillList), CoroutineType.Manage);
     }
     private IEnumerator Initializing(List<GameObject> monsterList, List<GameObject> skillList)
     {
-        coroutine = CoroutineHelper.Start(Set_MonsterList(monsterList));
+        _coroutine = CoroutineHelper.Start(Set_MonsterList(monsterList));
 
         yield return null;
 
-        yield return new WaitUntil(() => coroutine == null);
+        yield return new WaitUntil(() => _coroutine == null);
 
-        coroutine = CoroutineHelper.Start(Set_SkillList(skillList));
+        _coroutine = CoroutineHelper.Start(Set_SkillList(skillList));
         
         yield return null;
 
-        yield return new WaitUntil(() => coroutine == null);
+        yield return new WaitUntil(() => _coroutine == null);
 
-        isInit = true;
+        _isInit = true;
     }
     private IEnumerator Set_MonsterList(List<GameObject> monsterList)
     {
         foreach(GameObject obj in monsterList)
         {
-            key = obj.name;
-            objs = Managers.Game.objectPool.GetObjects(key);
+            _key = obj.name;
+            _objs = Managers.Game.objectPool.GetObjects(_key);
 
-            Task load = Managers.Game.so_Manage.LoadScriptableObject(ScriptableObjectType.Monster, key);
+            Task load = Managers.Game.so_Manage.LoadScriptableObject(ScriptableObjectType.Monster, _key);
 
             yield return new WaitUntil(() => load.IsCompleted);
 
-            CoroutineHelper.Start(Managers.Game.so_Manage.SetScriptableObject(objs, key), CoroutineType.Manage);
+            CoroutineHelper.Start(Managers.Game.so_Manage.SetScriptableObject(_objs, _key), CoroutineType.Manage);
 
-            so = Managers.Game.so_Manage.GetScriptableObject<ScriptableObject>(key);
+            _so = Managers.Game.so_Manage.GetScriptableObject<ScriptableObject>(_key);
 
-            if(so is MonsterStat_WithObject_SO exceptionMonsterStatSO)
+            if(_so is MonsterStat_WithObject_SO exceptionMonsterStatSO)
             {
                 if(exceptionMonsterStatSO.ExtraObjects != null)
                 {
@@ -58,30 +58,30 @@ public class PoolingObject_Initializer
                     {
                         if(!Managers.Game.objectPool.PoolingObjects.ContainsKey(extraObj.name))
                         {
-                            CoroutineHelper.Start(CreateAndSet_ExtraObject(extraObj, key), CoroutineType.Manage);
+                            CoroutineHelper.Start(CreateAndSet_ExtraObject(extraObj, _key), CoroutineType.Manage);
                         }
                     }
                 }
             }
         }
 
-        coroutine = null;
+        _coroutine = null;
     }
     private IEnumerator Set_SkillList(List<GameObject> skillList)
     {
         foreach(GameObject obj in skillList)
         {
-            key = obj.name;
-            objs = Managers.Game.objectPool.GetObjects(key);
+            _key = obj.name;
+            _objs = Managers.Game.objectPool.GetObjects(_key);
 
-            Task load = Managers.Game.so_Manage.LoadScriptableObject(ScriptableObjectType.Skill, key);
+            Task load = Managers.Game.so_Manage.LoadScriptableObject(ScriptableObjectType.Skill, _key);
 
             yield return new WaitUntil(() => load.IsCompleted);
 
-            CoroutineHelper.Start(Managers.Game.so_Manage.SetScriptableObject(objs, key), CoroutineType.Manage);
+            CoroutineHelper.Start(Managers.Game.so_Manage.SetScriptableObject(_objs, _key), CoroutineType.Manage);
         }
 
-        coroutine = null;
+        _coroutine = null;
     }
     private IEnumerator CreateAndSet_ExtraObject(GameObject extraObj, string key)
     {

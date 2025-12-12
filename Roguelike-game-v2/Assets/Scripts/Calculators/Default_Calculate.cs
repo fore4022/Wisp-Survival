@@ -5,10 +5,10 @@ using UnityEngine;
 /// </summary>
 public static class Default_Calculate
 {
-    public static float width = CameraUtil.CameraWidth / 2 - offset;
-    public static float height = CameraUtil.CameraHeight / 2 - offset;
+    public static float width = CameraUtil.CameraWidth / 2 - _offset;
+    public static float height = CameraUtil.CameraHeight / 2 - _offset;
 
-    private static float offset = 0.5f;
+    private static float _offset = 0.5f;
 
     public static Vector3 GetDirection(Vector3 targetPosition)
     {

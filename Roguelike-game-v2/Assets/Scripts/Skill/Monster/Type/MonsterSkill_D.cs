@@ -16,7 +16,7 @@ public class MonsterSkill_D : MonsterSkill_Damage
     }
     private IEnumerator Casting()
     {
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= GameUtil.animationEndTime);
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= GameUtil.AnimationEndTime);
 
         gameObject.SetActive(false);
     }

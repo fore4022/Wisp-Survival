@@ -1,5 +1,5 @@
 public static class GameUtil
 {
-    public const float animationEndTime = 0.9425f;
-    public const int maxLevel = 10;
+    public const float AnimationEndTime = 0.9425f;
+    public const int MaxLevel = 10;
 }

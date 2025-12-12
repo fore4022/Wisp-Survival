@@ -1,15 +1,15 @@
 using UnityEngine;
 public class Canvas_Main : MonoBehaviour
 {
-    private Canvas canvas;
+    private Canvas _canvas;
 
     private void Awake()
     {
-        canvas = GetComponent<Canvas>();
+        _canvas = GetComponent<Canvas>();
     }
     private void Start()
     {
-        canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        canvas.worldCamera = Camera.main;
+        _canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        _canvas.worldCamera = Camera.main;
     }
 }

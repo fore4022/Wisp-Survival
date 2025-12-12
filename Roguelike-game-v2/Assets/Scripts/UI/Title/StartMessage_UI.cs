@@ -3,34 +3,34 @@ using TMPro;
 using UnityEngine;
 public class StartMessage_UI : UserInterface
 {
-    private TextMeshProUGUI tmp;
+    private TextMeshProUGUI _tmp;
 
-    private const float duration = 1.2f;
+    private const float Duration = 1.2f;
 
-    private Coroutine textAnimation;
-    private Coroutine blink;
-    private WaitForSeconds delay;
-    private int state = 0;
+    private Coroutine _textAnimation;
+    private Coroutine _blink;
+    private WaitForSeconds _delay;
+    private int _state = 0;
 
     public override void SetUserInterface()
     {
-        tmp = GetComponent<TextMeshProUGUI>();
+        _tmp = GetComponent<TextMeshProUGUI>();
 
-        textAnimation = StartCoroutine(Effecting());
+        _textAnimation = StartCoroutine(Effecting());
     }
     public void SetState()
     {
-        state++;
+        _state++;
 
-        if(state == 1)
+        if(_state == 1)
         {
             Blink();
         }
-        else if(state == 2)
+        else if(_state == 2)
         {
-            StopCoroutine(textAnimation);
+            StopCoroutine(_textAnimation);
 
-            textAnimation = StartCoroutine(Effecting());
+            _textAnimation = StartCoroutine(Effecting());
         }
     }
     private IEnumerator Effecting()
@@ -39,7 +39,7 @@ public class StartMessage_UI : UserInterface
         int count = 0;
         int i;
 
-        if(state == 0)
+        if(_state == 0)
         {
             text = "Loading";
         }
@@ -47,22 +47,22 @@ public class StartMessage_UI : UserInterface
         {
             text = "Starting";
 
-            StopCoroutine(blink);
-            UIElementUtility.SetTextAlpha(tmp, 255, 0);
+            StopCoroutine(_blink);
+            UIElementUtility.SetTextAlpha(_tmp, 255, 0);
         }
 
-        delay = new(duration / 2);
+        _delay = new(Duration / 2);
 
         while(true)
         {
-            tmp.text = text;
+            _tmp.text = text;
 
             for(i = 0; i < count; i++)
             {
-                tmp.text += ".";
+                _tmp.text += ".";
             }
 
-            yield return delay;
+            yield return _delay;
 
             count++;
 
@@ -74,9 +74,9 @@ public class StartMessage_UI : UserInterface
     }
     private void Blink()
     {
-        StopCoroutine(textAnimation);
+        StopCoroutine(_textAnimation);
 
-        tmp.text = "PRESS TO START";
-        blink = StartCoroutine(UIElementUtility.BlinkText(tmp, duration, false));
+        _tmp.text = "PRESS TO START";
+        _blink = StartCoroutine(UIElementUtility.BlinkText(_tmp, Duration, false));
     }
 }

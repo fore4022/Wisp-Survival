@@ -1,9 +1,9 @@
 using System;
 public class MonsterSkill_Damage : MonsterSkill, IDamage
 {
-    private Func<float> damage = null;
+    private Func<float> _damage = null;
 
-    public Func<float> Damage { get { return damage; } set { damage = value; } }
-    public float DamageAmount { get { return damage.Invoke(); } }
+    public Func<float> Damage { get { return _damage; } set { _damage = value; } }
+    public float DamageAmount { get { return _damage.Invoke(); } }
     protected override void Enable() { }
 }

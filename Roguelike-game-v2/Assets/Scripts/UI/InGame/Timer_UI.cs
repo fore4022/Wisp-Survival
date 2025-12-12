@@ -7,11 +7,11 @@ using TMPro;
 /// </summary>
 public class Timer_UI : UserInterface
 {
-    private TextMeshProUGUI timer;
+    private TextMeshProUGUI _timer;
 
     public override void SetUserInterface()
     {
-        timer = GetComponent<TextMeshProUGUI>();
+        _timer = GetComponent<TextMeshProUGUI>();
 
         Managers.Game.inGameTimer.timerUpdate += TimerUpdate;
     }
@@ -21,11 +21,11 @@ public class Timer_UI : UserInterface
         {
             if(Managers.Game.inGameTimer.GetHours == 0)
             {
-                timer.text = $"{Managers.Game.inGameTimer.GetMinutes:D2} : {Managers.Game.inGameTimer.GetSeconds:D2}";
+                _timer.text = $"{Managers.Game.inGameTimer.GetMinutes:D2} : {Managers.Game.inGameTimer.GetSeconds:D2}";
             }
             else
             {
-                timer.text = $"{Managers.Game.inGameTimer.GetHours:D2} : {Managers.Game.inGameTimer.GetMinutes:D2} : {Managers.Game.inGameTimer.GetSeconds:D2}";
+                _timer.text = $"{Managers.Game.inGameTimer.GetHours:D2} : {Managers.Game.inGameTimer.GetMinutes:D2} : {Managers.Game.inGameTimer.GetSeconds:D2}";
             }
         }
     }

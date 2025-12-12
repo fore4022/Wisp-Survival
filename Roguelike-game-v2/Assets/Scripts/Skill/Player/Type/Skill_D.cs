@@ -8,19 +8,19 @@ using UnityEngine;
 /// </summary>
 public class Skill_D : PlayerSkill, IPlayerSkill
 {
-    [SerializeField] private string animationName;
+    [SerializeField] private string _animationName;
 
-    public bool Finished { get { return animator.GetCurrentAnimatorStateInfo(0).IsName(animationName); } }
+    public bool Finished { get { return _animator.GetCurrentAnimatorStateInfo(0).IsName(_animationName); } }
     public void Set()
     {
         transform.position = MonsterDetection.GetRandomMonsterPosition();
 
-        animator.Play("default", 0);
+        _animator.Play("default", 0);
         StartCoroutine(Attacking());
     }
     public void SetCollider()
     {
-        defaultCollider.enabled = !defaultCollider.enabled;
+        _defaultCollider.enabled = !_defaultCollider.enabled;
     }
     public void Enter(GameObject go)
     {
@@ -31,9 +31,9 @@ public class Skill_D : PlayerSkill, IPlayerSkill
     }
     private IEnumerator Attacking()
     {
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
 
-        audioSource.Play();
-        animator.Play(animationName, 0);
+        _audioSource.Play();
+        _animator.Play(_animationName, 0);
     }
 }

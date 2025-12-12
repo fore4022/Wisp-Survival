@@ -8,25 +8,25 @@ using UnityEngine;
 /// </summary>
 public class Projectile_C : PlayerSkill_Projectile, IProjectile
 {
-    [SerializeField] private float range;
-    [SerializeField] private float min_Index;
-    [SerializeField] private float max_Index;
+    [SerializeField] private float _range;
+    [SerializeField] private float _minIndex;
+    [SerializeField] private float _maxIndex;
 
-    private float multiplier;
-    private int sign;
+    private float _multiplier;
+    private int _sign;
 
     public bool Finished { get { return moving == null; } }
     public void Set()
     {
         transform.position = Managers.Game.player.gameObject.transform.position;
         direction = Default_Calculate.GetDirection(Managers.Game.player.transform.position + (Vector3)Default_Calculate.GetRandomVector());
-        multiplier = Random.Range(min_Index, max_Index + 1) * range + range;
-        sign = Random.Range(0, 2);
+        _multiplier = Random.Range(_minIndex, _maxIndex + 1) * _range + _range;
+        _sign = Random.Range(0, 2);
         moving = StartCoroutine(Moving());
 
-        if(sign == 0)
+        if(_sign == 0)
         {
-            sign = -1;
+            _sign = -1;
         }
 
         StartCoroutine(AnimationManaging());
@@ -42,12 +42,12 @@ public class Projectile_C : PlayerSkill_Projectile, IProjectile
     {
         while(true)
         {
-            transform.position += direction * so.Projectile_Info.speed * multiplier * Time.deltaTime;
-            multiplier -= Time.deltaTime;
+            transform.position += direction * _so.Projectile_Info.speed * _multiplier * Time.deltaTime;
+            _multiplier -= Time.deltaTime;
 
-            transform.Rotate(sign * Vector3.back * Time.timeScale);
+            transform.Rotate(_sign * Vector3.back * Time.timeScale);
 
-            if(multiplier <= 0)
+            if(_multiplier <= 0)
             {
                 moving = null;
 
@@ -59,12 +59,12 @@ public class Projectile_C : PlayerSkill_Projectile, IProjectile
     }
     private IEnumerator AnimationManaging()
     {
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
 
-        animator.Play("default");
+        _animator.Play("default");
 
-        yield return new WaitUntil(() => multiplier <= 0.1f);
+        yield return new WaitUntil(() => _multiplier <= 0.1f);
         
-        animator.Play(so.Projectile_Info.animationName);
+        _animator.Play(_so.Projectile_Info.animationName);
     }
 }

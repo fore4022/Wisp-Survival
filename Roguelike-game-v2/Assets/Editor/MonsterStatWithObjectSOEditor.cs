@@ -7,13 +7,13 @@ public class MonsterStatWithObjectSOEditor : Editor
 
     private void OnEnable()
     {
-        show = serializedObject.FindProperty("hasExtraObject");
-        value = serializedObject.FindProperty("extraObjects");
+        show = serializedObject.FindProperty("_hasExtraObject");
+        value = serializedObject.FindProperty("_extraObjects");
     }
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        DrawPropertiesExcluding(serializedObject, "extraObjects");
+        DrawPropertiesExcluding(serializedObject, "_extraObjects");
 
         if(show.boolValue)
         {

@@ -2,41 +2,41 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StageInformation", menuName = "Create New SO/Game Stage/Create New StageInformation_SO")]
 public class StageInformation_SO : ScriptableObject
 {
-    [SerializeField] private SpawnPatternList_SO spawnPatternList;
-    [SerializeField] private SpawnMonsterList_SO spawnMonsterList;
-    [SerializeField] private AudioClip bgm;
+    [SerializeField] private SpawnPatternList_SO _spawnPatternList;
+    [SerializeField] private SpawnMonsterList_SO _spawnMonsterList;
+    [SerializeField] private AudioClip _bgm;
 
-    [SerializeField][Tooltip("Damage Text")] private Color damageTextColor = new(255, 255, 255, 255);
-    [SerializeField] private Color skillRangeVisualizerColor = new(255, 50, 50);
-    [SerializeField] private float difficulty = 1;
-    [SerializeField] private float statScale = 1;
-    [SerializeField] private float spawnDelay;
-    [SerializeField][Tooltip("Minute")] private int requiredTime;
+    [SerializeField][Tooltip("Damage Text")] private Color _damageTextColor = new(255, 255, 255, 255);
+    [SerializeField] private Color _skillRangeVisualizerColor = new(255, 50, 50);
+    [SerializeField] private float _difficulty = 1;
+    [SerializeField] private float _statScale = 1;
+    [SerializeField] private float _spawnDelay;
+    [SerializeField][Tooltip("Minute")] private int _requiredTime;
 
-    public SpawnPatternList_SO SpawnPatternList { get { return spawnPatternList; } }
+    public SpawnPatternList_SO SpawnPatternList { get { return _spawnPatternList; } }
     public SpawnMonsterList_SO SpawnMonsterList { get { return SpawnMonsterList; } }
-    public AudioClip BGM { get { return bgm; } }
-    public Color DamageTextColor { get { return damageTextColor; } }
-    public Color SkillRangeVisualizerColor { get { return skillRangeVisualizerColor; } }
-    public float Difficulty { get { return difficulty; } }
-    public float StatScale { get { return statScale; } }
-    public float SpawnDelay { get { return spawnDelay; } }
-    public int RequiredTime { get { return requiredTime; } }
+    public AudioClip BGM { get { return _bgm; } }
+    public Color DamageTextColor { get { return _damageTextColor; } }
+    public Color SkillRangeVisualizerColor { get { return _skillRangeVisualizerColor; } }
+    public float Difficulty { get { return _difficulty; } }
+    public float StatScale { get { return _statScale; } }
+    public float SpawnDelay { get { return _spawnDelay; } }
+    public int RequiredTime { get { return _requiredTime; } }
 
 #if UNITY_EDITOR
     [Tooltip("Skill Range VisualizerColor")] public bool isDefaultColor = true;
 
-    private int defaultAlpha = 200;
+    private int _defaultAlpha = 200;
 
     private void OnValidate()
     {
         if (isDefaultColor)
         {
-            skillRangeVisualizerColor = new Color32(255, 50, 50, (byte)defaultAlpha);
+            _skillRangeVisualizerColor = new Color32(255, 50, 50, (byte)_defaultAlpha);
         }
         else
         {
-            skillRangeVisualizerColor = new(skillRangeVisualizerColor.r, skillRangeVisualizerColor.g, skillRangeVisualizerColor.b, defaultAlpha / 255f);
+            _skillRangeVisualizerColor = new(_skillRangeVisualizerColor.r, _skillRangeVisualizerColor.g, _skillRangeVisualizerColor.b, _defaultAlpha / 255f);
         }
     }
 #endif

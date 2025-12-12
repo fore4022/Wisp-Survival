@@ -3,27 +3,27 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class MonsterSkill_B : MonsterSkill_Damage, IFakeShadowSource
 {
-    [SerializeField][Min(0.2f)] private float duration = 0.5f;
-    [SerializeField] private Vector3 skillOffset;
+    [SerializeField][Min(0.2f)] private float _duration = 0.5f;
+    [SerializeField] private Vector3 _skillOffset;
 
-    private const float preActionDelay = 0.035f;
+    private const float PreActionDelay = 0.035f;
 
-    private Color defaultColor;
-    private Vector3 targetPosition;
-    private Vector3 initialPosition;
-    private Vector3 initialScale;
-    private float scaleValue;
+    private Color _defaultColor;
+    private Vector3 _targetPosition;
+    private Vector3 _initialPosition;
+    private Vector3 _initialScale;
+    private float _scaleValue;
 
-    public SpriteRenderer SpriteRender { get { return render; } }
-    public Vector3 TargetPosition { get { return targetPosition; } }
-    public Vector3 InitialPosition { get { return initialPosition; } }
+    public SpriteRenderer SpriteRender { get { return _render; } }
+    public Vector3 TargetPosition { get { return _targetPosition; } }
+    public Vector3 InitialPosition { get { return _initialPosition; } }
     public Vector3 CurrentPosition { get { return transform.position; } }
     protected override void Enable()
     {
-        targetPosition = transform.position;
-        initialPosition = transform.position += skillOffset;
-        transform.localScale = initialScale;
-        col.enabled = false;
+        _targetPosition = transform.position;
+        _initialPosition = transform.position += _skillOffset;
+        transform.localScale = _initialScale;
+        _col.enabled = false;
 
         SetActive(true);
         StartCoroutine(Casting());
@@ -32,9 +32,9 @@ public class MonsterSkill_B : MonsterSkill_Damage, IFakeShadowSource
     {
         base.Init();
 
-        scaleValue = transform.localScale.x;
-        defaultColor = render.color;
-        initialScale = new Vector2(scaleValue, scaleValue);
+        _scaleValue = transform.localScale.x;
+        _defaultColor = _render.color;
+        _initialScale = new Vector2(_scaleValue, _scaleValue);
     }
     protected override void Enter(GameObject go)
     {
@@ -53,16 +53,16 @@ public class MonsterSkill_B : MonsterSkill_Damage, IFakeShadowSource
     }
     private IEnumerator Casting()
     {
-        transform.SetScale(scaleValue / 5 * 3, duration)
-            .SetPosition(targetPosition, duration, EaseType.InQuad);
+        transform.SetScale(_scaleValue / 5 * 3, _duration)
+            .SetPosition(_targetPosition, _duration, EaseType.InQuad);
 
-        StartCoroutine(ColorUtil.ChangeColor(render, Color.white, defaultColor, duration));
+        StartCoroutine(ColorUtil.ChangeColor(_render, Color.white, _defaultColor, _duration));
 
-        yield return new WaitForSeconds(duration - preActionDelay * 2);
+        yield return new WaitForSeconds(_duration - PreActionDelay * 2);
 
-        col.enabled = true;
+        _col.enabled = true;
 
-        yield return new WaitForSeconds(preActionDelay);
+        yield return new WaitForSeconds(PreActionDelay);
 
         gameObject.SetActive(false);
     }

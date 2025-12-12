@@ -14,8 +14,8 @@ public class Skill_C : PlayerSkill, IPlayerSkill
     }
     public void SetCollider()
     {
-        playColliderOnEnable = !playColliderOnEnable;
-        defaultCollider.enabled = playColliderOnEnable;
+        _playColliderOnEnable = !_playColliderOnEnable;
+        _defaultCollider.enabled = _playColliderOnEnable;
     }
     public void Enter(GameObject go)
     {

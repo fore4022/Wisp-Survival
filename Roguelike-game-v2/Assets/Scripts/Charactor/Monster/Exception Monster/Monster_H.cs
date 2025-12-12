@@ -5,25 +5,25 @@ using UnityEngine;
 /// </summary>
 public class Monster_H : BasicMonster_WithObject
 {
-    [SerializeField] private Vector3 skillPosition;
-    [SerializeField] private string skillAnimation_Name;
-    [SerializeField][Range(0, 100)] private float skillCastChance;
-    [SerializeField] private float skillDuration;
-    [SerializeField] private float skillCooldown;
-    [SerializeField] private float skillDelay;
+    [SerializeField] private Vector3 _skillPosition;
+    [SerializeField] private string _skillAnimationName;
+    [SerializeField][Range(0, 100)] private float _skillCastChance;
+    [SerializeField] private float _skillDuration;
+    [SerializeField] private float _skillCooldown;
+    [SerializeField] private float _skillDelay;
 
-    private const string defaultAnimation_Name = "Walk";
+    private const string _defaultAnimationName = "Walk";
 
-    private WaitForSeconds cooldown;
-    private WaitForSeconds delay;
-    private string skillKey;
-    private bool isEnterPlayer = false;
+    private WaitForSeconds _cooldown;
+    private WaitForSeconds _delay;
+    private string _skillKey;
+    private bool _isEnterPlayer = false;
 
     protected override void Init()
     {
-        cooldown = new(skillCooldown);
-        delay = new(skillDelay);
-        skillKey = monsterSO.ExtraObjects[0].name;
+        _cooldown = new(_skillCooldown);
+        _delay = new(_skillDelay);
+        _skillKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
     }
@@ -37,43 +37,43 @@ public class Monster_H : BasicMonster_WithObject
     {
         base.Attack();
 
-        isEnterPlayer = true;
+        _isEnterPlayer = true;
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        isEnterPlayer = false;
+        _isEnterPlayer = false;
     }
     private IEnumerator RepeatBehavior()
     {
-        animator.Play(defaultAnimation_Name);
+        _animator.Play(_defaultAnimationName);
 
-        speedMultiplier = 1;
-        canSwitchDirection = true;
+        _speedMultiplier = 1;
+        _canSwitchDirection = true;
 
-        yield return cooldown;
+        yield return _cooldown;
 
-        if(Random.Range(0, 100) <= skillCastChance)
+        if(Random.Range(0, 100) <= _skillCastChance)
         {            
-            speedMultiplier = 0;
-            canSwitchDirection = false;
+            _speedMultiplier = 0;
+            _canSwitchDirection = false;
 
-            yield return delay;
+            yield return _delay;
 
             float totalTime = 0;
 
-            animator.speed = 0;
-            speedMultiplier = 3;
+            _animator.speed = 0;
+            _speedMultiplier = 3;
 
-            while(totalTime != skillDuration)
+            while(totalTime != _skillDuration)
             {
                 totalTime += Time.deltaTime;
 
-                if(totalTime > skillDuration)
+                if(totalTime > _skillDuration)
                 {
-                    totalTime = skillDuration;
+                    totalTime = _skillDuration;
                 }
 
-                if(isEnterPlayer)
+                if(_isEnterPlayer)
                 {
                     break;
                 }
@@ -81,19 +81,19 @@ public class Monster_H : BasicMonster_WithObject
                 yield return null;
             }
 
-            if(isVisible)
+            if(_isVisible)
             {
-                PoolingObject go = Managers.Game.objectPool.GetObject(skillKey);
+                PoolingObject go = Managers.Game.objectPool.GetObject(_skillKey);
 
-                float sign = render.flipX ? 1 : -1;
+                float sign = _render.flipX ? 1 : -1;
 
-                animator.speed = 1;
-                speedMultiplier = 0;
-                go.Transform.position = transform.position + skillPosition * sign;
+                _animator.speed = 1;
+                _speedMultiplier = 0;
+                go.Transform.position = transform.position + _skillPosition * sign;
                 go.Transform.localScale = new(sign, 1, 1);
 
                 go.SetActive(true);
-                animator.Play(skillAnimation_Name);
+                _animator.Play(_skillAnimationName);
 
                 yield return new WaitUntil(() => !go.activeSelf);
             }

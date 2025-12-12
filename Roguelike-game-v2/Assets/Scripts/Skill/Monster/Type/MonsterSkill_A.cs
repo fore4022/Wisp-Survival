@@ -3,14 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class MonsterSkill_A : MonsterSkill_Damage
 {
-    [SerializeField][Min(0.1f)] private float speed = 1;
+    [SerializeField][Min(0.1f)] private float _speed = 1;
 
-    private Vector3 direction;
+    private Vector3 _direction;
 
     protected override void Enable()
     {
-        direction = Default_Calculate.GetDirection(Managers.Game.player.transform.position, transform.position);
-        transform.rotation = Default_Calculate.GetQuaternion(direction);
+        _direction = Default_Calculate.GetDirection(Managers.Game.player.transform.position, transform.position);
+        transform.rotation = Default_Calculate.GetQuaternion(_direction);
 
         SetActive(true);
         StartCoroutine(Casting());
@@ -26,7 +26,7 @@ public class MonsterSkill_A : MonsterSkill_Damage
     }
     protected override void SetActive(bool isActive)
     {
-        col.enabled = isActive;
+        _col.enabled = isActive;
 
         base.SetActive(isActive);
     }
@@ -34,7 +34,7 @@ public class MonsterSkill_A : MonsterSkill_Damage
     {
         while(true)
         {
-            transform.position += direction * speed * Time.deltaTime;
+            transform.position += _direction * _speed * Time.deltaTime;
 
             yield return null;
         }

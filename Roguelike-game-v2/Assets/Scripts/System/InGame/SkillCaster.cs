@@ -2,57 +2,57 @@ using System.Collections;
 using UnityEngine;
 public class SkillCaster
 {
-    private Skill_SO so = null;
-    private WaitForSeconds coolTime;
-    private WaitForSeconds delay;
+    private Skill_SO _so = null;
+    private WaitForSeconds _coolTime;
+    private WaitForSeconds _delay;
 
-    private Coroutine cast;
-    private string attackType;
-    private int level;
+    private Coroutine _cast;
+    private string _attackType;
+    private int _level;
 
     public int Level 
     {
         set
         {
-            level = value;
+            _level = value;
 
             Set();
         }
     }
     public void SetAttackType(string attackType)
     {
-        this.attackType = attackType;
+        this._attackType = attackType;
 
-        cast = CoroutineHelper.Start(Casting(), CoroutineType.InGameSystem);
+        _cast = CoroutineHelper.Start(Casting(), CoroutineType.InGameSystem);
     }
     private void Set()
     {
-        coolTime = new(so.CoolTime[level]);
+        _coolTime = new(_so.CoolTime[_level]);
 
-        if(so.IsMultiCast)
+        if(_so.IsMultiCast)
         {
-            delay = new(so.MultiCast_Info.delay[level]);
+            _delay = new(_so.MultiCast_Info.delay[_level]);
         }
     }
     public void CastingStop()
     {
-        CoroutineHelper.Stop(cast);
+        CoroutineHelper.Stop(_cast);
     }
     private IEnumerator Casting()
     {
-        so = Managers.Game.so_Manage.GetScriptableObject<Skill_SO>(attackType);
+        _so = Managers.Game.so_Manage.GetScriptableObject<Skill_SO>(_attackType);
 
-        yield return new WaitUntil(() => so != null);
+        yield return new WaitUntil(() => _so != null);
 
         Set();
 
-        if(!so.IsMultiCast)
+        if(!_so.IsMultiCast)
         {
             while (true)
             {
-                yield return coolTime;
+                yield return _coolTime;
 
-                Managers.Game.objectPool.ActiveObject(attackType);
+                Managers.Game.objectPool.ActiveObject(_attackType);
             }
         }
         else
@@ -61,13 +61,13 @@ public class SkillCaster
 
             while(true)
             {
-                yield return coolTime;
+                yield return _coolTime;
 
-                for(i = 0; i < so.MultiCast_Info.count[level]; i++)
+                for(i = 0; i < _so.MultiCast_Info.count[_level]; i++)
                 {
-                    Managers.Game.objectPool.ActiveObject(attackType);
+                    Managers.Game.objectPool.ActiveObject(_attackType);
 
-                    yield return delay;
+                    yield return _delay;
                 }
             }
         }

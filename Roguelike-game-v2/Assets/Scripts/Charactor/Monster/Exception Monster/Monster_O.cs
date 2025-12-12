@@ -4,25 +4,25 @@ using UnityEngine;
 /// </summary>
 public class Monster_O : BasicMonster
 {
-    [SerializeField] private Color targetColor;
-    [SerializeField] private float multiplier;
+    [SerializeField] private Color _targetColor;
+    [SerializeField] private float _multiplier;
 
-    private float healthLossRatio;
+    private float _healthLossRatio;
     
     protected override void Init()
     {
         base.Init();
 
-        onDamaged += HealthLossRatioUpdate;
-        onDamaged += ColorUpdate;
+        _onDamaged += HealthLossRatioUpdate;
+        _onDamaged += ColorUpdate;
     }
     private void ColorUpdate()
     {
-        render.color = Color.Lerp(defaultColor, targetColor, healthLossRatio);
+        _render.color = Color.Lerp(_defaultColor, _targetColor, _healthLossRatio);
     }
     private void HealthLossRatioUpdate()
     {
-        healthLossRatio = 1 - (health / maxHealth);
-        damageMultiplier = speedMultiplier = Mathf.Max(1, multiplier * healthLossRatio);
+        _healthLossRatio = 1 - (_health / _maxHealth);
+        _damageMultiplier = _speedMultiplier = Mathf.Max(1, _multiplier * _healthLossRatio);
     }
 }

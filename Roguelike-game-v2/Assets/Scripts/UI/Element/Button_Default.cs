@@ -9,10 +9,10 @@ using UnityEngine.UI;
 /// </summary>
 public abstract class Button_Default : MonoBehaviour
 {
-    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioSource _audioSource;
 
-    protected RectTransform rectTransform;
-    protected Button button;
+    protected RectTransform _rectTransform;
+    protected Button _button;
 
     protected void Awake()
     {
@@ -20,25 +20,25 @@ public abstract class Button_Default : MonoBehaviour
     }
     protected virtual void Init()
     {
-        rectTransform = GetComponent<RectTransform>();
-        button = GetComponent<Button>();
+        _rectTransform = GetComponent<RectTransform>();
+        _button = GetComponent<Button>();
         
-        if(audioSource == null)
+        if(_audioSource == null)
         {
-            audioSource = GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
-        audioSource.playOnAwake = false;
-        audioSource.loop = false;
+        _audioSource.playOnAwake = false;
+        _audioSource.loop = false;
 
         AddButtonEvents();
     }
     protected virtual void AddButtonEvents()
     {
-        button.onClick.AddListener(() =>
+        _button.onClick.AddListener(() =>
         {
             PointerClick();
-            audioSource.Play();
+            _audioSource.Play();
         });
     }
     protected abstract void PointerClick();

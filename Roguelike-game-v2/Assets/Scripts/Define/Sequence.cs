@@ -5,48 +5,48 @@ using UnityEngine;
 /// </summary>
 public class Sequence
 {
-    private Queue<List<TweenData>> tweenQueue = new();
+    private Queue<List<TweenData>> _tweenQueue = new();
 
     public List<TweenData>[] Values()
     {
-        return tweenQueue.ToArray();
+        return _tweenQueue.ToArray();
     }
     public List<TweenData> PeekLast()
     {
-        return tweenQueue.ToArray()[tweenQueue.Count - 1];
+        return _tweenQueue.ToArray()[_tweenQueue.Count - 1];
     }
     public List<TweenData> Peek()
     {
-        if(tweenQueue.Count == 0)
+        if(_tweenQueue.Count == 0)
         {
-            tweenQueue.Enqueue(new());
+            _tweenQueue.Enqueue(new());
         }
 
-        return tweenQueue.Peek();
+        return _tweenQueue.Peek();
     }
     public int Count()
     {
-        return tweenQueue.Count;
+        return _tweenQueue.Count;
     }
     public void Enqueue(List<TweenData> list)
     {
-        tweenQueue.Enqueue(list);
+        _tweenQueue.Enqueue(list);
     }
     public void Dequeue(Transform transform, TweenData data)
     {
-        tweenQueue.Peek().Remove(data);
+        _tweenQueue.Peek().Remove(data);
 
-        if(tweenQueue.Peek().Count == 0)
+        if(_tweenQueue.Peek().Count == 0)
         {
-            tweenQueue.Dequeue();
+            _tweenQueue.Dequeue();
 
-            if(tweenQueue.Count == 0)
+            if(_tweenQueue.Count == 0)
             {
                 Tween_Manage.Clear(transform);
             }
             else
             {
-                foreach(TweenData _data in tweenQueue.Peek())
+                foreach(TweenData _data in _tweenQueue.Peek())
                 {
                     _data.Set(CoroutineHelper.Start(Tweening.OverTime(_data.type, _data, _data.trans, _data.easeDel, _data.targetValue, _data.duration), CoroutineType.Tween));
                 }

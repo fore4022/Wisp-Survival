@@ -1,26 +1,26 @@
 using UnityEngine;
 public class Start_UI : Button_Default
 {
-    [SerializeField] private AudioClip actionAvailableSound;
-    [SerializeField] private AudioClip actionUnavailableSound;
+    [SerializeField] private AudioClip _actionAvailableSound;
+    [SerializeField] private AudioClip _actionUnavailableSound;
 
-    private const string log = "You must clear the previous stage.";
+    private const string Log = "You must clear the previous stage.";
 
     protected override void PointerClick()
     {
         if(Managers.Data.user.GetStageState() != StageState.Locked)
         {
-            audioSource.clip = actionAvailableSound;
-            button.interactable = false;
+            _audioSource.clip = _actionAvailableSound;
+            _button.interactable = false;
             
             Managers.Game.InitGame();
         }
         else
         {
-            audioSource.clip = actionUnavailableSound;
+            _audioSource.clip = _actionUnavailableSound;
 
             Managers.UI.Hide<ToastMessage_UI>();
-            Managers.UI.ShowAndGet<ToastMessage_UI>().SetText(log);
+            Managers.UI.ShowAndGet<ToastMessage_UI>().SetText(Log);
         }
     }
 }

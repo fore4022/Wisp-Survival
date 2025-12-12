@@ -1,21 +1,19 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 public class CharactorController_UI : UserInterface
 {
-    [SerializeField] private GameObject stick;
+    [SerializeField] private GameObject _stick;
 
-    private InputAction.CallbackContext? touchStart;
-    private Vector2 enterPosition;
+    private Vector2 _enterPosition;
 
-    private const int maxLength = 85;
+    private const int MaxLength = 85;
 
     public Vector2 EnterPosition
     {
         set
         {
-            enterPosition = value;
+            _enterPosition = value;
 
-            transform.position = enterPosition;
+            transform.position = _enterPosition;
         }
     }
     public override void SetUserInterface()
@@ -24,6 +22,6 @@ public class CharactorController_UI : UserInterface
     }
     public void SetJoyStick()
     {
-        stick.transform.position = enterPosition + Vector2.ClampMagnitude(Managers.Game.player.move.Direction, maxLength);
+        _stick.transform.position = _enterPosition + Vector2.ClampMagnitude(Managers.Game.player.move.Direction, MaxLength);
     }
 }

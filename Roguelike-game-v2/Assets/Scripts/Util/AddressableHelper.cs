@@ -13,10 +13,10 @@ using Object = UnityEngine.Object;
 /// </summary>
 public static class AddressableHelper
 {
-    private static List<AsyncOperationHandle> handleList = new();
-    private static Type type_GameObject = typeof(GameObject);
-    private static Type type_ScriptableObject = typeof(ScriptableObject);
-    private static Type type_Sprite = typeof(Sprite);
+    private static List<AsyncOperationHandle> _handleList = new();
+    private static Type _type_GameObject = typeof(GameObject);
+    private static Type _type_ScriptableObject = typeof(ScriptableObject);
+    private static Type _type_Sprite = typeof(Sprite);
 
     // 주소를 통해서 씬 로드
     public static void LoadingScene(string path)
@@ -36,9 +36,9 @@ public static class AddressableHelper
         {
             Type type = typeof(T);
 
-            if(type == type_GameObject || type == type_ScriptableObject || type == type_Sprite)
+            if(type == _type_GameObject || type == _type_ScriptableObject || type == _type_Sprite)
             {
-                handleList.Add(handle);
+                _handleList.Add(handle);
             }
             else
             {
@@ -51,11 +51,11 @@ public static class AddressableHelper
     // handleList에 등록된 모든 handle 해제
     public static void ResourcesRelease()
     {
-        foreach(AsyncOperationHandle handle in handleList)
+        foreach(AsyncOperationHandle handle in _handleList)
         {
             Addressables.Release(handle);
         }
 
-        handleList.Clear();
+        _handleList.Clear();
     }
 }

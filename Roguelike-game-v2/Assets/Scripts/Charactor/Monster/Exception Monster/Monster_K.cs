@@ -5,60 +5,60 @@ using UnityEngine;
 /// </summary>
 public class Monster_K : BasicMonster
 {
-    [SerializeField] private float dashSpeedMultiplier;
-    [SerializeField] private float dashDuration;
-    [SerializeField] private float dashCooldown;
-    [SerializeField] private float targetDirectionMultiplier;
+    [SerializeField] private float _dashSpeedMultiplier;
+    [SerializeField] private float _dashDuration;
+    [SerializeField] private float _dashCooldown;
+    [SerializeField] private float _targetDirectionMultiplier;
 
-    private Coroutine behavior = null;
-    private WaitForSeconds delay;
+    private Coroutine _behavior = null;
+    private WaitForSeconds _delay;
 
     protected override void Init()
     {
         base.Init();
 
-        delay = new(dashDuration);
+        _delay = new(_dashDuration);
     }
     protected override void Enable()
     {
         base.Enable();
     
-        behavior = StartCoroutine(RepeatBehavior());
+        _behavior = StartCoroutine(RepeatBehavior());
     }
     protected override void Die()
     {
         base.Die();
 
-        canSwitchDirection = true;
+        _canSwitchDirection = true;
 
-        StopCoroutine(behavior);
+        StopCoroutine(_behavior);
     }
     private IEnumerator RepeatBehavior()
     {
-        canSwitchDirection = true;
+        _canSwitchDirection = true;
 
-        yield return new WaitForSeconds(Random.Range(dashCooldown / 2, dashCooldown));
+        yield return new WaitForSeconds(Random.Range(_dashCooldown / 2, _dashCooldown));
 
         float totalTime = 0;
 
-        canSwitchDirection = false;
+        _canSwitchDirection = false;
 
-        while(totalTime != dashDuration)
+        while(totalTime != _dashDuration)
         {
             totalTime += Time.deltaTime;
 
-            if(totalTime > dashDuration)
+            if(totalTime > _dashDuration)
             {
-                totalTime = dashDuration;
+                totalTime = _dashDuration;
             }
 
-            speedMultiplier = Mathf.Lerp(speedMultiplierDefault, dashSpeedMultiplier, totalTime / dashDuration);
-            directionMultiplier = Mathf.Lerp(directionMultiplierDefault, targetDirectionMultiplier, totalTime / dashDuration);
+            _speedMultiplier = Mathf.Lerp(SpeedMultiplierDefault, _dashSpeedMultiplier, totalTime / _dashDuration);
+            _directionMultiplier = Mathf.Lerp(DirectionMultiplierDefault, _targetDirectionMultiplier, totalTime / _dashDuration);
 
             yield return null;
         }
 
-        yield return delay;
+        yield return _delay;
 
         StartCoroutine(RepeatBehavior());
     }

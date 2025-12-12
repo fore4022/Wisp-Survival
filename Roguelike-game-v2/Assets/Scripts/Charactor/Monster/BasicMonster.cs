@@ -9,34 +9,34 @@ using UnityEngine;
 /// </summary>
 public class BasicMonster : Monster, IDamage, IDamageReceiver, IMoveable
 {
-    protected const float speedMultiplierDefault = 1;
-    protected const float damageMultiplierDefault = 1;
-    protected const float directionMultiplierDefault = 1;
-    protected const float death_AnimationDuration = 0.3f;
+    protected const float SpeedMultiplierDefault = 1;
+    protected const float DamageMultiplierDefault = 1;
+    protected const float DirectionMultiplierDefault = 1;
+    protected const float Death_AnimationDuration = 0.3f;
 
-    protected Action onDamaged = null;
+    protected Action _onDamaged = null;
     
-    protected Color defaultColor;
-    protected Vector2 direction = default;
-    protected float speedMultiplier = speedMultiplierDefault;
-    protected float damageMultiplier = damageMultiplierDefault;
-    protected float directionMultiplier = directionMultiplierDefault;
-    protected bool canSwitchDirection = true;
+    protected Color _defaultColor;
+    protected Vector2 _direction = default;
+    protected float _speedMultiplier = SpeedMultiplierDefault;
+    protected float _damageMultiplier = DamageMultiplierDefault;
+    protected float _directionMultiplier = DirectionMultiplierDefault;
+    protected bool _canSwitchDirection = true;
 
-    private IMoveable moveable;
+    private IMoveable _moveable;
 
-    private const float damagedDuration = 0.15f;
+    private const float DamagedDuration = 0.15f;
     
-    private Coroutine moveCoroutine = null;
-    private WaitForSeconds damaged = new(damagedDuration);
+    private Coroutine _moveCoroutine = null;
+    private WaitForSeconds _damaged = new(DamagedDuration);
 
-    public float SpeedAmount { get { return stat.moveSpeed * speedMultiplier * SlowDownAmount; } }
-    public float SlowDownAmount { get { return moveable.SlowDownAmount; } }
-    public float DamageAmount { get { return stat.damage * damageMultiplier * Managers.Game.difficultyScaler.IncreaseStat * Time.deltaTime; } }
+    public float SpeedAmount { get { return _stat.moveSpeed * _speedMultiplier * SlowDownAmount; } }
+    public float SlowDownAmount { get { return _moveable.SlowDownAmount; } }
+    public float DamageAmount { get { return _stat.damage * _damageMultiplier * Managers.Game.difficultyScaler.IncreaseStat * Time.deltaTime; } }
     // IMoveable 구현
     protected override void Awake()
     {
-        moveable = new DefaultMoveable();
+        _moveable = new DefaultMoveable();
 
         base.Awake();
     }
@@ -51,48 +51,48 @@ public class BasicMonster : Monster, IDamage, IDamageReceiver, IMoveable
     {
         base.Set();
 
-        render.color = defaultColor;
-        render.enabled = true;
-        rigid.simulated = true;
+        _render.color = _defaultColor;
+        _render.enabled = true;
+        _rigid.simulated = true;
     }
     // 위치 조정 및 이동 코루틴 실행
     protected virtual void Enable()
     {
         SetPosition();
         Set();
-        animator.Play(0, 0);
+        _animator.Play(0, 0);
 
-        moveCoroutine = StartCoroutine(Moving());
+        _moveCoroutine = StartCoroutine(Moving());
     }
     // 이동 속도 감소
     public void SetSlowDown(float slowDown, float duration)
     {
-        moveable.SetSlowDown(slowDown, duration);
+        _moveable.SetSlowDown(slowDown, duration);
     }
     // 이동 처리
     public virtual void OnMove()
     {
-        rigid.linearVelocity = direction * SpeedAmount;
+        _rigid.linearVelocity = _direction * SpeedAmount;
     }
     // 자기 자신의 위치를 기준으로 플레이어로 향하는 방향 구하기, 배율에 따른 유효 회전 제한
     protected virtual void SetDirection()
     {
         if(!Managers.Game.GameOver)
         {
-            if(canSwitchDirection)
+            if(_canSwitchDirection)
             {
-                if(direction == default)
+                if(_direction == default)
                 {
-                    direction = Default_Calculate.GetDirection(Managers.Game.player.gameObject.transform.position, transform.position);
+                    _direction = Default_Calculate.GetDirection(Managers.Game.player.gameObject.transform.position, transform.position);
                 }
                 else
                 {
-                    if(directionMultiplier == 0)
+                    if(_directionMultiplier == 0)
                     {
                         return;
                     }
 
-                    direction = Vector3.Slerp(direction, Default_Calculate.GetDirection(Managers.Game.player.gameObject.transform.position, transform.position), directionMultiplier).normalized;
+                    _direction = Vector3.Slerp(_direction, Default_Calculate.GetDirection(Managers.Game.player.gameObject.transform.position, transform.position), _directionMultiplier).normalized;
                 }
             }
         }
@@ -105,9 +105,9 @@ public class BasicMonster : Monster, IDamage, IDamageReceiver, IMoveable
     // 충돌 비활성화, 이동 중지
     protected virtual void Die()
     {
-        rigid.simulated = false;
+        _rigid.simulated = false;
 
-        StopCoroutine(moveCoroutine);
+        StopCoroutine(_moveCoroutine);
     }
     // 충돌 : Collision
     protected void OnCollisionEnter2D(Collision2D collision)
@@ -122,12 +122,12 @@ public class BasicMonster : Monster, IDamage, IDamageReceiver, IMoveable
     // 이벤트 호출, 데미지 로그 출력, 사망 확인
     public void TakeDamage(IDamage damage)
     {
-        health -= damage.DamageAmount;
+        _health -= damage.DamageAmount;
 
         Managers.Game.damageLog_Manage.Show(transform.position, damage.DamageAmount);
-        onDamaged.Invoke();
+        _onDamaged.Invoke();
 
-        if(health <= 0)
+        if(_health <= 0)
         {
             Die();
             StartCoroutine(Dieing());
@@ -138,10 +138,10 @@ public class BasicMonster : Monster, IDamage, IDamageReceiver, IMoveable
     {
         base.Init();
 
-        onDamaged += audioSource.Play;
-        onDamaged += Damaged;
+        _onDamaged += _audioSource.Play;
+        _onDamaged += Damaged;
 
-        defaultColor = render.color;
+        _defaultColor = _render.color;
     }
     // 충돌 대상 확인, 플레이어일 경우 공격 수행
     private void Enter(Collision2D collision)
@@ -161,7 +161,7 @@ public class BasicMonster : Monster, IDamage, IDamageReceiver, IMoveable
     {
         while(true)
         {
-            if(isVisible)
+            if(_isVisible)
             {
                 FlipX();
             }
@@ -175,33 +175,33 @@ public class BasicMonster : Monster, IDamage, IDamageReceiver, IMoveable
     // 사망 효과, 경험치 지급, 오브젝트 풀 반환
     protected virtual IEnumerator Dieing()
     {
-        animator.speed = 0;
+        _animator.speed = 0;
 
-        StartCoroutine(ColorUtil.ChangeColor(render, Color.black, defaultColor, death_AnimationDuration / 2));
+        StartCoroutine(ColorUtil.ChangeColor(_render, Color.black, _defaultColor, Death_AnimationDuration / 2));
 
-        yield return new WaitForSeconds(death_AnimationDuration / 2);
+        yield return new WaitForSeconds(Death_AnimationDuration / 2);
 
-        Managers.Game.inGameData_Manage.player.Experience += user_Experience;
-        Managers.Game.UserExp += inGame_Experience;
-        speedMultiplier = speedMultiplierDefault;
-        damageMultiplier = damageMultiplierDefault;
-        directionMultiplier = directionMultiplierDefault;
+        Managers.Game.inGameData_Manage.player.Experience += _user_Experience;
+        Managers.Game.UserExp += _inGameExperience;
+        _speedMultiplier = SpeedMultiplierDefault;
+        _damageMultiplier = DamageMultiplierDefault;
+        _directionMultiplier = DirectionMultiplierDefault;
 
-        StartCoroutine(ColorUtil.ChangeAlpha(render, 0, render.color.a, death_AnimationDuration));
+        StartCoroutine(ColorUtil.ChangeAlpha(_render, 0, _render.color.a, Death_AnimationDuration));
 
-        yield return new WaitForSeconds(death_AnimationDuration);
+        yield return new WaitForSeconds(Death_AnimationDuration);
 
-        render.color = defaultColor;
+        _render.color = _defaultColor;
 
-        Managers.Game.objectPool.DisableObject(gameObject, monsterSO.name);
+        Managers.Game.objectPool.DisableObject(gameObject, _monsterSO.name);
     }
     // 피격 효과
     private IEnumerator TakingDamage()
     {
-        render.material.SetFloat("_Float", 1);
+        _render.material.SetFloat("_Float", 1);
 
-        yield return damaged;
+        yield return _damaged;
 
-        render.material.SetFloat("_Float", 0);
+        _render.material.SetFloat("_Float", 0);
     }
 }

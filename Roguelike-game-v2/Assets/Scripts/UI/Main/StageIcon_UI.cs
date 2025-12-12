@@ -3,79 +3,79 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StageIcon_UI : UserInterface
 {
-    [SerializeField] private TextMeshProUGUI themaName;
-    [SerializeField] private Image ground;
-    [SerializeField] private Image cover;
-    [SerializeField] private Image banner;
-    [SerializeField] private Image monster;
-    [SerializeField] private GameObject padlock;
+    [SerializeField] private TextMeshProUGUI _themaName;
+    [SerializeField] private Image _ground;
+    [SerializeField] private Image _cover;
+    [SerializeField] private Image _banner;
+    [SerializeField] private Image _monster;
+    [SerializeField] private GameObject _padlock;
 
-    private Stage_SO so;
+    private Stage_SO _so;
 
     private const string LockedText = "???";
 
     public override void SetUserInterface()
     {
-        themaName = transform.GetComponentInChildren<TextMeshProUGUI>();
+        _themaName = transform.GetComponentInChildren<TextMeshProUGUI>();
 
         UpdateUI(0);
     }
     public void UpdateUI(int sign)
     {
-        so = Managers.Main.GetCurrentStageSO(sign);
+        _so = Managers.Main.GetCurrentStageSO(sign);
 
         Set();
     }
     private void Set()
     {
         StageState state = Managers.Data.user.GetStageState();
-        Icon_SO icon = so.iconSprite;
+        Icon_SO icon = _so.iconSprite;
 
-        ground.sprite = icon.Ground;
-        monster.sprite = icon.Monster;
+        _ground.sprite = icon.Ground;
+        _monster.sprite = icon.Monster;
 
         if(state == StageState.Locked)
         {
-            themaName.text = LockedText;
-            cover.color = Color.black;
-            ground.color = Color.black;
-            monster.color = Color.black;
+            _themaName.text = LockedText;
+            _cover.color = Color.black;
+            _ground.color = Color.black;
+            _monster.color = Color.black;
 
-            banner.gameObject.SetActive(false);
-            monster.gameObject.SetActive(true);
-            padlock.SetActive(true);
+            _banner.gameObject.SetActive(false);
+            _monster.gameObject.SetActive(true);
+            _padlock.SetActive(true);
         }
         else
         {
-            themaName.text = so.name;
-            cover.color = Color.white;
-            ground.color = Color.white;
-            monster.color = Color.white;
+            _themaName.text = _so.name;
+            _cover.color = Color.white;
+            _ground.color = Color.white;
+            _monster.color = Color.white;
 
             if(state == StageState.Cleared)
             {
-                banner.sprite = icon.Banner;
-                banner.gameObject.SetActive(true);
-                monster.gameObject.SetActive(false);
+                _banner.sprite = icon.Banner;
+                _banner.gameObject.SetActive(true);
+                _monster.gameObject.SetActive(false);
             }
             else
             {
-                banner.gameObject.SetActive(false);
-                monster.gameObject.SetActive(true);
+                _banner.gameObject.SetActive(false);
+                _monster.gameObject.SetActive(true);
             }
 
-            padlock.SetActive(false);
+            _padlock.SetActive(false);
         }
 
         if(icon.Cover == null)
         {
-            cover.gameObject.SetActive(false);
+            _cover.gameObject.SetActive(false);
         }
         else
         {
-            cover.sprite = icon.Cover;
+            _cover.sprite = icon.Cover;
 
-            cover.gameObject.SetActive(true);
+            _cover.gameObject.SetActive(true);
         }
     }
 }

@@ -6,12 +6,12 @@ using UnityEngine;
 /// </summary>
 public class InitGame : MonoBehaviour
 {
-    [SerializeField] private EnterMainScene enterMainScene;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private EnterMainScene _enterMainScene;
+    [SerializeField] private AudioSource _audioSource;
 
-    private const string _stageDataPath = "StageDatas";
+    private const string StageDataPath = "StageDatas";
 
-    private Task dataLoading;
+    private Task _dataLoading;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class InitGame : MonoBehaviour
     }
     private async Task LoadStageDatas()
     {
-        Managers.Main.stageDatas.SO = await AddressableHelper.LoadingToPath<StageList_SO>(_stageDataPath, false);
+        Managers.Main.stageDatas.SO = await AddressableHelper.LoadingToPath<StageList_SO>(StageDataPath, false);
     }
     private IEnumerator Initializing()
     {
@@ -27,7 +27,7 @@ public class InitGame : MonoBehaviour
 
         yield return new WaitUntil(() => loadStageDatas.IsCompleted);
 
-        dataLoading = Managers.Data.Load();
+        _dataLoading = Managers.Data.Load();
 
         yield return new WaitUntil(() => Managers.UI.IsInitalized());
 
@@ -37,13 +37,13 @@ public class InitGame : MonoBehaviour
     }
     private IEnumerator UserDataLoading()
     {
-        yield return new WaitUntil(() => dataLoading.IsCompleted);
+        yield return new WaitUntil(() => _dataLoading.IsCompleted);
 
         Managers.Audio.Init();
         Managers.Audio.InitializedAudio();
         Managers.UI.Get<StartMessage_UI>().SetState();
-        audioSource.Play();
+        _audioSource.Play();
 
-        enterMainScene.isLoad = true;
+        _enterMainScene.isLoad = true;
     }
 }

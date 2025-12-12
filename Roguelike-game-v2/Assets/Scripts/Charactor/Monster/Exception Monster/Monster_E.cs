@@ -5,42 +5,42 @@ using UnityEngine;
 /// </summary>
 public class Monster_E : BasicMonster
 {
-    [SerializeField] private float rushSpeed = 3;
-    [SerializeField] private float rushCastingTime = 0.75f;
+    [SerializeField] private float _rushSpeed = 3;
+    [SerializeField] private float _rushCastingTime = 0.75f;
 
     protected override void Enable()
     {
         base.Enable();
 
-        speedMultiplier = speedMultiplierDefault;
-        canSwitchDirection = true;
+        _speedMultiplier = SpeedMultiplierDefault;
+        _canSwitchDirection = true;
 
         StartCoroutine(RepeatBehavior());
     }
     private IEnumerator RepeatBehavior()
     {
-        yield return new WaitUntil(() => isVisible);
+        yield return new WaitUntil(() => _isVisible);
 
         yield return new WaitUntil(() => (Managers.Game.player.transform.position - transform.position).magnitude <= CameraUtil.CameraWidth / 2);
 
         float totalTime = 0;
 
-        canSwitchDirection = false;
+        _canSwitchDirection = false;
 
-        while (totalTime != rushCastingTime)
+        while (totalTime != _rushCastingTime)
         {
             totalTime += Time.deltaTime;
 
-            if(totalTime > rushCastingTime)
+            if(totalTime > _rushCastingTime)
             {
-                totalTime = rushCastingTime;
+                totalTime = _rushCastingTime;
             }
 
-            speedMultiplier = Mathf.Lerp(0, speedMultiplierDefault, totalTime / rushCastingTime);
+            _speedMultiplier = Mathf.Lerp(0, SpeedMultiplierDefault, totalTime / _rushCastingTime);
 
             yield return null;
         }
 
-        speedMultiplier = rushSpeed;
+        _speedMultiplier = _rushSpeed;
     }
 }

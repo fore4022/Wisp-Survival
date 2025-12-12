@@ -4,20 +4,20 @@ using System.Threading.Tasks;
 using UnityEngine;
 public class ScriptableObject_Manage
 {
-    private Dictionary<string, ScriptableObject> scriptableObjects = new();
+    private Dictionary<string, ScriptableObject> _scriptableObjects = new();
 
-    private const int maxWorkPerFrame = 360;
+    private const int MaxWorkPerFrame = 360;
 
-    private int coroutineCount = 0;
+    private int _coroutineCount = 0;
 
-    public int ScriptableObjectsCount { get { return scriptableObjects.Count; } }
-    private int MaxWorkPerSec { get { return Mathf.Max(maxWorkPerFrame / coroutineCount, 1); } }
+    public int ScriptableObjectsCount { get { return _scriptableObjects.Count; } }
+    private int MaxWorkPerSec { get { return Mathf.Max(MaxWorkPerFrame / _coroutineCount, 1); } }
     // 키에 해당하는 ScriptableObject 반환
     public T GetScriptableObject<T>(string key) where T : ScriptableObject
     {
-        if(scriptableObjects.ContainsKey(key))
+        if(_scriptableObjects.ContainsKey(key))
         {
-            return (T)scriptableObjects[key];
+            return (T)_scriptableObjects[key];
         }
 
         return null;
@@ -25,7 +25,7 @@ public class ScriptableObject_Manage
     // 해당 키의 SO 불러오기, ScriptableObjectType에 따라서 ScriptableObject가 가지는 추가 오브젝트 생성 //
     public async Task LoadScriptableObject(ScriptableObjectType type, string key)
     {
-        if(!scriptableObjects.ContainsKey(key))
+        if(!_scriptableObjects.ContainsKey(key))
         {
             ScriptableObject so = default;
 
@@ -39,7 +39,7 @@ public class ScriptableObject_Manage
                     break;
             }
 
-            scriptableObjects.Add(key, so);
+            _scriptableObjects.Add(key, so);
         }
     }
     // 입력 받은 배열의 모든 오브젝트에 키에 해당하는 ScriptableObject를 할당
@@ -51,9 +51,9 @@ public class ScriptableObject_Manage
         int count;
         int index;
 
-        coroutineCount++;
+        _coroutineCount++;
 
-        so = scriptableObjects[key];
+        so = _scriptableObjects[key];
 
         while(sum < list.Count)
         {
@@ -69,6 +69,6 @@ public class ScriptableObject_Manage
             yield return null;
         }
 
-        coroutineCount--;
+        _coroutineCount--;
     }
 }

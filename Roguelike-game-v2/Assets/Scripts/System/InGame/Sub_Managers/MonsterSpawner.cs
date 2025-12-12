@@ -8,14 +8,14 @@ public class MonsterSpawner
 {
     [HideInInspector] public List<GameObject> monsterList = new();
 
-    private Dictionary<string, ScriptableObject> monsterStats = new();
+    private Dictionary<string, ScriptableObject> _monsterStats = new();
 
-    private const float minimumSpawnDelay = 0.05f;
+    private const float MinimumSpawnDelay = 0.05f;
 
-    private Coroutine monsterSpawn = null;
-    private Coroutine spawnGroup = null;
-    private int[] monsterSpawnProbabilityArray = new int[100];
-    private float spawnDelay = 0;
+    private Coroutine _monsterSpawn = null;
+    private Coroutine _spawnGroup = null;
+    private int[] _monsterSpawnProbabilityArray = new int[100];
+    private float _spawnDelay = 0;
 
     public MonsterSpawner()
     {
@@ -23,22 +23,22 @@ public class MonsterSpawner
     }
     public void StartSpawn()
     {
-        monsterSpawn = CoroutineHelper.Start(SpawningSystem(), CoroutineType.InGameSystem);
+        _monsterSpawn = CoroutineHelper.Start(SpawningSystem(), CoroutineType.InGameSystem);
     }
     public void StopSpawn()
     {
-        CoroutineHelper.Stop(spawnGroup);
+        CoroutineHelper.Stop(_spawnGroup);
     }
     public void ReStart()
     {
-        if(spawnGroup != null)
+        if(_spawnGroup != null)
         {
-            CoroutineHelper.Stop(spawnGroup);
+            CoroutineHelper.Stop(_spawnGroup);
         }
 
-        if(monsterSpawn != null)
+        if(_monsterSpawn != null)
         {
-            CoroutineHelper.Stop(monsterSpawn);
+            CoroutineHelper.Stop(_monsterSpawn);
         }
 
         StartSpawn();
@@ -49,15 +49,15 @@ public class MonsterSpawner
         {
             string soName = monster.name;
 
-            if(!monsterStats.ContainsKey(soName))
+            if(!_monsterStats.ContainsKey(soName))
             {
-                monsterStats.Add(soName, Managers.Game.so_Manage.GetScriptableObject<ScriptableObject>(soName));
+                _monsterStats.Add(soName, Managers.Game.so_Manage.GetScriptableObject<ScriptableObject>(soName));
             }
         }
     }
     private void MonsterSpawn(SpawnPattern_SO spawnInformation) 
     {
-        int arrayIndexValue = monsterSpawnProbabilityArray[Random.Range(0, 100)];
+        int arrayIndexValue = _monsterSpawnProbabilityArray[Random.Range(0, 100)];
 
         Managers.Game.objectPool.ActiveObject(spawnInformation.MonsterInformation[arrayIndexValue].monster.name);
     }
@@ -69,15 +69,15 @@ public class MonsterSpawner
         {
             foreach(SpawnPattern_SO spawnInformation in Managers.Game.stageInformation.SpawnPatternList.Patterns)
             {
-                spawnGroup = CoroutineHelper.Start(MonsterSpawning(spawnInformation), CoroutineType.InGameSystem);
+                _spawnGroup = CoroutineHelper.Start(MonsterSpawning(spawnInformation), CoroutineType.InGameSystem);
 
-                yield return new WaitUntil(() => spawnGroup == null);
+                yield return new WaitUntil(() => _spawnGroup == null);
             }
         }
 
-        if(spawnGroup != null)
+        if(_spawnGroup != null)
         {
-            CoroutineHelper.Stop(spawnGroup);
+            CoroutineHelper.Stop(_spawnGroup);
         }
     }
     private IEnumerator MonsterSpawning(SpawnPattern_SO spawnInformation)
@@ -89,26 +89,26 @@ public class MonsterSpawner
         {
             for(int i = 0; i < spawnInfo.spawnProbability; i++)
             {
-                monsterSpawnProbabilityArray[i] = index;
+                _monsterSpawnProbabilityArray[i] = index;
             }
 
             index++;
         }
 
-        spawnDelay = Managers.Game.difficultyScaler.SpawnDelay;
+        _spawnDelay = Managers.Game.difficultyScaler.SpawnDelay;
 
         while(Managers.Game.inGameTimer.GetTotalMinutes < totalMinutes + spawnInformation.Duration)
         {
-            if(spawnDelay != minimumSpawnDelay)
+            if(_spawnDelay != MinimumSpawnDelay)
             {
-                spawnDelay = Mathf.Max(Managers.Game.difficultyScaler.SpawnDelay, minimumSpawnDelay);
+                _spawnDelay = Mathf.Max(Managers.Game.difficultyScaler.SpawnDelay, MinimumSpawnDelay);
             }
 
             MonsterSpawn(spawnInformation);
 
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(_spawnDelay);
         }
 
-        spawnGroup = null;
+        _spawnGroup = null;
     }
 }

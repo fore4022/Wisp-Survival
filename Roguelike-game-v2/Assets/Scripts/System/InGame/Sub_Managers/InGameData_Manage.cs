@@ -5,24 +5,24 @@ using UnityEngine;
 /// </summary>
 public class InGameData_Manage
 {
-    public Action skillOptionCount_Update = null;
+    public Action skillOptionCountUpdate = null;
     public PlayerData player = new();
     public SkillDatas skill = new();
 
-    private const int maxOptionCount = 5;
+    private const int MaxOptionCount = 5;
 
-    private int optionCount = 3;
+    private int _optionCount = 3;
     
     public int OptionCount
     {
-        get { return Mathf.Min(optionCount, maxOptionCount); }
+        get { return Mathf.Min(_optionCount, MaxOptionCount); }
         set
         {
-            optionCount = value;
+            _optionCount = value;
 
-            if(skillOptionCount_Update != null)
+            if(skillOptionCountUpdate != null)
             {
-                skillOptionCount_Update.Invoke();
+                skillOptionCountUpdate.Invoke();
             }
         }
     }

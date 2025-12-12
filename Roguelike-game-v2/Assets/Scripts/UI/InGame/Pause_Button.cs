@@ -12,7 +12,7 @@ public class Pause_Button : Button_A
     }
     protected override void Init()
     {
-        maxScale = 1.035f;
+        _maxScale = 1.035f;
 
         base.Init();
     }

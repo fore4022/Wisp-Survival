@@ -2,28 +2,28 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StageInformation_Button : Button_Default
 {
-    [SerializeField] private Color visible;
-    [SerializeField] private Color invisible;
+    [SerializeField] private Color _visible;
+    [SerializeField] private Color _invisible;
 
-    private Image image;
+    private Image _image;
 
-    private bool isVisible = false;
+    private bool _isVisible = false;
 
     protected override void Init()
     {
-        image = GetComponent<Image>();
+        _image = GetComponent<Image>();
 
         base.Init();
     }
     protected override void PointerClick()
     {
-        isVisible = !isVisible;
+        _isVisible = !_isVisible;
 
         InformationUpdate();
     }
     public void InformationUpdate()
     {
-        if(isVisible)
+        if(_isVisible)
         {
             Show_StageInformation();
         }
@@ -34,13 +34,13 @@ public class StageInformation_Button : Button_Default
     }
     public void Show_StageInformation()
     {
-        image.color = invisible;
+        _image.color = _invisible;
 
         Managers.UI.Show<StageInformation_UI>();
     }
     public void Hide_StageInformation()
     {
-        image.color = visible;
+        _image.color = _visible;
 
         Managers.UI.Hide<StageInformation_UI>();
     }

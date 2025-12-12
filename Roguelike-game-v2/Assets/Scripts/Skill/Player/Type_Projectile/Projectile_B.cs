@@ -8,14 +8,14 @@ using UnityEngine;
 /// </summary>
 public class Projectile_B : PlayerSkill_Projectile, IProjectile
 {
-    [SerializeField] private Collider2D effectCollider;
+    [SerializeField] private Collider2D _effectCollider;
 
-    private bool isExplosion = false;
+    private bool _isExplosion = false;
 
-    public bool Finished { get { return isExplosion && animator.GetCurrentAnimatorStateInfo(0).IsName(so.Projectile_Info.animationName); } }
+    public bool Finished { get { return _isExplosion && _animator.GetCurrentAnimatorStateInfo(0).IsName(_so.Projectile_Info.animationName); } }
     public void Set()
     {
-        animator.Play("default");
+        _animator.Play("default");
 
         transform.position = Managers.Game.player.gameObject.transform.position;
         direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition());
@@ -24,15 +24,15 @@ public class Projectile_B : PlayerSkill_Projectile, IProjectile
     }
     public void SetCollider()
     {
-        if(isExplosion)
+        if(_isExplosion)
         {
-            effectCollider.enabled = false;
-            defaultCollider.enabled = false;
+            _effectCollider.enabled = false;
+            _defaultCollider.enabled = false;
         }
         else
         {
-            effectCollider.enabled = true;
-            defaultCollider.enabled = false;
+            _effectCollider.enabled = true;
+            _defaultCollider.enabled = false;
         }
     }
     public void Enter(GameObject go)
@@ -42,25 +42,25 @@ public class Projectile_B : PlayerSkill_Projectile, IProjectile
             damageReceiver.TakeDamage(this);
         }
 
-        if(!isExplosion)
+        if(!_isExplosion)
         {
-            animator.Play(so.Projectile_Info.animationName);
+            _animator.Play(_so.Projectile_Info.animationName);
             StopCoroutine(moving);
 
             moving = null;
-            isExplosion = true;
+            _isExplosion = true;
         }
     }
     private void OnDisable()
     {
-        effectCollider.enabled = false;
-        isExplosion = false;
+        _effectCollider.enabled = false;
+        _isExplosion = false;
     }
     public IEnumerator Moving()
     {
         while(true)
         {
-            transform.position += direction * so.Projectile_Info.speed * Time.deltaTime;
+            transform.position += direction * _so.Projectile_Info.speed * Time.deltaTime;
 
             yield return null;
         }

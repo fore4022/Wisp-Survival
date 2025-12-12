@@ -5,20 +5,20 @@ using System.Linq;
 /// </summary>
 public class SkillDatas
 {
-    private Dictionary<string, SkillContext> infos = new();
+    private Dictionary<string, SkillContext> _infos = new();
 
     public void Reset()
     {
-        foreach(string key in infos.Keys)
+        foreach(string key in _infos.Keys)
         {
-            infos[key].caster = null;
+            _infos[key].caster = null;
         }
     }
     public void SetDictionaryItem(SkillInformation_SO so)
     {
-        if(!infos.ContainsKey(so.Info.type))
+        if(!_infos.ContainsKey(so.Info.type))
         {
-            infos.Add(so.Info.type, new SkillContext(so));
+            _infos.Add(so.Info.type, new SkillContext(so));
         }
     }
     public void SetValue(string key, int levelDelta = 1)
@@ -49,17 +49,17 @@ public class SkillDatas
     }
     public List<SkillContext> GetSkill_Information()
     {
-        List<SkillContext> info = infos.Values.ToList();
+        List<SkillContext> info = _infos.Values.ToList();
 
-        info.RemoveAll(o => o.level == Skill_SO.maxLevel - 1);
+        info.RemoveAll(o => o.level == Skill_SO.MaxLevel - 1);
 
         return info;
     }
     private bool TryGetSkillData(string key, out SkillContext info)
     {
-        if(infos.ContainsKey(key))
+        if(_infos.ContainsKey(key))
         {
-            info = this.infos[key];
+            info = this._infos[key];
 
             return true;
         }

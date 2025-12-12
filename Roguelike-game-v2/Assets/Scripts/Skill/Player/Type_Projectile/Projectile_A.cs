@@ -13,7 +13,7 @@ public class Projectile_A : PlayerSkill_Projectile, IProjectile
     {
         transform.position = Managers.Game.player.gameObject.transform.position;
         direction = Default_Calculate.GetDirection(MonsterDetection.GetNearestMonsterPosition());
-        transform.rotation = Default_Calculate.GetQuaternion(direction - so.AdjustmentRotation);
+        transform.rotation = Default_Calculate.GetQuaternion(direction - _so.AdjustmentRotation);
         moving = StartCoroutine(Moving());
     }
     public void Enter(GameObject go)
@@ -27,7 +27,7 @@ public class Projectile_A : PlayerSkill_Projectile, IProjectile
     {
         while (true)
         {
-            transform.position += direction * so.Projectile_Info.speed * Time.deltaTime;
+            transform.position += direction * _so.Projectile_Info.speed * Time.deltaTime;
 
             yield return null;
         }

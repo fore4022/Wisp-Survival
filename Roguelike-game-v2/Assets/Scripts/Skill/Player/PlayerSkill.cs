@@ -11,24 +11,24 @@ using UnityEngine;
 /// </summary>
 public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
 {
-    [SerializeField] protected Collider2D defaultCollider = null;
+    [SerializeField] protected Collider2D _defaultCollider = null;
 
-    [SerializeField] protected bool playAnimationOnEnable = true;
-    [SerializeField] protected bool playColliderOnEnable = true;
+    [SerializeField] protected bool _playAnimationOnEnable = true;
+    [SerializeField] protected bool _playColliderOnEnable = true;
 
-    protected IPlayerSkill skill;
-    protected Skill_SO so;
-    protected SpriteRenderer render;
-    protected Animator animator;
-    protected AudioSource audioSource;
+    protected IPlayerSkill _skill;
+    protected Skill_SO _so;
+    protected SpriteRenderer _render;
+    protected Animator _animator;
+    protected AudioSource _audioSource;
 
-    protected Coroutine baseCast;
-    protected int level;
+    protected Coroutine _baseCast;
+    protected int _level;
 
-    private bool isMaxLevel = false;
+    private bool _isMaxLevel = false;
 
-    public ScriptableObject SO { set { so = value as Skill_SO; } }
-    public float DamageAmount { get { return Managers.Game.player.Stat.damage * so.DamageCoefficient[level]; } }
+    public ScriptableObject SO { set { _so = value as Skill_SO; } }
+    public float DamageAmount { get { return Managers.Game.player.Stat.damage * _so.DamageCoefficient[_level]; } }
     protected void Awake()
     {
         Init();
@@ -51,85 +51,85 @@ public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
     {
         if(TryGetComponent(out IPlayerSkill skill))
         {
-            this.skill = skill;
+            this._skill = skill;
         }
 
-        if(defaultCollider == null)
+        if(_defaultCollider == null)
         {
-            defaultCollider = GetComponent<Collider2D>();
+            _defaultCollider = GetComponent<Collider2D>();
         }
 
-        render = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        _render = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
 
         Set();
     }
     private void Set()
     {
-        defaultCollider.enabled = false;
-        render.enabled = false;
-        animator.speed = 0;
+        _defaultCollider.enabled = false;
+        _render.enabled = false;
+        _animator.speed = 0;
     }
     private void OnEnter(GameObject go)
     {
         if(go.CompareTag("Monster"))
         {
-            skill.Enter(go);
+            _skill.Enter(go);
         }
     }
     private IEnumerator CastSkill()
     {
-        level = Managers.Game.inGameData_Manage.skill.GetLevel(so.TypePath);
+        _level = Managers.Game.inGameData_Manage.skill.GetLevel(_so.TypePath);
 
-        if(level == Skill_SO.maxLevel - 1 && !isMaxLevel)
+        if(_level == Skill_SO.MaxLevel - 1 && !_isMaxLevel)
         {
-            render.color = so.MaxLevelColor;
-            isMaxLevel = true;
+            _render.color = _so.MaxLevelColor;
+            _isMaxLevel = true;
         }
 
-        if(so.FlipX)
-        {
-            if(Random.Range(0, 2) == 1)
-            {
-                render.flipX = true;
-            }
-            else
-            {
-                render.flipX = false;
-            }
-        }
-
-        if(so.FlipY)
+        if(_so.FlipX)
         {
             if(Random.Range(0, 2) == 1)
             {
-                render.flipY = true;
+                _render.flipX = true;
             }
             else
             {
-                render.flipY = false;
+                _render.flipX = false;
             }
         }
 
-        skill.Set();
+        if(_so.FlipY)
+        {
+            if(Random.Range(0, 2) == 1)
+            {
+                _render.flipY = true;
+            }
+            else
+            {
+                _render.flipY = false;
+            }
+        }
 
-        defaultCollider.enabled = playColliderOnEnable;
-        render.enabled = true;
-        animator.speed = playAnimationOnEnable ? 1 : 0;
-        baseCast = StartCoroutine(BaseCasting());
+        _skill.Set();
 
-        yield return new WaitUntil(() => baseCast == null);
+        _defaultCollider.enabled = _playColliderOnEnable;
+        _render.enabled = true;
+        _animator.speed = _playAnimationOnEnable ? 1 : 0;
+        _baseCast = StartCoroutine(BaseCasting());
+
+        yield return new WaitUntil(() => _baseCast == null);
 
         gameObject.SetActive(false);
     }
     private IEnumerator BaseCasting()
     {
-        yield return new WaitUntil(() => skill.Finished);
+        yield return new WaitUntil(() => _skill.Finished);
 
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= GameUtil.animationEndTime);
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= GameUtil.AnimationEndTime);
 
-        baseCast = null;
+        _baseCast = null;
 
         Set();
     }

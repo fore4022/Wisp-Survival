@@ -27,7 +27,7 @@ public class Main_Scene : MonoBehaviour
 
             levelUpCount++;
 
-            if(Managers.Data.user.Level == GameUtil.maxLevel)
+            if(Managers.Data.user.Level == GameUtil.MaxLevel)
             {
                 break;
             }

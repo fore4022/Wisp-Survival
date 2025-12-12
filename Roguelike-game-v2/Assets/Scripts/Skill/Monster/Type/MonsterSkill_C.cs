@@ -3,23 +3,21 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class MonsterSkill_C : MonsterSkill
 {
-    [SerializeField][Min(1)] private float slowDown = 0;
-    [SerializeField][Min(0.1f)] private float slowDuration;
-    [SerializeField] private float offsetY;
-    [SerializeField] private float targetScale;
+    [SerializeField][Min(1)] private float _slowDown = 0;
+    [SerializeField][Min(0.1f)] private float _slowDuration;
+    [SerializeField] private float _offsetY;
+    [SerializeField] private float _targetScale;
 
-    private const float triggerTime = 0.975f;
+    private float _defaultOffsetY;
+    private float _defaultRadius;
 
-    private float defaultOffsetY;
-    private float defaultRadius;
-
-    protected new CircleCollider2D col { get { return base.col as CircleCollider2D; } }
+    protected CircleCollider2D col { get { return _col as CircleCollider2D; } }
     protected override void Init()
     {
         base.Init();
 
-        defaultOffsetY = col.offset.y;
-        defaultRadius = col.radius;
+        _defaultOffsetY = col.offset.y;
+        _defaultRadius = col.radius;
     }
     protected override void Enable()
     {
@@ -28,18 +26,18 @@ public class MonsterSkill_C : MonsterSkill
     }
     protected override void Enter(GameObject go)
     {
-        Managers.Game.player.move.SetSlowDown(slowDown, slowDuration);
+        Managers.Game.player.move.SetSlowDown(_slowDown, _slowDuration);
     }
     protected override void Disable()
     {
-        col.offset = new(0, defaultOffsetY);
-        col.radius = defaultRadius;
+        col.offset = new(0, _defaultOffsetY);
+        col.radius = _defaultRadius;
 
         base.Disable();
     }
     private float GetVale()
     {
-        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime / triggerTime;
+        return _animator.GetCurrentAnimatorStateInfo(0).normalizedTime / GameUtil.AnimationEndTime;
     }
     private IEnumerator Casting()
     {
@@ -47,11 +45,11 @@ public class MonsterSkill_C : MonsterSkill
         float lerpedScale;
         float value;
 
-        while(animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= triggerTime)
+        while(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= GameUtil.AnimationEndTime)
         {
             value = GetVale();
-            lerpedOffset.y = Mathf.Lerp(offsetY, defaultOffsetY, value);
-            lerpedScale = Mathf.Lerp(targetScale, defaultRadius, value);
+            lerpedOffset.y = Mathf.Lerp(_offsetY, _defaultOffsetY, value);
+            lerpedScale = Mathf.Lerp(_targetScale, _defaultRadius, value);
             col.offset = lerpedOffset;
             col.radius = lerpedScale;
 

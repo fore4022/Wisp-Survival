@@ -6,25 +6,25 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class GameOver_UI : UserInterface
 {
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip clear;
-    [SerializeField] private AudioClip failed;
-    [SerializeField] private AudioClip buttonClickSfx;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _clear;
+    [SerializeField] private AudioClip _failed;
+    [SerializeField] private AudioClip _buttonClickSfx;
 
-    private List<TextMeshProUGUI> tmpList;
-    private List<Image> imgList;
-    private TextMeshProUGUI result;
+    private List<TextMeshProUGUI> _tmpList;
+    private List<Image> _imgList;
+    private TextMeshProUGUI _result;
 
-    private const string arrow = "->";
-    private const float delay = 0.225f;
-    private readonly WaitForSecondsRealtime waitRealSec = new(delay);
+    private const string Arrow = "->";
+    private const float Delay = 0.225f;
+    private readonly WaitForSecondsRealtime _waitRealSec = new(Delay);
 
     public override void SetUserInterface()
     {
-        audioSource = GetComponent<AudioSource>();
-        tmpList = transform.GetChild(1).GetComponentsInChild<TextMeshProUGUI>(true);
-        imgList = transform.GetChild(1).GetComponentsInChild<Image>();
-        result = transform.GetComponentInChildren<TextMeshProUGUI>(transform);
+        _audioSource = GetComponent<AudioSource>();
+        _tmpList = transform.GetChild(1).GetComponentsInChild<TextMeshProUGUI>(true);
+        _imgList = transform.GetChild(1).GetComponentsInChild<Image>();
+        _result = transform.GetComponentInChildren<TextMeshProUGUI>(transform);
 
         Managers.UI.Hide<GameOver_UI>();
     }
@@ -39,62 +39,62 @@ public class GameOver_UI : UserInterface
 
         if(Managers.Game.IsStageClear || Managers.Game.inGameTimer.GetHours > 0)
         {
-            audioSource.clip = clear;
+            _audioSource.clip = _clear;
             result = "Stage\nClear";
 
             Managers.Data.user.Clear(Managers.Data.user.StageName);
         }
         else
         {
-            audioSource.clip = failed;
+            _audioSource.clip = _failed;
             result = "Stage\nFailed";
         }
 
-        audioSource.Play();
-        StartCoroutine(Typing.TypeEffecting(this.result, result, true));
+        _audioSource.Play();
+        StartCoroutine(Typing.TypeEffecting(this._result, result, true));
         StartCoroutine(ResultSequence());
     }
     private void OnDisable()
     {
-        foreach(Image img in imgList)
+        foreach(Image img in _imgList)
         {
             UIElementUtility.SetImageAlpha(img, 0);
             img.gameObject.SetActive(false);
         }
 
-        foreach(TextMeshProUGUI tmp in tmpList)
+        foreach(TextMeshProUGUI tmp in _tmpList)
         {
             tmp.text = "";
         }
 
-        tmpList[0].gameObject.SetActive(true);
-        tmpList[1].gameObject.SetActive(false);
-        tmpList[2].gameObject.SetActive(false);
+        _tmpList[0].gameObject.SetActive(true);
+        _tmpList[1].gameObject.SetActive(false);
+        _tmpList[2].gameObject.SetActive(false);
 
-        tmpList[0].rectTransform.anchoredPosition = new(-175, 195);
-        tmpList[1].rectTransform.anchoredPosition = new(175, 195);
-        tmpList[2].rectTransform.anchoredPosition = new(175, 195);
+        _tmpList[0].rectTransform.anchoredPosition = new(-175, 195);
+        _tmpList[1].rectTransform.anchoredPosition = new(175, 195);
+        _tmpList[2].rectTransform.anchoredPosition = new(175, 195);
 
-        result.text = "";
+        _result.text = "";
     }
     public void Play()
     {
         Time.timeScale = 1;
         Managers.Game.Playing = true;
 
-        audioSource.Play();
+        _audioSource.Play();
         Managers.UI.Show<HeadUpDisplay_UI>();
         Managers.UI.Hide<GameOver_UI>();
         Managers.Game.effect.ContinuePlay();
     }
     public void ReStart()
     {
-        audioSource.Play();
+        _audioSource.Play();
         Managers.Game.ReStart();
     }
     public void GoMain()
     {
-        audioSource.Play();
+        _audioSource.Play();
         Managers.Game.Clear();
         Managers.Scene.LoadScene(SceneNames.Main, false);
     }
@@ -104,56 +104,56 @@ public class GameOver_UI : UserInterface
         string survival = $"생존 시간\n\n{Managers.Game.inGameTimer.GetHours:D2} : {Managers.Game.inGameTimer.GetMinutes:D2} : {Managers.Game.inGameTimer.GetSeconds:D2}";
         string gainExp = $"Experience\n\n+ {Managers.Game.UserExp:N0} EXP";
 
-        yield return waitRealSec;
+        yield return _waitRealSec;
 
-        yield return Typing.EffectAndGetWaiting(tmpList[0], required, delay);
+        yield return Typing.EffectAndGetWaiting(_tmpList[0], required, Delay);
 
-        tmpList[0].SetPosition(new(-175, 195), delay);
-        tmpList[1].gameObject.SetActive(true);
+        _tmpList[0].SetPosition(new(-175, 195), Delay);
+        _tmpList[1].gameObject.SetActive(true);
 
-        yield return Typing.EffectAndGetWaiting(tmpList[1], arrow);
+        yield return Typing.EffectAndGetWaiting(_tmpList[1], Arrow);
 
-        tmpList[1].SetPosition(new(-175, 195), delay);
+        _tmpList[1].SetPosition(new(-175, 195), Delay);
 
-        StartCoroutine(Typing.EraseEffecting(tmpList[0], delay));
+        StartCoroutine(Typing.EraseEffecting(_tmpList[0], Delay));
 
-        yield return new WaitForSecondsRealtime(delay);
+        yield return new WaitForSecondsRealtime(Delay);
 
-        tmpList[0].gameObject.SetActive(false);
-        tmpList[2].gameObject.SetActive(true);
+        _tmpList[0].gameObject.SetActive(false);
+        _tmpList[2].gameObject.SetActive(true);
 
-        yield return Typing.EffectAndGetWaiting(tmpList[2], survival);
+        yield return Typing.EffectAndGetWaiting(_tmpList[2], survival);
 
-        tmpList[2].SetPosition(new(0, 195), delay);
+        _tmpList[2].SetPosition(new(0, 195), Delay);
 
-        StartCoroutine(Typing.EraseEffecting(tmpList[1], delay));
+        StartCoroutine(Typing.EraseEffecting(_tmpList[1], Delay));
 
-        yield return new WaitForSecondsRealtime(delay);
+        yield return new WaitForSecondsRealtime(Delay);
 
-        tmpList[1].gameObject.SetActive(false);
+        _tmpList[1].gameObject.SetActive(false);
 
-        yield return Typing.EffectAndGetWaiting(tmpList[3], gainExp, delay);
+        yield return Typing.EffectAndGetWaiting(_tmpList[3], gainExp, Delay);
 
-        yield return waitRealSec;
+        yield return _waitRealSec;
 
-        audioSource.clip = buttonClickSfx;
+        _audioSource.clip = _buttonClickSfx;
 
         if(Managers.Game.IsStageClear && !Managers.Game.GameOver)
         {
-            imgList[0].gameObject.SetActive(true);
-            imgList[1].gameObject.SetActive(false);
+            _imgList[0].gameObject.SetActive(true);
+            _imgList[1].gameObject.SetActive(false);
         }
         else
         {
-            imgList[0].gameObject.SetActive(false);
-            imgList[1].gameObject.SetActive(true);
+            _imgList[0].gameObject.SetActive(false);
+            _imgList[1].gameObject.SetActive(true);
         }
 
-        imgList[2].gameObject.SetActive(true);
+        _imgList[2].gameObject.SetActive(true);
 
-        foreach(Image img in imgList)
+        foreach(Image img in _imgList)
         {
-            UIElementUtility.SetImageAlpha(img, 255, delay, true);
+            UIElementUtility.SetImageAlpha(img, 255, Delay, true);
         }
 
         Time.timeScale = 0;

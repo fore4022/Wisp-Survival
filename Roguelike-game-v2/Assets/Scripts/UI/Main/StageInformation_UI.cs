@@ -3,11 +3,11 @@ using TMPro;
 using UnityEngine;
 public class StageInformation_UI : UserInterface
 {
-    [SerializeField] private List<GameObject> coverList;
-    [SerializeField] private TextMeshProUGUI requiredTime;
-    [SerializeField] private TextMeshProUGUI difficulty;
+    [SerializeField] private List<GameObject> _coverList;
+    [SerializeField] private TextMeshProUGUI _requiredTime;
+    [SerializeField] private TextMeshProUGUI _difficulty;
 
-    private StageInformation_SO so;
+    private StageInformation_SO _so;
 
     public override void SetUserInterface()
     {
@@ -17,31 +17,31 @@ public class StageInformation_UI : UserInterface
     }
     protected override void Enable()
     {
-        foreach(GameObject go in coverList)
+        foreach(GameObject go in _coverList)
         {
             go.SetActive(true);
         }
 
-        requiredTime.enabled = true;
-        difficulty.enabled = true;
+        _requiredTime.enabled = true;
+        _difficulty.enabled = true;
 
         Set();
     }
     public void Set()
     {
-        so = Managers.Main.GetCurrentStageSO(0).information;
+        _so = Managers.Main.GetCurrentStageSO(0).information;
 
-        requiredTime.text = $"Required Time\n {so.RequiredTime} : 00";
-        difficulty.text = $"Difficulty\n{so.Difficulty}";
+        _requiredTime.text = $"Required Time\n {_so.RequiredTime} : 00";
+        _difficulty.text = $"Difficulty\n{_so.Difficulty}";
     }
     private void OnDisable()
     {
-        foreach(GameObject go in coverList)
+        foreach(GameObject go in _coverList)
         {
             go.SetActive(false);
         }
 
-        requiredTime.enabled = false;
-        difficulty.enabled = false;
+        _requiredTime.enabled = false;
+        _difficulty.enabled = false;
     }
 }

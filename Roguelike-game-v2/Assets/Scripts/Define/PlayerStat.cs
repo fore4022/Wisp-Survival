@@ -5,18 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStat
 {
-    [SerializeField] private int moveSpeed = 0;
-    [SerializeField] private int increaseHealth = 0;
-    [SerializeField] private int increaseDamage = 0;
-    [SerializeField] private int healthRegenPerSec = 0;
+    [SerializeField] private int _moveSpeed = 0;
+    [SerializeField] private int _increaseHealth = 0;
+    [SerializeField] private int _increaseDamage = 0;
+    [SerializeField] private int _healthRegenPerSec = 0;
 
     public DefaultStat defaultStat;
 
-    private const string sceneName = "Main";
-    private const float coef_MoveSpeed = 0.0525f;
-    private const float coef_IncreaseHealth = 20f;
-    private const float coef_IncreaseDamage = 4.85f;
-    private const float coef_HealthRegenPerSec = 0.05f;
+    private const string SceneName = "Main";
+    private const float CoefMoveSpeed = 0.0525f;
+    private const float CoefIncreaseHealth = 20f;
+    private const float CoefIncreaseDamage = 4.85f;
+    private const float CoefHealthRegenPerSec = 0.05f;
 
     public PlayerStat()
     {
@@ -28,18 +28,18 @@ public class PlayerStat
         {
             if(IsSceneMain())
             {
-                return moveSpeed;
+                return _moveSpeed;
             }
             else
             {
-                return moveSpeed * coef_MoveSpeed;
+                return _moveSpeed * CoefMoveSpeed;
             }
         }
         set
         {
             if(IsSceneMain())
             {
-                moveSpeed = (int)value;
+                _moveSpeed = (int)value;
             }
         }
     }
@@ -49,18 +49,18 @@ public class PlayerStat
         {
             if(IsSceneMain())
             {
-                return increaseHealth;
+                return _increaseHealth;
             }
             else
             {
-                return increaseHealth * coef_IncreaseHealth;
+                return _increaseHealth * CoefIncreaseHealth;
             }
         }
         set
         {
             if(IsSceneMain())
             {
-                increaseHealth = (int)value;
+                _increaseHealth = (int)value;
             }
         }
     }
@@ -70,18 +70,18 @@ public class PlayerStat
         {
             if(IsSceneMain())
             {
-                return increaseDamage;
+                return _increaseDamage;
             }
             else
             {
-                return increaseDamage * coef_IncreaseDamage;
+                return _increaseDamage * CoefIncreaseDamage;
             }
         }
         set
         {
             if(IsSceneMain())
             {
-                increaseDamage = (int)value;
+                _increaseDamage = (int)value;
             }
         }
     }
@@ -91,23 +91,23 @@ public class PlayerStat
         {
             if(IsSceneMain())
             {
-                return healthRegenPerSec;
+                return _healthRegenPerSec;
             }
             else
             {
-                return healthRegenPerSec * coef_HealthRegenPerSec;
+                return _healthRegenPerSec * CoefHealthRegenPerSec;
             }
         }
         set
         {
             if(IsSceneMain())
             {
-                healthRegenPerSec = (int)value;
+                _healthRegenPerSec = (int)value;
             }
         }
     }
     public bool IsSceneMain()
     {
-        return Managers.Scene.CurrentSceneName == sceneName;
+        return Managers.Scene.CurrentSceneName == SceneName;
     }
 }

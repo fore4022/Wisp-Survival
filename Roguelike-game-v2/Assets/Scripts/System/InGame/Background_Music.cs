@@ -5,11 +5,11 @@ using UnityEngine;
 /// </summary>
 public class Background_Music : MonoBehaviour
 {
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -19,6 +19,6 @@ public class Background_Music : MonoBehaviour
     {
         yield return new WaitUntil(() => Managers.Game.stageInformation != null);
 
-        audioSource.clip = Managers.Game.stageInformation.BGM;
+        _audioSource.clip = Managers.Game.stageInformation.BGM;
     }
 }

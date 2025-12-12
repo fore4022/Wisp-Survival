@@ -5,23 +5,23 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SkillSelection_UI : UserInterface
 {
-    private List<SkillOption_UI> skillOptionList = new();
-    private Image background;
-    private GameObject attackOption = null;
+    private List<SkillOption_UI> _skillOptionList = new();
+    private Image _background;
+    private GameObject _attackOption = null;
 
-    private const string path = "SkillOption";
-    private const float duration = 0.75f;
-    private const float basicAlpha = 180;
-    private const int targetAlpha = 0;
+    private const string Path = "SkillOption";
+    private const float Duration = 0.75f;
+    private const float BasicAlpha = 180;
+    private const int TargetAlpha = 0;
 
-    private bool isSelect = true;
+    private bool _isSelect = true;
 
-    public int RequireOptionCount { get { return Managers.Game.inGameData_Manage.OptionCount - skillOptionList.Count; } }
-    public bool IsSelect { get { return isSelect; } set { isSelect = value; } }
+    public int RequireOptionCount { get { return Managers.Game.inGameData_Manage.OptionCount - _skillOptionList.Count; } }
+    public bool IsSelect { get { return _isSelect; } set { _isSelect = value; } }
     public override async void SetUserInterface()
     {
-        background = GetComponent<Image>();
-        attackOption = await AddressableHelper.LoadingToPath<GameObject>(path);
+        _background = GetComponent<Image>();
+        _attackOption = await AddressableHelper.LoadingToPath<GameObject>(Path);
 
         Managers.Game.inGameData_Manage.player.levelUpdate += () => Managers.UI.Show<LevelUp_UI>();
 
@@ -29,12 +29,12 @@ public class SkillSelection_UI : UserInterface
     }
     public void SkillOptionToggle(bool active)
     {
-        foreach(SkillOption_UI attackOption in skillOptionList)
+        foreach(SkillOption_UI attackOption in _skillOptionList)
         {
             attackOption.gameObject.SetActive(active);
         }
 
-        background.enabled = active;
+        _background.enabled = active;
     }
     protected override void Enable()
     {
@@ -46,7 +46,7 @@ public class SkillSelection_UI : UserInterface
     {
         Managers.UI.Get<SkillPoints_UI>().SkillPointsUpdate();
 
-        if(skillOptionList.Count == 0)
+        if(_skillOptionList.Count == 0)
         {
             return;
         }
@@ -57,19 +57,19 @@ public class SkillSelection_UI : UserInterface
     }
     public void Selected()
     {
-        foreach(SkillOption_UI attackOption in skillOptionList)
+        foreach(SkillOption_UI attackOption in _skillOptionList)
         {
             attackOption.gameObject.SetActive(false);
         }
 
         Managers.Game.inGameData_Manage.player.LevelUpCount--;
-        isSelect = true;
+        _isSelect = true;
 
         StartCoroutine(SkillListUpdate());
     }
     private void OnDisable()
     {
-        foreach(SkillOption_UI attackOption in skillOptionList)
+        foreach(SkillOption_UI attackOption in _skillOptionList)
         {
             if(attackOption.enabled == true)
             {
@@ -80,7 +80,7 @@ public class SkillSelection_UI : UserInterface
             attackOption.gameObject.SetActive(false);
         }
 
-        background.enabled = false;
+        _background.enabled = false;
 
         Input_Manage.EnableInputAction<TouchControls>();
     }
@@ -93,24 +93,24 @@ public class SkillSelection_UI : UserInterface
 
         for (int i = 0; i < count; i++)
         {
-            go = Instantiate(attackOption, trans);
+            go = Instantiate(_attackOption, trans);
 
-            skillOptionList.Add(go.transform.GetComponentInChild<SkillOption_UI>());
+            _skillOptionList.Add(go.transform.GetComponentInChild<SkillOption_UI>());
 
             go.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
     private IEnumerator Init()
     {
-        background.enabled = false;
+        _background.enabled = false;
 
         yield return new WaitUntil(() => Managers.Game.inGameData_Manage != null);
         
-        yield return new WaitUntil(() => attackOption != null);
+        yield return new WaitUntil(() => _attackOption != null);
 
         CreateOptionUI();
 
-        Managers.Game.inGameData_Manage.skillOptionCount_Update += CreateOptionUI;
+        Managers.Game.inGameData_Manage.skillOptionCountUpdate += CreateOptionUI;
 
         gameObject.SetActive(false);
     }
@@ -120,24 +120,24 @@ public class SkillSelection_UI : UserInterface
 
         int[] indexArray = Default_Calculate.GetRandomValues(infoList.Count, Mathf.Min(Managers.Game.inGameData_Manage.OptionCount, infoList.Count));
 
-        UIElementUtility.SetImageAlpha(background, basicAlpha);
+        UIElementUtility.SetImageAlpha(_background, BasicAlpha);
 
         yield return new WaitForEndOfFrame();
 
         for(int i = 0; i < indexArray.Count(); i++)
         {
-            skillOptionList[i].gameObject.SetActive(true);
-            skillOptionList[i].InitOption(infoList[indexArray[i]]);
+            _skillOptionList[i].gameObject.SetActive(true);
+            _skillOptionList[i].InitOption(infoList[indexArray[i]]);
         }
 
-        background.enabled = true;
+        _background.enabled = true;
     }
     private IEnumerator PadeOut()
     {
         Managers.UI.Hide<SkillPoints_UI>();
-        UIElementUtility.SetImageAlpha(background, targetAlpha, duration);
+        UIElementUtility.SetImageAlpha(_background, TargetAlpha, Duration);
 
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSecondsRealtime(Duration);
 
         Time.timeScale = 1f;
         Managers.Game.Playing = true;

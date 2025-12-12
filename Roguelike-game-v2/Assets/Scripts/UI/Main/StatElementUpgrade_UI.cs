@@ -8,12 +8,12 @@ public class StatElementUpgrade_UI : UserInterface
     public GameObject inc;
     public GameObject dec;
 
-    private FileReference file;
+    private FileReference _file;
 
-    private const string log1 = "You are lacking stat points.";
-    private const string log2 = "Stat points cannot be used.";
+    private const string Log1 = "You are lacking stat points.";
+    private const string Log2 = "Stat points cannot be used.";
 
-    private float value;
+    private float _value;
 
     public override void SetUserInterface()
     {
@@ -25,8 +25,8 @@ public class StatElementUpgrade_UI : UserInterface
     }
     public void Set(FileReference file)
     {
-        this.file = file;
-        value = (float)file.GetValue();
+        this._file = file;
+        _value = (float)file.GetValue();
 
         ChangeAmount(0);
     }
@@ -39,11 +39,11 @@ public class StatElementUpgrade_UI : UserInterface
             return;
         }
 
-        if(value == 0 && sign == 1)
+        if(_value == 0 && sign == 1)
         {
             dec.SetActive(true);
         }
-        else if(value == PlayerStat_Manage.maxLevel && sign == -1)
+        else if(_value == PlayerStat_Manage.MaxLevel && sign == -1)
         {
             inc.SetActive(true);
         }
@@ -53,18 +53,18 @@ public class StatElementUpgrade_UI : UserInterface
             AudioPlay(sign);
         }
 
-        value += sign;
-        tmp.text = $"+ {value}";
+        _value += sign;
+        tmp.text = $"+ {_value}";
         Managers.Data.user.StatPoint -= sign;
 
-        file.SetValue(value);
+        _file.SetValue(_value);
         Managers.UI.Get<StatUpgrade_UI>().TextUpdate();
 
-        if(value == 0)
+        if(_value == 0)
         {
             dec.SetActive(false);
         }
-        else if(value == PlayerStat_Manage.maxLevel)
+        else if(_value == PlayerStat_Manage.MaxLevel)
         {
             inc.SetActive(false);
         }
@@ -73,9 +73,9 @@ public class StatElementUpgrade_UI : UserInterface
     {
         if(Managers.Data.user.StatPoint == 0)
         {
-            if(sign == 1 || (sign == -1 && value == 0))
+            if(sign == 1 || (sign == -1 && _value == 0))
             {
-                Managers.UI.ShowAndGet<ToastMessage_UI>().SetText(log1);
+                Managers.UI.ShowAndGet<ToastMessage_UI>().SetText(Log1);
 
                 return false;
             }
@@ -85,9 +85,9 @@ public class StatElementUpgrade_UI : UserInterface
     }
     private bool CanUseStatPoints(int sign)
     {
-        if((value == 0 && sign == -1) || (value == PlayerStat_Manage.maxLevel && sign == 1))
+        if((_value == 0 && sign == -1) || (_value == PlayerStat_Manage.MaxLevel && sign == 1))
         {
-            Managers.UI.ShowAndGet<ToastMessage_UI>().SetText(log2);
+            Managers.UI.ShowAndGet<ToastMessage_UI>().SetText(Log2);
 
             return false;
         }

@@ -10,14 +10,14 @@ using UnityEngine;
 /// </summary>
 public class ObjectPool
 {
-    private Dictionary<string, List<PoolingObject>> poolingObjects = new();
+    private Dictionary<string, List<PoolingObject>> _poolingObjects = new();
 
-    private Transform root;
+    private Transform _root;
 
-    private const int maxWorkPerFrame = 360;
-    private const int defaultObjectCount = 500;
+    private const int MaxWorkPerFrame = 360;
+    private const int DefaultObjectCount = 500;
 
-    private int coroutineCount = 0;
+    private int _coroutineCount = 0;
 
     // 오브젝트 풀이 생성될 때, 풀링 되는 객체들이 위치할 root 
     public ObjectPool()
@@ -29,12 +29,12 @@ public class ObjectPool
             go = new GameObject { name = "@ObjectPool" };
         }
 
-        root = go.transform;
+        _root = go.transform;
     }
-    public Dictionary<string, List<PoolingObject>> PoolingObjects { get { return poolingObjects; } }
-    public int PoolingObjectsCount { get { return poolingObjects.Count; } }
+    public Dictionary<string, List<PoolingObject>> PoolingObjects { get { return _poolingObjects; } }
+    public int PoolingObjectsCount { get { return _poolingObjects.Count; } }
     // 프레임당 생성량 반환
-    private int MaxWorkPerSec { get { return Mathf.Max(maxWorkPerFrame / coroutineCount, 1); } }
+    private int MaxWorkPerSec { get { return Mathf.Max(MaxWorkPerFrame / _coroutineCount, 1); } }
     // 키에 해당하는 오브젝트 활성화
     public PoolingObject ActiveObject(string prefabKey)
     {
@@ -47,7 +47,7 @@ public class ObjectPool
     // 키에 해당하는 리스트에서, 입력 받은 오브젝트를 가지는 PoolingObject isUsed와 오브젝트 비활성화
     public void DisableObject(GameObject prefab, string key)
     {
-        poolingObjects.TryGetValue(key, out List<PoolingObject> objs);
+        _poolingObjects.TryGetValue(key, out List<PoolingObject> objs);
 
         objs.Find(o => o.GameObject == prefab).isInUse = false;
 
@@ -56,7 +56,7 @@ public class ObjectPool
     // 키에 해당하는 오브젝트 반환, 활성화 여부 지정 가능
     public PoolingObject GetObject(string prefabKey, bool setInUse = true)
     {
-        foreach(PoolingObject obj in poolingObjects[prefabKey])
+        foreach(PoolingObject obj in _poolingObjects[prefabKey])
         {
             if(!obj.GameObject.activeSelf && (!obj.isInUse || obj.isUsed))
             {
@@ -76,9 +76,9 @@ public class ObjectPool
     // 키에 해당하는 오브젝트 전부 반환
     public List<PoolingObject> GetObjects(string prefabKey)
     {
-        if(poolingObjects.ContainsKey(prefabKey))
+        if(_poolingObjects.ContainsKey(prefabKey))
         {
-            return poolingObjects[prefabKey];
+            return _poolingObjects[prefabKey];
         }
 
         return null;
@@ -86,7 +86,7 @@ public class ObjectPool
     // 모든 PoolingObject를 초기 상태로 설정,isUsed와 오브젝트 비활성화
     public void ReSetting()
     {
-        foreach(List<PoolingObject> objList in poolingObjects.Values)
+        foreach(List<PoolingObject> objList in _poolingObjects.Values)
         {
             foreach(PoolingObject obj in objList)
             {
@@ -103,12 +103,12 @@ public class ObjectPool
         }
     }
     // 프리팹을 개수만큼 생성
-    public void Create(GameObject prefab, int count = defaultObjectCount)
+    public void Create(GameObject prefab, int count = DefaultObjectCount)
     {
         CoroutineHelper.Start(CreatingInstance(prefab, count, false), CoroutineType.InGameSystem);
     }
     // 프리팹 항목들을 개수만큼 생성
-    public void Create(List<GameObject> prefabs, int count = defaultObjectCount)
+    public void Create(List<GameObject> prefabs, int count = DefaultObjectCount)
     {
         foreach(GameObject prefab in prefabs)
         {
@@ -118,7 +118,7 @@ public class ObjectPool
     // 오브젝트 풀로 생성된 오든 오브젝트의 코루틴 중단
     public void StopAllActions()
     {
-        foreach(List<PoolingObject> objs in poolingObjects.Values)
+        foreach(List<PoolingObject> objs in _poolingObjects.Values)
         {
             foreach(PoolingObject obj in objs)
             {
@@ -164,10 +164,10 @@ public class ObjectPool
 
         if(isSetRoot)
         {
-            transform.SetParent(root);
+            transform.SetParent(_root);
         }
 
-        coroutineCount++;
+        _coroutineCount++;
 
         while(instanceCount < count)
         {
@@ -180,16 +180,16 @@ public class ObjectPool
             yield return null;
         }
 
-        if(!poolingObjects.ContainsKey(key))
+        if(!_poolingObjects.ContainsKey(key))
         {
-            poolingObjects.Add(key, new());
+            _poolingObjects.Add(key, new());
         }
 
         for(int i = 0; i < array.Count(); i++)
         {
-            poolingObjects[key].Add(new(array[i]));
+            _poolingObjects[key].Add(new(array[i]));
         }
 
-        coroutineCount--;
+        _coroutineCount--;
     }
 }

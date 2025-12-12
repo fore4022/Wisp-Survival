@@ -3,13 +3,13 @@ using UnityEngine;
 using TMPro;
 public class LevelUp_UI : UserInterface
 {
-    private TextMeshProUGUI level;
-    private Animator animator;
+    private TextMeshProUGUI _level;
+    private Animator _animator;
 
     public override void SetUserInterface()
     {
-        level = transform.GetComponentInChild<TextMeshProUGUI>(true);
-        animator = transform.GetComponentInChild<Animator>(true);
+        _level = transform.GetComponentInChild<TextMeshProUGUI>(true);
+        _animator = transform.GetComponentInChild<Animator>(true);
 
         gameObject.SetActive(false);
     }
@@ -25,7 +25,7 @@ public class LevelUp_UI : UserInterface
     }
     private void Update()
     {
-        level.text = $"Lv.{Managers.Game.inGameData_Manage.player.Level}";
+        _level.text = $"Lv.{Managers.Game.inGameData_Manage.player.Level}";
     }
     private bool ShouldShowSkillSelection()
     {
@@ -33,7 +33,7 @@ public class LevelUp_UI : UserInterface
     }    
     private IEnumerator AnimationPlaying()
     {
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+        yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
 
         Input_Manage.DisableInputAction<TouchControls>();
         Managers.UI.Hide<CharactorController_UI>();

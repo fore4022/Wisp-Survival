@@ -5,14 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Background_InGame : MonoBehaviour
 {
-    private const float width = 4.5f;
-    private const float height = 8;
-    private const float positionTolerance = 0.375f;
+    private const float Width = 4.5f;
+    private const float Height = 8;
+    private const float PositionTolerance = 0.375f;
 
-    private Vector3 increasePos = new();
-    private Vector2 direction;
-    private float xPos;
-    private float yPos;
+    private Vector3 _increasePos = new();
+    private Vector2 _direction;
+    private float _xPos;
+    private float _yPos;
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -21,21 +21,21 @@ public class Background_InGame : MonoBehaviour
             return;
         }
 
-        increasePos = new();
-        direction = Managers.Game.player.move.Direction;
-        xPos = Managers.Game.player.gameObject.transform.position.x;
-        yPos = Managers.Game.player.gameObject.transform.position.y;
+        _increasePos = new();
+        _direction = Managers.Game.player.move.Direction;
+        _xPos = Managers.Game.player.gameObject.transform.position.x;
+        _yPos = Managers.Game.player.gameObject.transform.position.y;
 
-        if(Mathf.Abs(Mathf.Abs(xPos - transform.localPosition.x) - width * 5) < positionTolerance)
+        if(Mathf.Abs(Mathf.Abs(_xPos - transform.localPosition.x) - Width * 5) < PositionTolerance)
         {
-            increasePos.x += Mathf.Sign(direction.x) * width * 8;
+            _increasePos.x += Mathf.Sign(_direction.x) * Width * 8;
         }
 
-        if(Mathf.Abs(Mathf.Abs(yPos - transform.localPosition.y) - height * 5) < positionTolerance)
+        if(Mathf.Abs(Mathf.Abs(_yPos - transform.localPosition.y) - Height * 5) < PositionTolerance)
         {
-            increasePos.y += Mathf.Sign(direction.y) * height * 8;
+            _increasePos.y += Mathf.Sign(_direction.y) * Height * 8;
         }
 
-        transform.position += increasePos;
+        transform.position += _increasePos;
     }
 } 

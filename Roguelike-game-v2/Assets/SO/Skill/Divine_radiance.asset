@@ -12,31 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Divine_Radiance
   m_EditorClassIdentifier: 
-  projectile_Info:
+  _projectileInfo:
     animationName: 
     speed: 0
     penetration: 0
-  multiCast:
+  _multiCastInfo:
     delay: []
     count: []
-  go: {fileID: 4019139698218218091, guid: b71dacf8395e2754290f9b1c9ae4e664, type: 3}
-  maxLevelColor: {r: 1, g: 0.78431374, b: 0, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 1, g: 0.78431374, b: 0, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Divine_Radiance
+  _damageCoefficient:
   - 1.65
   - 1.85
   - 2.05
   - 2.25
   - 2.6
-  coolTime:
+  _coolTime:
   - 2
   - 1.9
   - 1.8
   - 1.7
   - 1.5
-  duration: 0
-  flipX: 1
-  flipY: 0
-  isProjectile: 0
-  isMultiCast: 0
+  _duration: 0
+  _flipX: 1
+  _flipY: 0
+  _isProjectile: 0
+  _isMultiCast: 0
+  go: {fileID: 4019139698218218091, guid: b71dacf8395e2754290f9b1c9ae4e664, type: 3}

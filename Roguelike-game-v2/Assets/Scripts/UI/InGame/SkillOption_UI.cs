@@ -30,7 +30,7 @@ public class SkillOption_UI : Button_B
     }
     public void InitOption(SkillContext info)
     {
-        this._info = info;
+        _info = info;
 
         transform.SetScale(_minScale);
         SetOption();

@@ -12,31 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Purifying_Cross
   m_EditorClassIdentifier: 
-  projectile_Info:
+  _projectileInfo:
     animationName: 
     speed: 5
     penetration: 0
-  multiCast:
+  _multiCastInfo:
     delay: []
     count: []
-  go: {fileID: 4688760127113871236, guid: 696f8387994f3db4b9de2878be0ccb70, type: 3}
-  maxLevelColor: {r: 1, g: 0.8235294, b: 0.23529412, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 0.09803922, g: 0.8235294, b: 0.23529412, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Purifying_Cross
+  _damageCoefficient:
   - 1.15
   - 1.35
   - 1.55
   - 1.75
   - 2.25
-  coolTime:
+  _coolTime:
   - 1.2
   - 1.05
   - 0.9
   - 0.75
-  - 0.4
-  duration: 0
-  flipX: 0
-  flipY: 1
-  isProjectile: 1
-  isMultiCast: 0
+  - 0.5
+  _duration: 0
+  _flipX: 0
+  _flipY: 1
+  _isProjectile: 1
+  _isMultiCast: 0
+  go: {fileID: 4688760127113871236, guid: 696f8387994f3db4b9de2878be0ccb70, type: 3}

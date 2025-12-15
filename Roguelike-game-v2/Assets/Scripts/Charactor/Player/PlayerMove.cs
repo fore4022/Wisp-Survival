@@ -114,8 +114,8 @@ public class PlayerMove : IMoveable
     }
     public PlayerMove(SpriteRenderer render, DefaultMoveable moveable)
     {
-        this._render = render;
-        this._moveable = moveable;
+        _render = render;
+        _moveable = moveable;
     }
     private IEnumerator Moving()
     {

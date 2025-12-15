@@ -34,7 +34,7 @@ public class ObjectPool
     public Dictionary<string, List<PoolingObject>> PoolingObjects { get { return _poolingObjects; } }
     public int PoolingObjectsCount { get { return _poolingObjects.Count; } }
     // 프레임당 생성량 반환
-    private int MaxWorkPerSec { get { return Mathf.Max(MaxWorkPerFrame / _coroutineCount, 1); } }
+    private int WorkPerFrame { get { return Mathf.Max(MaxWorkPerFrame / _coroutineCount, 1); } }
     // 키에 해당하는 오브젝트 활성화
     public PoolingObject ActiveObject(string prefabKey)
     {
@@ -171,7 +171,7 @@ public class ObjectPool
 
         while(instanceCount < count)
         {
-            createCount = Mathf.Min(MaxWorkPerSec, count - instanceCount);
+            createCount = Mathf.Min(WorkPerFrame, count - instanceCount);
 
             CreateInstance(transform, prefab, createCount, instanceCount, ref array);
 

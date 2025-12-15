@@ -12,31 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Void_Burst
   m_EditorClassIdentifier: 
-  projectile_Info:
+  _projectileInfo:
     animationName: 
     speed: 0
     penetration: 0
-  multiCast:
+  _multiCastInfo:
     delay: []
     count: []
-  go: {fileID: 8179025814334315390, guid: 2fbe63f67cb607b4084c4bdbb60400cc, type: 3}
-  maxLevelColor: {r: 1, g: 0.9019608, b: 0.5882353, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 1, g: 0.9019608, b: 0.5882353, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Void_Burst
+  _damageCoefficient:
   - 1.7
   - 2
   - 2.3
   - 2.6
-  - 3.4
-  coolTime:
+  - 3.05
+  _coolTime:
   - 2.4
   - 2.2
   - 2
   - 1.8
   - 1.5
-  duration: 0
-  flipX: 1
-  flipY: 0
-  isProjectile: 0
-  isMultiCast: 0
+  _duration: 0
+  _flipX: 1
+  _flipY: 0
+  _isProjectile: 0
+  _isMultiCast: 0
+  go: {fileID: 8179025814334315390, guid: 2fbe63f67cb607b4084c4bdbb60400cc, type: 3}

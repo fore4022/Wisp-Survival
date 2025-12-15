@@ -12,31 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Flame_Tempest
   m_EditorClassIdentifier: 
-  projectile_Info:
+  _projectileInfo:
     animationName: 
     speed: 0
     penetration: 0
-  multiCast:
+  _multiCastInfo:
     delay: []
     count: []
-  go: {fileID: 2446887242956231448, guid: 9771f44209f895c42b14bbb144967ef2, type: 3}
-  maxLevelColor: {r: 1, g: 0.6666667, b: 0.6666667, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 1, g: 0.6666667, b: 0.6666667, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Flame_Tempest
+  _damageCoefficient:
   - 1.4
   - 1.55
   - 1.7
   - 1.85
   - 2.125
-  coolTime:
+  _coolTime:
   - 2.75
   - 2.6
   - 2.45
   - 2.3
   - 2
-  duration: 4
-  flipX: 1
-  flipY: 0
-  isProjectile: 0
-  isMultiCast: 0
+  _duration: 4
+  _flipX: 1
+  _flipY: 0
+  _isProjectile: 0
+  _isMultiCast: 0
+  go: {fileID: 2446887242956231448, guid: 9771f44209f895c42b14bbb144967ef2, type: 3}

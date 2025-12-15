@@ -69,6 +69,6 @@ public class PoolingObject
     }
     public PoolingObject(GameObject go)
     {
-        this._go = go;
+        _go = go;
     }
 }

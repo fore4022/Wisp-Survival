@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Pulse_Burst
   m_EditorClassIdentifier: 
-  projectile_Info:
-    animationName: destroy
-    speed: 0.825
+  _projectileInfo:
+    animationName: 
+    speed: 0
     penetration: 0
-  multiCast:
+  _multiCastInfo:
     delay:
     - 0.0425
     - 0.0375
@@ -29,24 +29,25 @@ MonoBehaviour:
     - 10
     - 11
     - 13
-  go: {fileID: 104679271344969195, guid: ef6ba6ee638952347a6ad03dd0f041b7, type: 3}
-  maxLevelColor: {r: 0, g: 1, b: 0.6862745, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 0, g: 1, b: 0.6862745, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Pulse_Burst
+  _damageCoefficient:
   - 0.6
   - 0.7
   - 0.8
   - 0.9
   - 1.125
-  coolTime:
+  _coolTime:
   - 4.4
   - 4.2
   - 4
   - 3.8
   - 3.45
-  duration: 0
-  flipX: 1
-  flipY: 1
-  isProjectile: 1
-  isMultiCast: 1
+  _duration: 0
+  _flipX: 1
+  _flipY: 1
+  _isProjectile: 1
+  _isMultiCast: 1
+  go: {fileID: 104679271344969195, guid: ef6ba6ee638952347a6ad03dd0f041b7, type: 3}

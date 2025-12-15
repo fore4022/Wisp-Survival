@@ -51,7 +51,7 @@ public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
     {
         if(TryGetComponent(out IPlayerSkill skill))
         {
-            this._skill = skill;
+            _skill = skill;
         }
 
         if(_defaultCollider == null)

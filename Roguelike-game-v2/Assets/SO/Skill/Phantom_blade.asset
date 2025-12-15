@@ -12,41 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Phantom_Blade
   m_EditorClassIdentifier: 
-  projectile_Info:
+  _projectileInfo:
     animationName: 
     speed: 0
     penetration: 0
-  multiCast:
+  _multiCastInfo:
     delay:
     - 0.05
     - 0.0475
     - 0.045
     - 0.0425
-    - 0.04
+    - 0.039
     count:
     - 1
     - 2
     - 3
     - 4
     - 6
-  go: {fileID: 648660626092197636, guid: af7b6faf43f40d642a6afeacf4aacceb, type: 3}
-  maxLevelColor: {r: 1, g: 0.60784316, b: 0.60784316, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 1, g: 0.60784316, b: 0.60784316, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Phantom_Blade
+  _damageCoefficient:
   - 1.4
   - 1.55
   - 1.7
   - 1.85
   - 2.2
-  coolTime:
+  _coolTime:
   - 2.1
   - 1.95
   - 1.8
   - 1.65
   - 1.425
-  duration: 0
-  flipX: 1
-  flipY: 1
-  isProjectile: 0
-  isMultiCast: 1
+  _duration: 0
+  _flipX: 1
+  _flipY: 1
+  _isProjectile: 0
+  _isMultiCast: 1
+  go: {fileID: 648660626092197636, guid: af7b6faf43f40d642a6afeacf4aacceb, type: 3}

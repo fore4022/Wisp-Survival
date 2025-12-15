@@ -21,7 +21,7 @@ public class SkillCaster
     }
     public void SetAttackType(string attackType)
     {
-        this._attackType = attackType;
+        _attackType = attackType;
 
         _cast = CoroutineHelper.Start(Casting(), CoroutineType.InGameSystem);
     }

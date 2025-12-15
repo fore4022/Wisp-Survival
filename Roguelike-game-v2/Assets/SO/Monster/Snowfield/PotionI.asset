@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f064bec11f569408bc987706938bac, type: 3}
   m_Name: PotionI
   m_EditorClassIdentifier: 
-  stat:
+  _stat:
     health: 167.5
     damage: 3.75
     moveSpeed: 1.55
     healthRegenPerSec: 0
-  user_Experience: 1
-  inGame_Experience: 1
-  extraObjects:
-  - {fileID: 5623827372832654600, guid: e578bc9823e449c419c5cf93b78442d0, type: 3}
-  hasExtraObject: 1
+  _userExperience: 1
+  _inGameExperience: 1
+  _extraObjects: []
+  _hasExtraObject: 0

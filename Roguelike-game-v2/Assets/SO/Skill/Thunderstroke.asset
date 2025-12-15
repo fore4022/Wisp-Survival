@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Thunderstroke
   m_EditorClassIdentifier: 
-  projectile_Info:
+  _projectileInfo:
     animationName: 
     speed: 0
     penetration: 0
-  multiCast:
+  _multiCastInfo:
     delay:
     - 0.09
     - 0.085
@@ -29,24 +29,25 @@ MonoBehaviour:
     - 6
     - 7
     - 9
-  go: {fileID: 6967527459479230250, guid: 6904d22a6f5a1104bbf905417668a1d6, type: 3}
-  maxLevelColor: {r: 1, g: 0.9411765, b: 0.47058824, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 1, g: 0.9411765, b: 0.47058824, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Thunderstroke
+  _damageCoefficient:
   - 0.8
   - 1
   - 1.2
   - 1.4
-  - 1.825
-  coolTime:
+  - 1.735
+  _coolTime:
   - 1.2
   - 1.1
   - 1
   - 0.9
   - 0.785
-  duration: 0
-  flipX: 1
-  flipY: 0
-  isProjectile: 0
-  isMultiCast: 1
+  _duration: 0
+  _flipX: 1
+  _flipY: 0
+  _isProjectile: 0
+  _isMultiCast: 1
+  go: {fileID: 6967527459479230250, guid: 6904d22a6f5a1104bbf905417668a1d6, type: 3}

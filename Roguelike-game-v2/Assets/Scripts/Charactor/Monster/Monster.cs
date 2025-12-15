@@ -82,11 +82,11 @@ public class Monster : MonoBehaviour, IScriptableData
 
         if(TryGetComponent(out Collider2D col))
         {
-            this._col = col;
+            _col = col;
         }
         else
         {
-            this._col = gameObject.AddComponent<BoxCollider2D>();
+            _col = gameObject.AddComponent<BoxCollider2D>();
         }
 
         _stat = new(_monsterSO.Stat);
@@ -142,7 +142,7 @@ public class Monster : MonoBehaviour, IScriptableData
             _render.flipX = !(transform.position.x > Managers.Game.player.transform.position.x);
         }
     }
-    // 카메라 영역에 collectDelay초 동안 보이지 않는다면, 오브젝트 풀에서 회수
+    // 카메라 영역에 CollectDelay초 동안 보이지 않는다면, 오브젝트 풀에서 회수
     private IEnumerator Collecting()
     {
         yield return _waitCollect;

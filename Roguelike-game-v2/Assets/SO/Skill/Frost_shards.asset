@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Frost_Shards
   m_EditorClassIdentifier: 
-  projectile_Info:
+  _projectileInfo:
     animationName: explosion
     speed: 3.65
     penetration: 1
-  multiCast:
+  _multiCastInfo:
     delay:
     - 0.175
     - 0.17
@@ -29,24 +29,25 @@ MonoBehaviour:
     - 5
     - 6
     - 8
-  go: {fileID: 1647761571587782042, guid: dad7072185bdcba4e87e4ee089ccc09c, type: 3}
-  maxLevelColor: {r: 0, g: 0.7176471, b: 1, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 0, g: 0.7176471, b: 1, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Frost_Shards
+  _damageCoefficient:
   - 1.2
   - 1.35
   - 1.5
   - 1.65
   - 1.95
-  coolTime:
+  _coolTime:
   - 2.75
   - 2.55
   - 2.35
   - 2.15
   - 1.85
-  duration: 0
-  flipX: 0
-  flipY: 1
-  isProjectile: 1
-  isMultiCast: 1
+  _duration: 0
+  _flipX: 0
+  _flipY: 1
+  _isProjectile: 1
+  _isMultiCast: 1
+  go: {fileID: 1647761571587782042, guid: dad7072185bdcba4e87e4ee089ccc09c, type: 3}

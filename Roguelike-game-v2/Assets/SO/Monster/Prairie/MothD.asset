@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f064bec11f569408bc987706938bac, type: 3}
   m_Name: MothD
   m_EditorClassIdentifier: 
-  stat:
+  _stat:
     health: 50
     damage: 1.85
     moveSpeed: 1.15
     healthRegenPerSec: 0
-  user_Experience: 1
-  inGame_Experience: 1
-  extraObjects:
-  - {fileID: 7462248345085010216, guid: 3e88149ff9f4b9340806bf605b7ecc9e, type: 3}
-  - {fileID: 1209035968615359215, guid: d02a8e7749ce89c4ba6e56f616793d73, type: 3}
-  hasExtraObject: 1
+  _userExperience: 1
+  _inGameExperience: 1
+  _extraObjects: []
+  _hasExtraObject: 0

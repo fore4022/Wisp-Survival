@@ -59,7 +59,7 @@ public class SkillDatas
     {
         if(_infos.ContainsKey(key))
         {
-            info = this._infos[key];
+            info = _infos[key];
 
             return true;
         }

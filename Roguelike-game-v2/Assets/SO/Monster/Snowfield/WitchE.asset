@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f064bec11f569408bc987706938bac, type: 3}
   m_Name: WitchE
   m_EditorClassIdentifier: 
-  stat:
+  _stat:
     health: 177.5
     damage: 2.65
     moveSpeed: 1.025
     healthRegenPerSec: 0
-  user_Experience: 1
-  inGame_Experience: 1
-  extraObjects:
-  - {fileID: 7613053733277782738, guid: 01075f2775a79e641a363d32f57281bc, type: 3}
-  hasExtraObject: 1
+  _userExperience: 1
+  _inGameExperience: 1
+  _extraObjects: []
+  _hasExtraObject: 0

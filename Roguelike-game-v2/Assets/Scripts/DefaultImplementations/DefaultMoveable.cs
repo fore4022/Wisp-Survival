@@ -35,10 +35,10 @@ public class DefaultMoveable : IMoveable, IDefaultImplementable
     }
     public IEnumerator HandleSlow(float slowDown, float duration)
     {
-        this._slowDown += slowDown;
+        _slowDown += slowDown;
 
         yield return new WaitForSeconds(duration);
 
-        this._slowDown -= slowDown;
+        _slowDown -= slowDown;
     }
 }

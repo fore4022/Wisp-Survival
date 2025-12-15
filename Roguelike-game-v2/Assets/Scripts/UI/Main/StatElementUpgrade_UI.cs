@@ -25,7 +25,7 @@ public class StatElementUpgrade_UI : UserInterface
     }
     public void Set(FileReference file)
     {
-        this._file = file;
+        _file = file;
         _value = (float)file.GetValue();
 
         ChangeAmount(0);

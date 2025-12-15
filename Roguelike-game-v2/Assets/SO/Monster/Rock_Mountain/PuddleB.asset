@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f064bec11f569408bc987706938bac, type: 3}
   m_Name: PuddleB
   m_EditorClassIdentifier: 
-  stat:
+  _stat:
     health: 97.5
     damage: 1.55
     moveSpeed: 1.325
     healthRegenPerSec: 0
-  user_Experience: 1
-  inGame_Experience: 1
-  extraObjects:
-  - {fileID: 8280435327043276928, guid: 5dd446f363e05d34b86e900348d78c52, type: 3}
-  - {fileID: 1209035968615359215, guid: d02a8e7749ce89c4ba6e56f616793d73, type: 3}
-  hasExtraObject: 1
+  _userExperience: 1
+  _inGameExperience: 1
+  _extraObjects: []
+  _hasExtraObject: 0

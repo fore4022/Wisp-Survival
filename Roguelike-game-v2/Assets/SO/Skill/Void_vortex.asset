@@ -12,31 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ca3fa60cacd8349afc667de9942f53, type: 3}
   m_Name: Void_Vortex
   m_EditorClassIdentifier: 
-  projectile_Info:
+  _projectileInfo:
     animationName: 
     speed: 0.3
     penetration: 0
-  multiCast:
+  _multiCastInfo:
     delay: []
     count: []
-  go: {fileID: 6458013873426487770, guid: b5c533eae9db16a438e0f1058eab48d0, type: 3}
-  maxLevelColor: {r: 0.9411765, g: 0.4117647, b: 0.4117647, a: 1}
-  adjustmentRotation: {x: 0, y: 0, z: 0}
-  adjustmentPosition: {x: 0, y: 0}
-  damageCoefficient:
+  _maxLevelColor: {r: 0.9411765, g: 0.4117647, b: 0.4117647, a: 1}
+  _adjustmentRotation: {x: 0, y: 0, z: 0}
+  _adjustmentPosition: {x: 0, y: 0}
+  _typePath: Void_Vortex
+  _damageCoefficient:
   - 1.1
   - 1.2
   - 1.3
   - 1.4
   - 1.575
-  coolTime:
+  _coolTime:
   - 1.7
   - 1.6
   - 1.5
   - 1.4
   - 1.225
-  duration: 0
-  flipX: 1
-  flipY: 1
-  isProjectile: 1
-  isMultiCast: 0
+  _duration: 0
+  _flipX: 1
+  _flipY: 1
+  _isProjectile: 1
+  _isMultiCast: 0
+  go: {fileID: 6458013873426487770, guid: b5c533eae9db16a438e0f1058eab48d0, type: 3}

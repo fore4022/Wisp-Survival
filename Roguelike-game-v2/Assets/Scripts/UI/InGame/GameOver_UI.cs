@@ -51,7 +51,7 @@ public class GameOver_UI : UserInterface
         }
 
         _audioSource.Play();
-        StartCoroutine(Typing.TypeEffecting(this._result, result, true));
+        StartCoroutine(Typing.TypeEffecting(_result, result, true));
         StartCoroutine(ResultSequence());
     }
     private void OnDisable()

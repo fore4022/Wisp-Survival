@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b01c0525c8b3343a197328e78fcf97, type: 3}
   m_Name: FactoryB
   m_EditorClassIdentifier: 
-  stat:
+  _stat:
     health: 32.5
     damage: 1.65
     moveSpeed: 0.975
     healthRegenPerSec: 0
-  user_Experience: 1
-  inGame_Experience: 1
+  _userExperience: 1
+  _inGameExperience: 1

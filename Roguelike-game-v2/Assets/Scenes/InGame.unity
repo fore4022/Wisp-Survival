@@ -2347,7 +2347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f4c3d0bf341fd419a823d9ef215a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icons:
+  _icons:
   - {fileID: 1258046671}
   - {fileID: 1971938053}
   - {fileID: 835199941}
@@ -2432,7 +2432,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6650388381906554065, guid: 8197a9bb3246ca64786a5316d0a2ccae, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2743,7 +2743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d27b4ad1caa604f8d471eb054224e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1548093357}
+  _audioSource: {fileID: 1548093357}
 --- !u!114 &835199944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3444,10 +3444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d898d072ad78bd948aaa7a3d6e746ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1025036969}
-  clear: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
-  failed: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
-  buttonClickSfx: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
+  _audioSource: {fileID: 1025036969}
+  _clear: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
+  _failed: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
+  _buttonClickSfx: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
 --- !u!82 &1025036969
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3602,11 +3602,11 @@ MonoBehaviour:
   _fxSprite:
   - {fileID: 7670149919029768695, guid: a354a1628698fc24aa2bd58b600f0151, type: 3}
   - {fileID: -8119217934192477012, guid: a354a1628698fc24aa2bd58b600f0151, type: 3}
-  _Bgm: {fileID: 1259020447}
-  _Fx: {fileID: 1164066218}
-  onToggleSound: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
-  offToggleSound: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
-  confirmSound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
+  _bgm: {fileID: 1259020447}
+  _fx: {fileID: 1164066218}
+  _onToggleSound: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
+  _offToggleSound: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
+  _confirmSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
 --- !u!1 &1069455491
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,7 +4398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acfd1b15491451458ed8e703c81173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1548093357}
+  _audioSource: {fileID: 1548093357}
 --- !u!114 &1258046674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6343,7 +6343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4466ce5ebe96fbf4f9bf267a71509bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1548093357}
+  _audioSource: {fileID: 1548093357}
 --- !u!114 &1971938056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6480,10 +6480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86158f507a6e5024cb9311cacb29ab95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1617872428}
-  giveUpStage_Sound: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
-  cancelStageExit_Sound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
-  tmp: {fileID: 2047490501}
+  _audioSource: {fileID: 1617872428}
+  _giveUpStage_Sound: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
+  _cancelStageExit_Sound: {fileID: 8300000, guid: 657578e4be6b64dbf9b09deada272e55, type: 3}
+  _tmp: {fileID: 2047490501}
 --- !u!1 &2012233085
 GameObject:
   m_ObjectHideFlags: 0
@@ -7270,7 +7270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d584b168cf6138941aa91cfd6c1c3e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stick: {fileID: 3912011118272727121}
+  _stick: {fileID: 3912011118272727121}
 --- !u!222 &6423091416647414327
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7548,7 +7548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2099b7c7fc00b634ea605db926c184a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  _audioSource: {fileID: 8362707563347870198}
 --- !u!114 &8362707563347870197
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ public class StageIcon_UI : UserInterface
         }
         else
         {
-            _themaName.text = _so.name;
+            _themaName.text = _so.Name;
             _cover.color = Color.white;
             _ground.color = Color.white;
             _monster.color = Color.white;

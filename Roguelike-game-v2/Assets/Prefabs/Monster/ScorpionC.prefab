@@ -57,6 +57,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -78,6 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -317748147
   m_SortingLayer: 2
   m_SortingOrder: 0
@@ -151,7 +154,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6650388381906554065, guid: 8197a9bb3246ca64786a5316d0a2ccae, type: 2}
-  m_audioClip: {fileID: 8300000, guid: d3d68a7489dafe84aa0846196cb26708, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d3d68a7489dafe84aa0846196cb26708, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -286,4 +289,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae67dfe72593d244a43e891e7fccf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCastChance: 33.3
+  _skillCastChance: 33.3

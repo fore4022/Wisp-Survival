@@ -14,7 +14,7 @@ public class StageInformation_SO : ScriptableObject
     [SerializeField][Tooltip("Minute")] private int _requiredTime;
 
     public SpawnPatternList_SO SpawnPatternList { get { return _spawnPatternList; } }
-    public SpawnMonsterList_SO SpawnMonsterList { get { return SpawnMonsterList; } }
+    public SpawnMonsterList_SO SpawnMonsterList { get { return _spawnMonsterList; } }
     public AudioClip BGM { get { return _bgm; } }
     public Color DamageTextColor { get { return _damageTextColor; } }
     public Color SkillRangeVisualizerColor { get { return _skillRangeVisualizerColor; } }

@@ -32,7 +32,7 @@ public static class CoroutineHelper
     // Type에 해당하는 MonoScript를 반환, MonoScript가 Null인 경우에 빈 객체에 MonoScript들을 생성 후 반환
     private static MonoBehaviour GetMonoBehaviour(CoroutineType type = CoroutineType.Etc)
     {
-        if(_manageMono = null)
+        if(_manageMono == null)
         {
             GameObject go = new GameObject("@MonoScript");
 

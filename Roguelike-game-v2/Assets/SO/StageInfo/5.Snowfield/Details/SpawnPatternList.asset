@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5311b159bb226ff458fbdcc20758c2c7, type: 3}
   m_Name: SpawnPatternList
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPatternList_SO
-  patterns:
+  _patterns:
   - {fileID: 11400000, guid: 0ce034171e0512a4ba44e9c3bd9999ad, type: 2}
   - {fileID: 11400000, guid: fc53be0fa5925ca4983ea8d12dfa3c9a, type: 2}
   - {fileID: 11400000, guid: 2533385c537f65f4d8cddd118e192e47, type: 2}

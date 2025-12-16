@@ -137,7 +137,7 @@ public static class Tween_Manage
 
                 TweenData data = dataList[0];
 
-                CoroutineHelper.Stop(data.coroutine);
+                CoroutineHelper.Stop(data.coroutine, CoroutineType.Tween);
                 Tweening.ToEnd(data);
             }
         }

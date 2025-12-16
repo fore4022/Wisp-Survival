@@ -164,10 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b73939f0d31ab4b8acfcc853f3ff33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCollider: {fileID: 0}
-  playAnimationOnEnable: 1
-  playColliderOnEnable: 0
-  animationName: explosion
+  _defaultCollider: {fileID: 0}
+  _playAnimationOnEnable: 1
+  _playColliderOnEnable: 1
+  _animationName: explosion
 --- !u!82 &1109580404756747556
 AudioSource:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ AudioSource:
   m_GameObject: {fileID: 3597558578671974726}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6650388381906554065, guid: 8197a9bb3246ca64786a5316d0a2ccae, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d8f45a8413577084faa9ef2b534a81f1, type: 3}
   m_PlayOnAwake: 0

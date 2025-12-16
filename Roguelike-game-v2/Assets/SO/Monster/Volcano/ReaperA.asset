@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f064bec11f569408bc987706938bac, type: 3}
   m_Name: ReaperA
   m_EditorClassIdentifier: 
-  stat:
+  _stat:
     health: 120
     damage: 2.55
     moveSpeed: 1.265
     healthRegenPerSec: 0
-  user_Experience: 1
-  inGame_Experience: 1
-  extraObjects:
+  _userExperience: 1
+  _inGameExperience: 1
+  _extraObjects:
   - {fileID: 6243262837459358158, guid: 23152f0596e573d4ab67f59159c9de96, type: 3}
-  hasExtraObject: 1
+  _hasExtraObject: 1

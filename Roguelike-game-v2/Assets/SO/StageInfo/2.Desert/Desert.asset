@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c42b0b75fa6a14db3375d1155e331f, type: 3}
   m_Name: Desert
   m_EditorClassIdentifier: 
-  infoPath: Info
-  iconPath: Icon
+  _infoPath: Info
+  _iconPath: Icon
+  _stagePath: Desert
+  _name: "\uC0AC\uB9C9"
   information: {fileID: 11400000, guid: d2a68a420fb28fe4e8164fc0811a47c9, type: 2}
   iconSprite: {fileID: 11400000, guid: d09f7bf8476970f4c8fe235bb381376c, type: 2}
-  stagePath: Desert
-  name: "\uC0AC\uB9C9"

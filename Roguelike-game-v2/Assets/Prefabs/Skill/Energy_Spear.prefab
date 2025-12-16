@@ -126,7 +126,7 @@ AudioSource:
   m_GameObject: {fileID: 8144048606989848299}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6650388381906554065, guid: 8197a9bb3246ca64786a5316d0a2ccae, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 839af148dd1283641bc31937c33be5b1, type: 3}
   m_PlayOnAwake: 1
@@ -226,12 +226,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646457b218a47e44fab8a12565e21b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCollider: {fileID: 0}
-  playAnimationOnEnable: 0
-  playColliderOnEnable: 0
-  effectCollider: {fileID: 4386130135592016057}
-  castRange: {x: 3.75, y: 3.75}
-  castDelay: 0.07
+  _defaultCollider: {fileID: 4200316118562607662}
+  _playAnimationOnEnable: 1
+  _playColliderOnEnable: 1
+  _effectCollider: {fileID: 4386130135592016057}
+  _castRange: {x: 3.75, y: 3.75}
+  _castDelay: 0.07
 --- !u!61 &4200316118562607662
 BoxCollider2D:
   m_ObjectHideFlags: 0

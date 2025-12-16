@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c81c6b72b3bcf74b9c4de406606a7e0, type: 3}
   m_Name: Info
   m_EditorClassIdentifier: 
-  spawnPatternList: {fileID: 11400000, guid: a01e3d45a78e9cb478a8e78c988a2758, type: 2}
-  spawnMonsterList: {fileID: 11400000, guid: 1936f2e6bec779e46972475e2ad54d7e, type: 2}
-  bgm: {fileID: 8300000, guid: 42eca95eca33c464b93c6797d20a673c, type: 3}
-  skillRangeVisualizerColor: {r: 1, g: 0.19607843, b: 0.19607843, a: 0.78431374}
-  difficulty: 5
-  statScale: 1
-  spawnDelay: 1
-  requiredTime: 10
-  damageTextColor: {r: 1, g: 1, b: 1, a: 1}
-  isDefaultColor: 1
+  _spawnPatternList: {fileID: 11400000, guid: a01e3d45a78e9cb478a8e78c988a2758, type: 2}
+  _spawnMonsterList: {fileID: 11400000, guid: 1936f2e6bec779e46972475e2ad54d7e, type: 2}
+  _bgm: {fileID: 8300000, guid: 42eca95eca33c464b93c6797d20a673c, type: 3}
+  _damageTextColor: {r: 255, g: 255, b: 255, a: 255}
+  _skillRangeVisualizerColor: {r: 0, g: 0, b: 0, a: 0.78431374}
+  _difficulty: 1
+  _statScale: 1
+  _spawnDelay: 0.9
+  _requiredTime: 10
+  isDefaultColor: 0

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c4022969386b349bfa98fd095bc257, type: 3}
   m_Name: 6
   m_EditorClassIdentifier: 
-  monsterInformation:
+  _monsterInformation:
   - monster: {fileID: 4399197652402371659, guid: e15db4a042b2331419bc4dfa022e66a6, type: 3}
-    spawnProbability: 65
+    spawnProbability: 50
   - monster: {fileID: 4087729720634512069, guid: 246f736825c98b049bb477eb319e2ee6, type: 3}
-    spawnProbability: 35
-  duration: 1
+    spawnProbability: 50
+  _duration: 1

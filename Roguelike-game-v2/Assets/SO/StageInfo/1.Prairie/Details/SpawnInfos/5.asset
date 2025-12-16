@@ -12,11 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c4022969386b349bfa98fd095bc257, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: 
-  monsterInformation:
+  _monsterInformation:
   - monster: {fileID: 8106883834458166952, guid: fb39af7bb3245fc43a4d987b5cae4976, type: 3}
-    spawnProbability: 60
-  - monster: {fileID: 2645762812740979991, guid: 74365fde0ef158749ac170f60d5667e0, type: 3}
-    spawnProbability: 20
-  - monster: {fileID: 9081227401761573370, guid: 1590442ec0b70fd4ab06981b60ac65a2, type: 3}
-    spawnProbability: 20
-  duration: 1
+    spawnProbability: 100
+  _duration: 1

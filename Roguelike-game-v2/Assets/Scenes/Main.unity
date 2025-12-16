@@ -6149,8 +6149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85238a54d0b18e34180137a65276fdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  sign: -1
+  _audioSource: {fileID: 286827673}
+  _sign: -1
 --- !u!82 &286827673
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6374,14 +6374,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b75af0ec8ffc94bb0e1e7695022505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coverList:
+  _coverList:
   - {fileID: 83041902}
   - {fileID: 438436493}
   - {fileID: 2102836730}
   - {fileID: 552187507}
   - {fileID: 961728238}
-  requiredTime: {fileID: 2042162720}
-  difficulty: {fileID: 697780224}
+  _requiredTime: {fileID: 2042162720}
+  _difficulty: {fileID: 697780224}
 --- !u!1 &413318331
 GameObject:
   m_ObjectHideFlags: 0
@@ -7161,8 +7161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29eedb63de425284eacc262325547b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: {fileID: 0}
-  audioSource: {fileID: 0}
+  tmp: {fileID: 1421299173}
+  audioSource: {fileID: 540293868}
   inc: {fileID: 501477648}
   dec: {fileID: 1934982938}
 --- !u!82 &540293868
@@ -13532,11 +13532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ade38f5ba6ae8d46b3ac87a008effe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetList:
-  - {fileID: 6033508964452483693}
-  - {fileID: 1066997429}
-  - {fileID: 1955663526}
-  textList: []
+  _targetList: []
+  _textList: []
 --- !u!1 &956135904
 GameObject:
   m_ObjectHideFlags: 0
@@ -14012,8 +14009,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29eedb63de425284eacc262325547b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: {fileID: 0}
-  audioSource: {fileID: 0}
+  tmp: {fileID: 1589173222}
+  audioSource: {fileID: 1037866933}
   inc: {fileID: 1812451996}
   dec: {fileID: 1954042627}
 --- !u!82 &1037866933
@@ -19098,9 +19095,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4495f7b3c546094cb2ba3eb530c4ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  visible: {r: 0.6666667, g: 1, b: 0.11764706, a: 1}
-  invisible: {r: 1, g: 0.50980395, b: 0.11764706, a: 1}
+  _audioSource: {fileID: 1066997433}
+  _visible: {r: 0.6666667, g: 1, b: 0.11764706, a: 1}
+  _invisible: {r: 1, g: 0.50980395, b: 0.11764706, a: 1}
 --- !u!82 &1066997433
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24412,8 +24409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29eedb63de425284eacc262325547b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: {fileID: 0}
-  audioSource: {fileID: 0}
+  tmp: {fileID: 600316954}
+  audioSource: {fileID: 1121467531}
   inc: {fileID: 281072326}
   dec: {fileID: 1930114074}
 --- !u!82 &1121467531
@@ -24858,8 +24855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85238a54d0b18e34180137a65276fdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  sign: 1
+  _audioSource: {fileID: 1238843573}
+  _sign: 1
 --- !u!82 &1238843573
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25168,7 +25165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edba96ad932a1064da53b34068e68e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  _audioSource: {fileID: 0}
 --- !u!82 &1281497352
 AudioSource:
   m_ObjectHideFlags: 0
@@ -30587,8 +30584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29eedb63de425284eacc262325547b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: {fileID: 0}
-  audioSource: {fileID: 0}
+  tmp: {fileID: 1119790116}
+  audioSource: {fileID: 1408426568}
   inc: {fileID: 432025140}
   dec: {fileID: 778573466}
 --- !u!82 &1408426568
@@ -31273,15 +31270,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90f62aa10cfc9747b8a9feba09b3ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles:
+  _particles:
   - {fileID: 1358792734}
   - {fileID: 25748938}
   - {fileID: 1039074107}
   - {fileID: 1867092264}
   - {fileID: 1093857699}
   - {fileID: 561490523}
-  log: {fileID: 1135663334}
-  prompt: {fileID: 1524967275}
+  _log: {fileID: 1135663334}
+  _prompt: {fileID: 1524967275}
 --- !u!82 &1546044759
 AudioSource:
   m_ObjectHideFlags: 0
@@ -37510,20 +37507,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10ce795be69c2c4d876132e90f47236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statElement_parent: {fileID: 1582264689}
-  increaseSound: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
-  decreaseSound: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
-  actionUnavailableSound: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
+  _statElement_parent: {fileID: 1582264689}
+  _increaseSound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
+  _decreaseSound: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
+  _actionUnavailableSound: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
   files:
   - component: {fileID: 1955663530}
-    fieldName: increaseDamage
+    fieldName: _increaseDamage
   - component: {fileID: 1955663530}
-    fieldName: increaseHealth
+    fieldName: _increaseHealth
   - component: {fileID: 1955663530}
-    fieldName: healthRegenPerSec
+    fieldName: _healthRegenPerSec
   - component: {fileID: 1955663530}
-    fieldName: moveSpeed
-  statPointText: {fileID: 0}
+    fieldName: _moveSpeed
+  statPointText: {fileID: 1006661753}
   background: {fileID: 1949203715}
 --- !u!114 &1955663530
 MonoBehaviour:
@@ -37681,12 +37678,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5afce326b4ba74f9a916cb7bc35d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themaName: {fileID: 1864489721}
-  ground: {fileID: 1961826939}
-  cover: {fileID: 280520628}
-  banner: {fileID: 2096425742}
-  monster: {fileID: 536029438}
-  padlock: {fileID: 1309770835}
+  _themaName: {fileID: 1864489721}
+  _ground: {fileID: 1961826939}
+  _cover: {fileID: 280520628}
+  _banner: {fileID: 2096425742}
+  _monster: {fileID: 536029438}
+  _padlock: {fileID: 1309770835}
 --- !u!1 &2042162718
 GameObject:
   m_ObjectHideFlags: 0
@@ -38230,7 +38227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d27b4ad1caa604f8d471eb054224e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  _audioSource: {fileID: 8098344982089115162}
 --- !u!1 &920857988277218207
 GameObject:
   m_ObjectHideFlags: 0
@@ -38551,9 +38548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb0cbd1ba8746748a65d97277c7bd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  actionAvailableSound: {fileID: 8300000, guid: 657578e4be6b64dbf9b09deada272e55, type: 3}
-  actionUnavailableSound: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
+  _audioSource: {fileID: 6033508964452483694}
+  _actionAvailableSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
+  _actionUnavailableSound: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
 --- !u!224 &3230140252039999821
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38814,11 +38811,11 @@ MonoBehaviour:
   _fxSprite:
   - {fileID: 7670149919029768695, guid: a354a1628698fc24aa2bd58b600f0151, type: 3}
   - {fileID: -8119217934192477012, guid: a354a1628698fc24aa2bd58b600f0151, type: 3}
-  _Bgm: {fileID: 5941076526439843071}
-  _Fx: {fileID: 8548608684173390088}
-  onToggleSound: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
-  offToggleSound: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
-  confirmSound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
+  _bgm: {fileID: 5941076526439843071}
+  _fx: {fileID: 8548608684173390088}
+  _onToggleSound: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
+  _offToggleSound: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
+  _confirmSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
 --- !u!222 &5633070625395332235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -39728,7 +39725,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6650388381906554065, guid: 8197a9bb3246ca64786a5316d0a2ccae, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

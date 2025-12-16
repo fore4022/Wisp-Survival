@@ -171,7 +171,7 @@ AudioSource:
   m_GameObject: {fileID: 5443455852523921931}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6650388381906554065, guid: 8197a9bb3246ca64786a5316d0a2ccae, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d8f45a8413577084faa9ef2b534a81f1, type: 3}
   m_PlayOnAwake: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092e6d9ad30117948ad0ac5af066b919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCollider: {fileID: 0}
-  playAnimationOnEnable: 1
-  playColliderOnEnable: 0
-  skillRange: 1.25
+  _defaultCollider: {fileID: 0}
+  _playAnimationOnEnable: 1
+  _playColliderOnEnable: 1
+  _skillRange: 1.25

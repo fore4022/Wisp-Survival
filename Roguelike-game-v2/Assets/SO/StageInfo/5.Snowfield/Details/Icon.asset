@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82460b40f8a9fc4097f243073bcfe3a, type: 3}
   m_Name: Icon
   m_EditorClassIdentifier: 
-  ground: {fileID: -899301296532475703, guid: e2efe24a7f784fd78204519bb87d90b4, type: 3}
-  cover: {fileID: -5027509340213622084, guid: 75a069b55d014af58934568e90d808e6, type: 3}
-  banner: {fileID: 139452519, guid: 5bd989fecb5450e4cbba2937e9a62b34, type: 3}
-  monster: {fileID: 21300002, guid: 3c3a29a727884844499b67527dba3c93, type: 3}
+  _ground: {fileID: -899301296532475703, guid: e2efe24a7f784fd78204519bb87d90b4, type: 3}
+  _cover: {fileID: -5027509340213622084, guid: 75a069b55d014af58934568e90d808e6, type: 3}
+  _banner: {fileID: 139452519, guid: 5bd989fecb5450e4cbba2937e9a62b34, type: 3}
+  _monster: {fileID: 21300002, guid: 3c3a29a727884844499b67527dba3c93, type: 3}

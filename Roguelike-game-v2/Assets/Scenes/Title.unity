@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac5fb729e386ef4ab7eb54ff1264de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweens:
+  _tweens:
   - {fileID: 1310386625}
   - {fileID: 755523342}
   - {fileID: 78203341}
@@ -2171,7 +2171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cd330f09a13644aaf2e2e7aa5df10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManagerInitializer
-  audioMixer: {fileID: 24100000, guid: 8197a9bb3246ca64786a5316d0a2ccae, type: 2}
+  _audioMixer: {fileID: 24100000, guid: 8197a9bb3246ca64786a5316d0a2ccae, type: 2}
 --- !u!4 &1537426267
 Transform:
   m_ObjectHideFlags: 0
@@ -2329,8 +2329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24dae1e375e580446850009977a8b90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enterMainScene: {fileID: 843880395}
-  audioSource: {fileID: 1554419363}
+  _enterMainScene: {fileID: 843880395}
+  _audioSource: {fileID: 1554419363}
 --- !u!1 &1649881420
 GameObject:
   m_ObjectHideFlags: 0

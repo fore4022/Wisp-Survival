@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ec6efdbd2a82040bb65451859f8197, type: 3}
   m_Name: Frost_Shards
   m_EditorClassIdentifier: 
-  spritePath: Assets/Sprites/Icon/Skills/Ice_VFX_1_192x192.png
-  info:
+  _info:
     icon: {fileID: 0}
     go: {fileID: 1647761571587782042, guid: dad7072185bdcba4e87e4ee089ccc09c, type: 3}
     name: "\uC11C\uB9AC \uD30C\uD3B8"
-    explanation: " \uC801\uC744 \uD5A5\uD574\uC11C \uB0A0\uCE74\uB85C\uC6B4 \uC11C\uB9AC
+    explanation: "\uC801\uC744 \uD5A5\uD574\uC11C \uB0A0\uCE74\uB85C\uC6B4 \uC11C\uB9AC
       \uD30C\uD3B8\uB4E4\uC774 \uB0A0\uC544\uAC11\uB2C8\uB2E4."
-  sprite: {fileID: 21300000, guid: 3d68c71f9f8b92345bd999b736eb06db, type: 3}
+  _icon: {fileID: 21300000, guid: 3d68c71f9f8b92345bd999b736eb06db, type: 3}

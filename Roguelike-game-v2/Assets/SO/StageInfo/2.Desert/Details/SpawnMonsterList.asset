@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78398f268d4ee954e9073bbd8fcdeeb8, type: 3}
   m_Name: SpawnMonsterList
   m_EditorClassIdentifier: 
-  monsters:
+  _monsters:
   - {fileID: 857254945382221730, guid: b5f4ba66c8cfd5542b2c73ad19ba5770, type: 3}
+  - {fileID: 4399197652402371659, guid: e15db4a042b2331419bc4dfa022e66a6, type: 3}
   - {fileID: 4087729720634512069, guid: 246f736825c98b049bb477eb319e2ee6, type: 3}
   - {fileID: 6654537298000785097, guid: eaf1313671fe52e43acab67a1749ed5b, type: 3}
-  - {fileID: 4399197652402371659, guid: e15db4a042b2331419bc4dfa022e66a6, type: 3}
   - {fileID: 1228262649379594625, guid: 3009c6642ad6233419c0f3a68e7dd6c7, type: 3}

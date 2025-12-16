@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ec6efdbd2a82040bb65451859f8197, type: 3}
   m_Name: Purifying_Cross
   m_EditorClassIdentifier: 
-  spritePath: Assets/Sprites/Icon/Skills/HolyProjectile.png
-  info:
+  _info:
     icon: {fileID: 0}
     go: {fileID: 4688760127113871236, guid: 696f8387994f3db4b9de2878be0ccb70, type: 3}
     name: "\uC815\uD654\uC758 \uC2ED\uC790\uAC00"
-    explanation: " \uC2A4\uD0AC \uB808\uBCA8\uC5D0 \uB530\uB77C\uC11C, \uB354 \uB9CE\uC740
-      \uC801\uC744 \uAD00\uD1B5\uD558\uB294 \uC2ED\uC790\uAC00\uB97C \uB0A0\uB824\uBCF4\uB0C5\uB2C8\uB2E4."
-  sprite: {fileID: 21300000, guid: b4fcd567f9b1211468aee6414f4be3c7, type: 3}
+    explanation: "\uC2A4\uD0AC \uB808\uBCA8\uC5D0 \uB530\uB77C \uB354 \uB9CE\uC740 "
+  _icon: {fileID: 21300000, guid: b4fcd567f9b1211468aee6414f4be3c7, type: 3}

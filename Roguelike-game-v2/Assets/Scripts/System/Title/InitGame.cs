@@ -26,13 +26,13 @@ public class InitGame : MonoBehaviour
         Task loadStageDatas = LoadStageDatas();
 
         yield return new WaitUntil(() => loadStageDatas.IsCompleted);
-
+        
         _dataLoading = Managers.Data.Load();
 
         yield return new WaitUntil(() => Managers.UI.IsInitalized());
-
+        
         yield return new WaitUntil(() => Managers.Audio.Mixer != null);
-
+        
         StartCoroutine(UserDataLoading());
     }
     private IEnumerator UserDataLoading()

@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ec6efdbd2a82040bb65451859f8197, type: 3}
   m_Name: Thunderstroke
   m_EditorClassIdentifier: 
-  spritePath: Assets/Sprites/Icon/Skills/ElectricLighting2.png
-  info:
+  _info:
     icon: {fileID: 0}
     go: {fileID: 6967527459479230250, guid: 6904d22a6f5a1104bbf905417668a1d6, type: 3}
     name: "\uB099\uB8B0"
-    explanation: " \uC5EC\uB7EC\uAC1C\uC758 \uBC88\uAC1C\uB97C \uB5A8\uC5B4\uD2B8\uB9BD\uB2C8\uB2E4."
-  sprite: {fileID: 21300000, guid: fb68e2ce3d491ce4b9a4eec1413047a5, type: 3}
+    explanation: "\uC5EC\uB7EC \uAC1C\uC758 \uBC88\uAC1C\uB97C \uB5A8\uC5B4\uD2B8\uB9BD\uB2C8\uB2E4."
+  _icon: {fileID: 21300000, guid: fb68e2ce3d491ce4b9a4eec1413047a5, type: 3}

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f064bec11f569408bc987706938bac, type: 3}
   m_Name: SwordA
   m_EditorClassIdentifier: 
-  stat:
+  _stat:
     health: 106.5
     damage: 1.75
     moveSpeed: 0.975
     healthRegenPerSec: 0
-  user_Experience: 1
-  inGame_Experience: 1
-  extraObjects:
+  _userExperience: 1
+  _inGameExperience: 1
+  _extraObjects:
   - {fileID: 7252553155361495304, guid: c032889c403110e45bfa05f6e54b66ba, type: 3}
-  hasExtraObject: 1
+  _hasExtraObject: 1

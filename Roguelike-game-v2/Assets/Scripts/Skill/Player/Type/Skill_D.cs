@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
-/// <summary>
-/// <para>
-/// 범위 공격
-/// </para>
-/// 대기 애니메이션 재생 이후 적을 공격하며, 화면 상의 무작위 적을 공격
+/// 대기 애니메이션 재생 이후 적을 공격하며, 화면 상의 무작위 적을 범위 공격
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Arcane_Blaze
+/// </remarks>
 public class Skill_D : PlayerSkill, IPlayerSkill
 {
     [SerializeField] private string _animationName;

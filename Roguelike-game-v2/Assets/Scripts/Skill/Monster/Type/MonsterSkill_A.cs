@@ -1,5 +1,11 @@
 using System.Collections;
 using UnityEngine;
+/// <summary>
+/// 플레이어를 향해서 날아가는 투사체 스킬
+/// </summary>
+/// <remarks>
+/// 사용 객체 : A1, A2, A3, A4, A5, A6, A7
+/// </remarks>
 [RequireComponent(typeof(BoxCollider2D))]
 public class MonsterSkill_A : MonsterSkill_Damage
 {

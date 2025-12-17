@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 관통 및 폭발형 원거리 공격
-/// </para>
-/// 화면의 무작위 위치를 향해 날아가며, 적을 밀어내지 않음
+/// 화면의 무작위 위치를 향해 관통하는 투사체로, 위치에 도달할 경우 폭발
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Energy_Spear
+/// </remarks>
 public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
 {
     [SerializeField] private Collider2D _effectCollider;

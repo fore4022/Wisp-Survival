@@ -3,6 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 주기적으로 플레이어의 방향으로 돌진
 /// </summary>
+/// <remarks>
+/// 사용 객체 : DogB
+/// </remarks>
 public class Monster_D : BasicMonster
 {
     [SerializeField] private float _dashSpeed;

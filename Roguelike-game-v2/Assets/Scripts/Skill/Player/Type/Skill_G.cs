@@ -1,10 +1,10 @@
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 범위 공격
-/// </para>
-/// 플레이어 주변 반경에서 가장 가까운 적을 향해서 생성
+/// 가장 가까운 적 방향으로 범위 피해
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Sonic_Boom
+/// </remarks>
 public class Skill_G : PlayerSkill, IPlayerSkill
 {
     [SerializeField] private float _skillRange;

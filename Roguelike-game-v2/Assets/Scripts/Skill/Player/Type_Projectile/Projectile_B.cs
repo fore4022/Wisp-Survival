@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 폭발형 원거리 공격
-/// </para>
 /// 가장 가까운 적을 향해서 날아가며, 충돌 시 범위 내 적을 공격
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Frost_Shards
+/// </remarks>
 public class Projectile_B : PlayerSkill_Projectile, IProjectile
 {
     [SerializeField] private Collider2D _effectCollider;

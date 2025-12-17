@@ -1,10 +1,10 @@
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 범위 공격
-/// </para>
-/// 가장 가까운 적을 공격
+/// 가장 가까운 적을 대상으로 범위 공격
 /// </summary>
+/// <remarks>
+/// 사용 객체 : 
+/// </remarks>
 public class Skill_A : PlayerSkill, IPlayerSkill
 {
     public bool Finished { get { return true; } }

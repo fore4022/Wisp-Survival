@@ -1,5 +1,11 @@
 using System.Collections;
 using UnityEngine;
+/// <summary>
+/// 플레이어에 닿을 경우 둔화하는 스킬
+/// </summary>
+/// <remarks>
+/// 사용 객체 : C1
+/// </remarks>
 [RequireComponent(typeof(CircleCollider2D))]
 public class MonsterSkill_C : MonsterSkill
 {

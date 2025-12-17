@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 /// <summary>
-/// <para>
-/// SlimeSquareH 전용
-/// </para>
 /// 사망할 경우 작아진 객체로 분열하며, 분열된 객체는 추가 분열되지 않음
 /// 분열된 객체는 경험치를 지급하지 않음
 /// </summary>
+/// <remarks>
+/// 사용 객체 : SlimeSquareH
+/// </remarks>
 public class Monster_F : BasicMonster_WithObject
 {
     [SerializeField][Min(0.25f)] private float _defaultScaleValue;

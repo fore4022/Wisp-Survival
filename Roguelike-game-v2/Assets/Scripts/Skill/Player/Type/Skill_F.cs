@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 범위 공격
-/// </para>
-/// 지속 시간 동안 유지되며, 방향을 바꿔 가면서 공격
+/// 지속 시간 동안 스킬에서 가까운 적을 향해 이동
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Flame_Tempest
+/// </remarks>
 public class Skill_F : PlayerSkill, IPlayerSkill
 {
     [SerializeField] private float _speed;

@@ -3,6 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 빠른 속도로 플레이어를 향해서 이동, 유효 회전 제한
 /// </summary>
+/// <remarks>
+/// 사용 객체 : GolemA
+/// </remarks>
 public class Monster_K : BasicMonster
 {
     [SerializeField] private float _dashSpeedMultiplier;

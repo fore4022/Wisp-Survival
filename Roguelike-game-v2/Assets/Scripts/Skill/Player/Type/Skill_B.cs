@@ -1,10 +1,10 @@
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 범위 공격
-/// </para>
-/// 가장 큰 적 무리를 공격
+/// 가장 큰 적 무리를 대상으로 범위 공격
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Void_Burst
+/// </remarks>
 public class Skill_B : PlayerSkill, IPlayerSkill
 {
     public bool Finished { get { return true; } }

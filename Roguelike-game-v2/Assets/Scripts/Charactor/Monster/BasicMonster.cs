@@ -7,6 +7,9 @@ using UnityEngine;
 /// </para>
 /// IDamage, IDamageReceiver, IMoveable을 구현
 /// </summary>
+/// <remarks>
+/// 사용 객체 : BatSmallA, ChestA, CloudD, FactoryB, GhastC, MaskA, MummyA, SkullFlamingB
+/// </remarks>
 public class BasicMonster : Monster, IDamage, IDamageReceiver, IMoveable
 {
     protected const float SpeedMultiplierDefault = 1;

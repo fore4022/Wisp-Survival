@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 /// <summary>
-/// <para>
-/// SnakeF 전용
-/// </para>
 /// 짧게 끊어서 플레이어를 향해 돌진
 /// </summary>
+/// <remarks>
+/// 사용 객체 : SnakeF
+/// </remarks>
 public class Monster_C : BasicMonster
 {
     [SerializeField] private float _dashSpeed;

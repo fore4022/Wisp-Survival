@@ -3,6 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 일정 확률로 플레이어에게 돌진하며, 돌진이 끝난 후, 현재 위치에서 스킬 시전
 /// </summary>
+/// <remarks>
+/// 사용 객체 : ReaperA
+/// </remarks>
 public class Monster_H : BasicMonster_WithObject
 {
     [SerializeField] private Vector3 _skillPosition;

@@ -3,6 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 일정한 확률로 화면의 무작위 위치에 투사체 발사
 /// </summary>
+/// <remarks>
+/// 사용 객체 : MothD, PuddleB
+/// </remarks>
 public class Monster_B : BasicMonster_WithObject
 {
     [SerializeField] private float _coolTime = 3f;

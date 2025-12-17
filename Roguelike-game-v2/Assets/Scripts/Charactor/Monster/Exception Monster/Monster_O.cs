@@ -2,6 +2,9 @@ using UnityEngine;
 /// <summary>
 /// 잃은 체력에 비해서 능력치 상승
 /// </summary>
+/// <remarks>
+/// 사용 객체 : CountA
+/// </remarks>
 public class Monster_O : BasicMonster
 {
     [SerializeField] private Color _targetColor;

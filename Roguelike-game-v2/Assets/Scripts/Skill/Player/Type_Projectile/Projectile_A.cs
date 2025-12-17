@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 원거리 공격 / 연속 타격 원거리 공격
-/// </para>
-/// 가장 가까운 적을 공격
+/// 가장 가까운 적에게 관통 투사체 공격
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Purifying_Cross
+/// </remarks>
 public class Projectile_A : PlayerSkill_Projectile, IProjectile
 {
     public bool Finished { get { return moving == null; } }

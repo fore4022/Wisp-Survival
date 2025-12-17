@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 원거리 범위 공격
-/// </para>
 /// 가까운 적 또는 무작위 방향으로 시전
 /// 스킬이 유지되는 동안 지정된 크기까지 커질 수 있으며, 그에 따라 피격 범위도 변동
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Void_Vortex
+/// </remarks>
 public class Projectile_D : PlayerSkill_Projectile, IProjectile
 {
     [SerializeField][Range(0, 100)] private float _probability;

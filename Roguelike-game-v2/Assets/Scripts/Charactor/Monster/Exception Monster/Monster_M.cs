@@ -3,6 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 활성화 될 때 지정된 색상, 범위 내에서 크기를 변경, 죽을 때 스킬을 시전
 /// </summary>
+/// <remarks>
+/// 사용 객체 : FireSmallA
+/// </remarks>
 public class Monster_M : Monster_G
 {
     [SerializeField] private List<Color> _colors;

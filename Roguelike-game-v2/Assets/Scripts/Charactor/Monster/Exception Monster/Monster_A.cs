@@ -4,7 +4,7 @@ using UnityEngine;
 /// 플레이어에게 원거리 투사체를 발사
 /// </summary>
 /// <remarks>
-/// 사용 객체 : 
+/// 사용 객체 : MushroomB
 /// </remarks>
 public class Monster_A : BasicMonster_WithObject
 {

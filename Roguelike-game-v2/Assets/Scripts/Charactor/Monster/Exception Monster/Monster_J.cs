@@ -3,6 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 수명동안 플레이어를 향해 이동
 /// </summary>
+/// <remarks>
+/// 사용 객체 : BugC
+/// </remarks>
 [RequireComponent(typeof(CircleCollider2D))]
 public class Monster_J : BasicMonster
 {

@@ -1,5 +1,11 @@
 using System.Collections;
 using UnityEngine;
+/// <summary>
+/// 공중에서 떨어지며 피해를 주는 스킬
+/// </summary>
+/// <remarks>
+/// 사용 객체 : B1, B2, B3, B4, B5, B6
+/// </remarks>
 [RequireComponent(typeof(BoxCollider2D))]
 public class MonsterSkill_B : MonsterSkill_Damage, IFakeShadowSource
 {

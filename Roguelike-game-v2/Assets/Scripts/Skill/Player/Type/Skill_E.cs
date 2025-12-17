@@ -1,10 +1,11 @@
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 범위 공격
-/// </para>
-/// 가장 큰 적 무리를 공격하며, 무작위 애니메이션을 재생
+/// 가장 큰 적 무리를 공격하며
+/// 시전될 때 주어진 애니메이션 중 무작위로 재생
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Divine_Radiance
+/// </remarks>
 public class Skill_E : PlayerSkill, IPlayerSkill
 {
     [SerializeField] private int _minIndex;

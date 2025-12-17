@@ -1,10 +1,10 @@
 using UnityEngine;
 /// <summary>
-/// <para>
-/// 범위 공격
-/// </para>
-/// 화면에 보이는 무작위 적을 공격
+/// 화면에 보이는 무작위 적을 범위 공격
 /// </summary>
+/// <remarks>
+/// 사용 객체 : Phantom_Blade, Thunderstroke
+/// </remarks>
 public class Skill_C : PlayerSkill, IPlayerSkill
 {
     public bool Finished { get { return true; } }

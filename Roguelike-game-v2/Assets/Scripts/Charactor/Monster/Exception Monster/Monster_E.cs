@@ -3,6 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 플레이어 방향으로 빠르게 돌진
 /// </summary>
+/// <remarks>
+/// 사용 객체 : AirA
+/// </remarks>
 public class Monster_E : BasicMonster
 {
     [SerializeField] private float _rushSpeed = 3;

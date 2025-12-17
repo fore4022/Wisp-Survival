@@ -3,6 +3,9 @@ using UnityEngine;
 /// <summary>
 /// 쿨타임마다 현재 위치에서 스킬 시전
 /// </summary>
+/// <remarks>
+/// 사용 객체 : SwordA
+/// </remarks>
 public class Monster_N : BasicMonster_WithObject
 {
     [SerializeField] private Vector3 _skillRotation;

@@ -11,7 +11,6 @@ public static class CoroutineHelper
     private static Manage_Mono _manageMono = null;
     private static UserInterface_Mono _userInterfaceMono = null;
     private static InGameSystem_Mono _inGameSystemMono = null;
-    private static Tween_Mono _tweenMono = null;
     private static Etc_Mono _etcMono = null;
 
     // 코루틴 실행
@@ -39,7 +38,6 @@ public static class CoroutineHelper
             _manageMono = go.AddComponent<Manage_Mono>();
             _userInterfaceMono = go.AddComponent<UserInterface_Mono>();
             _inGameSystemMono = go.AddComponent<InGameSystem_Mono>();
-            _tweenMono = go.AddComponent<Tween_Mono>();
             _etcMono = go.AddComponent<Etc_Mono>();
 
             Object.DontDestroyOnLoad(go);
@@ -53,8 +51,6 @@ public static class CoroutineHelper
                 return _userInterfaceMono;
             case CoroutineType.InGameSystem:
                 return _inGameSystemMono;
-            case CoroutineType.Tween:
-                return _tweenMono;
         }
 
         return _etcMono;

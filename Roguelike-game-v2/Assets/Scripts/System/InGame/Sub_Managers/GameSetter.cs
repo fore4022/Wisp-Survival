@@ -23,20 +23,16 @@ public class GameSetter
     private async Task LoadSkillList()
     {
         UserLevel_SO userLevel;
-        SkillInformation_SO so;
-        GameObject skill;
 
         for(int i = 1; i <= Managers.Data.user.Level; i++)
         {
             userLevel = await AddressableHelper.LoadingToPath<UserLevel_SO>($"{i}{UserLevelPath}");
 
-            foreach(string path in userLevel.PathList)
+            foreach(SkillInformation_SO so in userLevel.SkillInformationList)
             {
-                so = await AddressableHelper.LoadingToPath<SkillInformation_SO>(path);
-                skill = await AddressableHelper.LoadingToPath<GameObject>(so.Info.type);
-
-                _skillList.Add(skill);
                 Managers.Game.inGameData_Manage.skill.SetDictionaryItem(so);
+
+                _skillList.Add(await AddressableHelper.LoadingToPath<GameObject>(so.Info.type));
             }
         }
     }

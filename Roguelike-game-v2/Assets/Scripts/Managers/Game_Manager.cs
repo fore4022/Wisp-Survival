@@ -64,7 +64,7 @@ public class Game_Manager
     // 게임 정보 불러오기 및 초기화
     public void InitGame()
     {
-        stageInformation = Managers.Main.GetCurrentStageSO().information;
+        stageInformation = Managers.Main.GetCurrentStageSO().Information;
         _isPlaying = false;
 
         Init();

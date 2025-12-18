@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c42b0b75fa6a14db3375d1155e331f, type: 3}
   m_Name: Rock_mountain
   m_EditorClassIdentifier: 
-  _infoPath: Info
-  _iconPath: Icon
+  _information: {fileID: 11400000, guid: f74b935582a11b84b87c4f444ebbafea, type: 2}
+  _iconSprite: {fileID: 11400000, guid: ed2edd7c4fd5af747bd7a232cfbcb4a8, type: 2}
   _stagePath: Rock_mountain
   _name: "\uBC14\uC704\uC0B0"
-  information: {fileID: 11400000, guid: f74b935582a11b84b87c4f444ebbafea, type: 2}
-  iconSprite: {fileID: 11400000, guid: ed2edd7c4fd5af747bd7a232cfbcb4a8, type: 2}

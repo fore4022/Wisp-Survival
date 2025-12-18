@@ -12,29 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8da89300e54d74c87d8e14134d77ac, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  pathList:
-  - Assets/SO/SkillInformation/Arcane_Blaze.asset
-  - Assets/SO/SkillInformation/Divine_Radiance.asset
-  - Assets/SO/SkillInformation/Flame_Tempest.asset
-  - Assets/SO/SkillInformation/Frost_Shards.asset
-  - Assets/SO/SkillInformation/Phantom_Blade.asset
-  - Assets/SO/SkillInformation/Pulse_Burst.asset
-  - Assets/SO/SkillInformation/Purifying_Cross.asset
-  - Assets/SO/SkillInformation/Thunderstroke.asset
-  - Assets/SO/SkillInformation/Void_Burst.asset
-  - Assets/SO/SkillInformation/Void_Vortex.asset
-  - Assets/SO/SkillInformation/Sonic_Boom.asset
-  - Assets/SO/SkillInformation/Energy_Spear.asset
-  skillInformationList:
+  _skillInformationList:
   - {fileID: 11400000, guid: d88a84974f5dff84a8423fd3091b2aab, type: 2}
   - {fileID: 11400000, guid: 638614d3c143b3a43becca58456eb848, type: 2}
+  - {fileID: 11400000, guid: e207603d1090f534b9cabf930648f453, type: 2}
   - {fileID: 11400000, guid: 36915492acc929c4290a91b7b9db0b3b, type: 2}
   - {fileID: 11400000, guid: ec600e2dded5e3246ac1162222bff279, type: 2}
   - {fileID: 11400000, guid: 70ac5aa45abfc9846b7829777b718f86, type: 2}
   - {fileID: 11400000, guid: 248f3c23e8b94d841a974e60f00ddec9, type: 2}
   - {fileID: 11400000, guid: d677659c5a1e8f640be66bdf143494dc, type: 2}
+  - {fileID: 11400000, guid: 94da6d8c283b35045bec8df52016ed7a, type: 2}
   - {fileID: 11400000, guid: 7944311dac1751c4c9f5385866517a52, type: 2}
   - {fileID: 11400000, guid: 582c875a28dca284c8c2f7158f881662, type: 2}
   - {fileID: 11400000, guid: 61cc9ccac9c405b45a49cb7e36f89ff9, type: 2}
-  - {fileID: 11400000, guid: 94da6d8c283b35045bec8df52016ed7a, type: 2}
-  - {fileID: 11400000, guid: e207603d1090f534b9cabf930648f453, type: 2}

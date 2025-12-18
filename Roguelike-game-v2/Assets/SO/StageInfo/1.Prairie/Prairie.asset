@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c42b0b75fa6a14db3375d1155e331f, type: 3}
   m_Name: Prairie
   m_EditorClassIdentifier: 
-  _infoPath: Info
-  _iconPath: Icon
+  _information: {fileID: 11400000, guid: 2c4fa5fad6ea1d24c8b1b4b5c7e87f44, type: 2}
+  _iconSprite: {fileID: 11400000, guid: e562d4a9a1ef32048a52b314503e5e49, type: 2}
   _stagePath: Prairie
   _name: "\uCD08\uC6D0"
-  information: {fileID: 11400000, guid: 2c4fa5fad6ea1d24c8b1b4b5c7e87f44, type: 2}
-  iconSprite: {fileID: 11400000, guid: e562d4a9a1ef32048a52b314503e5e49, type: 2}

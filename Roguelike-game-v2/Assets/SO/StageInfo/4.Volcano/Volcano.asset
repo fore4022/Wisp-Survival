@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c42b0b75fa6a14db3375d1155e331f, type: 3}
   m_Name: Volcano
   m_EditorClassIdentifier: 
-  _infoPath: Info
-  _iconPath: Icon
+  _information: {fileID: 11400000, guid: baf6608e500fb104bb8a2f6c7182714b, type: 2}
+  _iconSprite: {fileID: 11400000, guid: fbf91235ddea0e7499b634e50cfc2441, type: 2}
   _stagePath: Volcano
   _name: "\uD654\uC0B0"
-  information: {fileID: 11400000, guid: baf6608e500fb104bb8a2f6c7182714b, type: 2}
-  iconSprite: {fileID: 11400000, guid: fbf91235ddea0e7499b634e50cfc2441, type: 2}

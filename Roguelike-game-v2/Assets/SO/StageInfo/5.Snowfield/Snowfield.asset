@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c42b0b75fa6a14db3375d1155e331f, type: 3}
   m_Name: Snowfield
   m_EditorClassIdentifier: 
-  _infoPath: Info
-  _iconPath: Icon
+  _information: {fileID: 11400000, guid: 85e1e97897d30044187726885e73b8ba, type: 2}
+  _iconSprite: {fileID: 11400000, guid: 5adffb6ff640bb54fb8fe8b13019a208, type: 2}
   _stagePath: Snowfield
   _name: "\uC124\uC6D0"
-  information: {fileID: 11400000, guid: 85e1e97897d30044187726885e73b8ba, type: 2}
-  iconSprite: {fileID: 11400000, guid: 5adffb6ff640bb54fb8fe8b13019a208, type: 2}

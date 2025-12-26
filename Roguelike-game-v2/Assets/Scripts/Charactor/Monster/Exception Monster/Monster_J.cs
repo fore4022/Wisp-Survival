@@ -50,7 +50,7 @@ public class Monster_J : BasicMonster
                 totalTime = Death_AnimationDuration;
             }
 
-            _speedMultiplier = Mathf.Lerp(0, SpeedMultiplierDefault, Ease.InCirc(totalTime / Death_AnimationDuration));
+            _speedMultiplier = Mathf.Lerp(0, SpeedMultiplierDefault, totalTime / Death_AnimationDuration);
 
             yield return null;
         }

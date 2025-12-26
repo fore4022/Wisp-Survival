@@ -47,7 +47,7 @@ public class Monster_D : BasicMonster
                     totalTime = _dashDuration;
                 }
 
-                _speedMultiplier = Mathf.Lerp(_dashSpeed, SpeedMultiplierDefault, Ease.InExpo(totalTime / _dashDuration));
+                _speedMultiplier = Mathf.Lerp(_dashSpeed, SpeedMultiplierDefault, totalTime / _dashDuration);
 
                 yield return null;
             }

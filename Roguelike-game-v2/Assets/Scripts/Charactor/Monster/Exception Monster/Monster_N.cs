@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 /// <summary>
@@ -15,6 +16,7 @@ public class Monster_N : BasicMonster_WithObject
     [SerializeField] private float _skillRange;
     [SerializeField] private float _skillCooldown;
 
+    private Sequence _sequence = DOTween.Sequence();
     private Coroutine _behavior = null;
     private WaitForSeconds _cooldown;
     private WaitForSeconds _delay;
@@ -56,6 +58,10 @@ public class Monster_N : BasicMonster_WithObject
 
             transform.SetRotation(-_skillRotation * sign, _skillDuration, EaseType.InQuad)
                 .SetRotation(_skillRotation * sign, _skillDuration * 2, EaseType.InQuad, TweenOperation.Append);
+
+            transform.DORotate(-_skillRotation * sign, _skillDuration).SetEase(Ease.InQuad);
+
+            _sequence.Append().Append();
 
             yield return _delay;
 

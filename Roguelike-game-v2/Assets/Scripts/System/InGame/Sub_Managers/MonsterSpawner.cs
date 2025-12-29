@@ -27,18 +27,19 @@ public class MonsterSpawner
     }
     public void StopSpawn()
     {
-        CoroutineHelper.Stop(_spawnGroup);
+        CoroutineHelper.Stop(_monsterSpawn, CoroutineType.InGameSystem);
+        CoroutineHelper.Stop(_spawnGroup, CoroutineType.InGameSystem);
     }
     public void ReStart()
     {
         if(_spawnGroup != null)
         {
-            CoroutineHelper.Stop(_spawnGroup);
+            CoroutineHelper.Stop(_spawnGroup, CoroutineType.InGameSystem);
         }
 
         if(_monsterSpawn != null)
         {
-            CoroutineHelper.Stop(_monsterSpawn);
+            CoroutineHelper.Stop(_monsterSpawn, CoroutineType.InGameSystem);
         }
 
         StartSpawn();
@@ -77,7 +78,7 @@ public class MonsterSpawner
 
         if(_spawnGroup != null)
         {
-            CoroutineHelper.Stop(_spawnGroup);
+            CoroutineHelper.Stop(_spawnGroup, CoroutineType.InGameSystem);
         }
     }
     private IEnumerator MonsterSpawning(SpawnPattern_SO spawnInformation)

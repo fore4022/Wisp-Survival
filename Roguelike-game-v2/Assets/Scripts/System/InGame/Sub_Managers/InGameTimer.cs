@@ -29,13 +29,13 @@ public class InGameTimer
     }
     public void StopTimer()
     {
-        CoroutineHelper.Stop(_inGameTimer);
+        CoroutineHelper.Stop(_inGameTimer, CoroutineType.InGameSystem);
     }
     public void ReStart()
     {
         _seconds = _minutes = _hours = 0;
 
-        CoroutineHelper.Stop(_inGameTimer);
+        StopTimer();
 
         _inGameTimer = CoroutineHelper.Start(Timer(), CoroutineType.InGameSystem);
     }

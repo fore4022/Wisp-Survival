@@ -14,12 +14,12 @@ public static class CoroutineHelper
     private static Etc_Mono _etcMono = null;
 
     // 코루틴 실행
-    public static Coroutine Start(IEnumerator coroutine, CoroutineType type = CoroutineType.Etc)
+    public static Coroutine Start(IEnumerator coroutine, CoroutineType type)
     {
         return GetMonoBehaviour(type).StartCoroutine(coroutine);
     }
     // 코루틴 정지, 코루틴을 실행시킨 MonoScript를 통해서만 코루틴을 정지할 수 있다.
-    public static void Stop(Coroutine coroutine, CoroutineType type = CoroutineType.Etc)
+    public static void Stop(Coroutine coroutine, CoroutineType type)
     {
         GetMonoBehaviour(type).StopCoroutine(coroutine);
     }
@@ -29,7 +29,7 @@ public static class CoroutineHelper
         GetMonoBehaviour(type).StopAllCoroutines();
     }
     // Type에 해당하는 MonoScript를 반환, MonoScript가 Null인 경우에 빈 객체에 MonoScript들을 생성 후 반환
-    private static MonoBehaviour GetMonoBehaviour(CoroutineType type = CoroutineType.Etc)
+    private static MonoBehaviour GetMonoBehaviour(CoroutineType type)
     {
         if(_manageMono == null)
         {

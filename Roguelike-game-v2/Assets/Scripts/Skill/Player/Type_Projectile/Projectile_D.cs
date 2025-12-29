@@ -14,6 +14,8 @@ public class Projectile_D : PlayerSkill_Projectile, IProjectile
     [SerializeField][Range(0.01f, 10)] private float _targetScale;
     [SerializeField][Min(0.01f)] private float _duration;
 
+    private bool _isInit = false;
+
     public bool Finished { get { return moving == null; } }
     public void Set()
     {
@@ -40,6 +42,17 @@ public class Projectile_D : PlayerSkill_Projectile, IProjectile
         if(go.TryGetComponent(out IDamageReceiver damageReceiver))
         {
             damageReceiver.TakeDamage(this);
+        }
+    }
+    private void OnDisable()
+    {
+        if(_isInit)
+        {
+            transform.localScale = new(1, 1);
+        }
+        else
+        {
+            _isInit = true;
         }
     }
     public IEnumerator Moving()

@@ -60,7 +60,7 @@ public class Title_TW : MonoBehaviour
 
         _entityList[3].DOMove(new(-2.9f, -0.8f), 1f)
             .SetDelay(0.35f)
-            .SetEase(Ease.OutBack);
+            .SetEase(Ease.OutCirc);
 
         _entityList[3].DORotate(new(0, 0, 1120), 1.1f, RotateMode.FastBeyond360)
             .SetDelay(0.3f)
@@ -73,7 +73,7 @@ public class Title_TW : MonoBehaviour
 
         _entityList[4].DOMove(new(-3.5f, 0.6f), 1f)
             .SetDelay(0.375f)
-            .SetEase(Ease.OutBack);
+            .SetEase(Ease.OutCirc);
 
         _entityList[4].DORotate(new(0, 0, 740), 1.1f, RotateMode.FastBeyond360)
             .SetDelay(0.3f)

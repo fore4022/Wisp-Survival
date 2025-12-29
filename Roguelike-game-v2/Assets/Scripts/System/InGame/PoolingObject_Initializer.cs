@@ -21,13 +21,13 @@ public class PoolingObject_Initializer
     }
     private IEnumerator Initializing(List<GameObject> monsterList, List<GameObject> skillList)
     {
-        _coroutine = CoroutineHelper.Start(Set_MonsterList(monsterList));
+        _coroutine = CoroutineHelper.Start(Set_MonsterList(monsterList), CoroutineType.InGameSystem);
 
         yield return null;
 
         yield return new WaitUntil(() => _coroutine == null);
 
-        _coroutine = CoroutineHelper.Start(Set_SkillList(skillList));
+        _coroutine = CoroutineHelper.Start(Set_SkillList(skillList), CoroutineType.InGameSystem);
         
         yield return null;
 

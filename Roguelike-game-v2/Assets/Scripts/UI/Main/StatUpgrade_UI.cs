@@ -15,6 +15,7 @@ public class StatUpgrade_UI : UserInterface
     public GameObject background;
 
     private PlayerStat_Manage _statSelection;
+    private RectTransform _rect;
 
     private const float Duration = 0.2f;
 
@@ -26,6 +27,7 @@ public class StatUpgrade_UI : UserInterface
     public override void SetUserInterface()
     {
         _statSelection = GetComponent<PlayerStat_Manage>();
+        _rect = GetComponent<RectTransform>();
         statPointText = transform.GetComponentInChild<TextMeshProUGUI>();
 
         _statSelection.Set(Managers.Data.user.Stat);
@@ -48,15 +50,15 @@ public class StatUpgrade_UI : UserInterface
         _toggle = !_toggle;
 
         background.SetActive(_toggle);
-        
+
         if(_toggle)
         {
-            transform.DOMove(new(0, 40), Duration)
+            _rect.DOAnchorPos(new(0, 40), Duration)
                 .SetEase(Ease.OutSine);
         }
         else
         {
-            transform.DOMove(new(0, -1125), Duration)
+            _rect.DOAnchorPos(new(0, -1125), Duration)
                 .SetEase(Ease.OutSine);
         }
     }

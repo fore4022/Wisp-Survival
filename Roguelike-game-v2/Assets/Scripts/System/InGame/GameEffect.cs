@@ -15,15 +15,15 @@ public class GameEffect
     {
         Managers.UI.Hide<LevelUp_UI>();
 
-        CoroutineHelper.Start(GameOver_Effecting());
+        CoroutineHelper.Start(GameOver_Effecting(), CoroutineType.Etc);
     }
     public void StageClear()
     {
-        CoroutineHelper.Start(StageClear_Effecting());
+        CoroutineHelper.Start(StageClear_Effecting(), CoroutineType.InGameSystem);
     }
     public void ContinuePlay()
     {
-        CoroutineHelper.Start(ContinuePlay_Effecting());
+        CoroutineHelper.Start(ContinuePlay_Effecting(), CoroutineType.InGameSystem);
     }
     private IEnumerator GameOver_Effecting()
     {

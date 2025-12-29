@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class Scene_Manager
 
         onLoad?.Invoke();
 
+        DOTween.KillAll();
         Managers.UI.Clear();
         Managers.UI.Show<LoadingOverlay_UI>();
         CoroutineHelper.Start(Managers.Scene.SceneSetting(), CoroutineType.Manage);

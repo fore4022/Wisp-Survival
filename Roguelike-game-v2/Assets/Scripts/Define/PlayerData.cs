@@ -57,7 +57,7 @@ public class PlayerData
 
                 if(_levelCalculation != null)
                 {
-                    CoroutineHelper.Stop(_levelCalculation);
+                    CoroutineHelper.Stop(_levelCalculation, CoroutineType.Manage);
                 }
 
                 _levelCalculation = CoroutineHelper.Start(WaitLevelCalculation(), CoroutineType.Manage);

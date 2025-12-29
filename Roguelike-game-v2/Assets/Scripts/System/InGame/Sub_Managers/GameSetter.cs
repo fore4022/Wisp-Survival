@@ -52,17 +52,17 @@ public class GameSetter
 
         yield return new WaitForEndOfFrame();
 
-        CoroutineHelper.Start(Setting());
+        CoroutineHelper.Start(Setting(), CoroutineType.InGameSystem);
     }
     private IEnumerator Setting()
     {
         Time.timeScale = 0;
 
-        _coroutine = CoroutineHelper.Start(DataLoading());
+        _coroutine = CoroutineHelper.Start(DataLoading(), CoroutineType.InGameSystem);
 
         yield return new WaitUntil(() => _coroutine == null);
 
-        _coroutine = CoroutineHelper.Start(InstantiateCreating());
+        _coroutine = CoroutineHelper.Start(InstantiateCreating(), CoroutineType.InGameSystem);
 
         yield return new WaitUntil(() => _coroutine == null);
 

@@ -36,7 +36,7 @@ public class SkillCaster
     }
     public void CastingStop()
     {
-        CoroutineHelper.Stop(_cast);
+        CoroutineHelper.Stop(_cast, CoroutineType.InGameSystem);
     }
     private IEnumerator Casting()
     {

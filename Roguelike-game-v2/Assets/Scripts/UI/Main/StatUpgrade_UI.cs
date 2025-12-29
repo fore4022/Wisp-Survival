@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -50,11 +51,13 @@ public class StatUpgrade_UI : UserInterface
         
         if(_toggle)
         {
-            transform.SetPosition(new(0, 40), Duration, EaseType.OutSine);
+            transform.DOMove(new(0, 40), Duration)
+                .SetEase(Ease.OutSine);
         }
         else
         {
-            transform.SetPosition(new(0, -1125), Duration, EaseType.OutSine);
+            transform.DOMove(new(0, -1125), Duration)
+                .SetEase(Ease.OutSine);
         }
     }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 /// <summary>
@@ -43,7 +44,6 @@ public class GameEffect
             yield return null;
         }
 
-        Managers.Game.player.Kill();
         Managers.UI.Show<GameOver_UI>();
     }
     private IEnumerator StageClear_Effecting()
@@ -52,7 +52,7 @@ public class GameEffect
 
         float totalTime = 0;
 
-        cam.SetPosition(cam.position + new Vector3(0, -0.3f), Duration);
+        cam.DOMove(cam.position + new Vector3(0, -0.3f), Duration);
 
         while(totalTime != Duration)
         {
@@ -78,7 +78,7 @@ public class GameEffect
 
         float totalTime = 0;
 
-        cam.SetPosition(cam.position + new Vector3(0, 0.3f), Duration);
+        cam.DOMove(cam.position + new Vector3(0, 0.3f), Duration);
 
         while (totalTime != Duration)
         {

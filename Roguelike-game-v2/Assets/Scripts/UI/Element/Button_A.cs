@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public abstract class Button_A : Button_Default, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
@@ -30,15 +31,15 @@ public abstract class Button_A : Button_Default, IPointerEnterHandler, IPointerE
     }
     protected virtual void PointerEnter()
     {
-        _rectTransform.SkipToEnd()
-            .SetScale(_maxScale, _duration);
+        DOTween.Complete(_rectTransform);
+        _rectTransform.DOScale(_maxScale, _duration);
     }
     protected virtual void PointerExit()
     {
         if(_isPointerDown) { return; }
 
-        _rectTransform.SkipToEnd()
-            .SetScale(_minScale, _duration);
+        DOTween.Complete(_rectTransform);
+        _rectTransform.DOScale(_minScale, _duration);
     }
     protected virtual void PointerDown()
     {
@@ -46,7 +47,7 @@ public abstract class Button_A : Button_Default, IPointerEnterHandler, IPointerE
     }
     protected virtual void PointerUp()
     {
-        _rectTransform.SetScale(_minScale, 0);
+        _rectTransform.localScale = new(_minScale, _minScale);
 
         _isPointerDown = false;
     }

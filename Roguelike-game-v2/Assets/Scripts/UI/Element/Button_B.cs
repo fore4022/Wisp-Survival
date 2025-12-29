@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 public abstract class Button_B : Button_Default, IPointerDownHandler, IPointerExitHandler
@@ -9,12 +10,12 @@ public abstract class Button_B : Button_Default, IPointerDownHandler, IPointerEx
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        _rectTransform.SkipToEnd()
-            .SetScale(_maxScale, _duration);
+        DOTween.Complete(_rectTransform);
+        _rectTransform.DOScale(_maxScale, _duration);
     }
     public virtual void OnPointerExit(PointerEventData eventData)
     {
-        _rectTransform.SkipToEnd()
-            .SetScale(_minScale, _duration);
+        DOTween.Complete(_rectTransform);
+        _rectTransform.DOScale(_minScale, _duration);
     }
 }

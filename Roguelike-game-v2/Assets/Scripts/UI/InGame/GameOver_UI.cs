@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -108,12 +109,12 @@ public class GameOver_UI : UserInterface
 
         yield return Typing.EffectAndGetWaiting(_tmpList[0], required, Delay);
 
-        _tmpList[0].SetPosition(new(-175, 195), Delay);
+        _tmpList[0].transform.DOMove(new(-175, 195), Delay);
         _tmpList[1].gameObject.SetActive(true);
 
         yield return Typing.EffectAndGetWaiting(_tmpList[1], Arrow);
 
-        _tmpList[1].SetPosition(new(-175, 195), Delay);
+        _tmpList[1].transform.DOMove(new(-175, 195), Delay);
 
         StartCoroutine(Typing.EraseEffecting(_tmpList[0], Delay));
 
@@ -124,7 +125,7 @@ public class GameOver_UI : UserInterface
 
         yield return Typing.EffectAndGetWaiting(_tmpList[2], survival);
 
-        _tmpList[2].SetPosition(new(0, 195), Delay);
+        _tmpList[2].transform.DOMove(new(0, 195), Delay);
 
         StartCoroutine(Typing.EraseEffecting(_tmpList[1], Delay));
 

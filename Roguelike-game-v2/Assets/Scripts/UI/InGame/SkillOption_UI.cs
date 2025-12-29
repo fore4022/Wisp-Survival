@@ -32,7 +32,7 @@ public class SkillOption_UI : Button_B
     {
         _info = info;
 
-        transform.SetScale(_minScale);
+        transform.localScale = new(_minScale, _minScale);
         SetOption();
     }
     private void SetOption()

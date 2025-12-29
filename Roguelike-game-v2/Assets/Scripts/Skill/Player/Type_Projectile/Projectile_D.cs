@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 /// <summary>
@@ -13,15 +14,15 @@ public class Projectile_D : PlayerSkill_Projectile, IProjectile
     [SerializeField][Range(0.01f, 10)] private float _targetScale;
     [SerializeField][Min(0.01f)] private float _duration;
 
-    private bool _isInit = false;
-
     public bool Finished { get { return moving == null; } }
     public void Set()
     {
         transform.position = Managers.Game.player.gameObject.transform.position;
         direction = Default_Calculate.GetRandomDirection();
 
-        transform.SetScale(5.75f, _duration, EaseType.OutCubic);
+        transform.DOScale(5.75f, _duration)
+            .SetEase(Ease.OutCubic)
+            .SetLink(gameObject, LinkBehaviour.KillOnDisable);
         
         if(Random.Range(0, 100) <= _probability)
         {
@@ -39,19 +40,6 @@ public class Projectile_D : PlayerSkill_Projectile, IProjectile
         if(go.TryGetComponent(out IDamageReceiver damageReceiver))
         {
             damageReceiver.TakeDamage(this);
-        }
-    }
-    private void OnDisable()
-    {
-        if(_isInit)
-        {
-            _defaultCollider.enabled = false;
-
-            transform.Kill().SetScale(1);
-        }
-        else
-        {
-            _isInit = true;
         }
     }
     public IEnumerator Moving()

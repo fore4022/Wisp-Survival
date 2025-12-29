@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 /// <summary>
@@ -55,8 +56,6 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
     }
     private void OnDisable()
     {
-        transform.Kill();
-
         transform.rotation = Quaternion.identity;
         _effectCollider.enabled = false;
         _isExplosion = false;
@@ -65,7 +64,8 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
     {
         float totalTime = 0;
         
-        transform.SetRotation(new(0, 0, Random.Range(InitialRotationAngleMin, InitialRotationAngleMax)), _castDelay * 2, EaseType.OutCubic);
+        transform.DORotate(new(0, 0, Random.Range(InitialRotationAngleMin, InitialRotationAngleMax)), _castDelay * 2)
+            .SetEase(Ease.OutCubic);
 
         while(totalTime != _castDelay)
         {
@@ -88,8 +88,13 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
         direction = Default_Calculate.GetDirection(_targetPosition, (Vector2)Managers.Game.player.transform.position + _castingPosition);
         _signAngle = Random.Range(0, 2) == 1 ? -1 : 1;
 
-        transform.SetRotation(Default_Calculate.GetQuaternion(direction).eulerAngles + new Vector3(0, 0, (360 + AnimationAngle * _signAngle) - transform.rotation.eulerAngles.z % 360), _castDelay, EaseType.OutCirc)
-            .SetRotation(new(0, 0, AnimationAngle * -_signAngle), _castDelay * 2, EaseType.OutCubic, TweenOperation.Append);
+        transform.DORotate(Default_Calculate.GetQuaternion(direction).eulerAngles + new Vector3(0, 0, (360 + AnimationAngle * _signAngle) - transform.rotation.eulerAngles.z % 360), _castDelay)
+            .SetEase(Ease.OutCirc)
+            .OnComplete(() =>
+            {
+                transform.DORotate(new(0, 0, AnimationAngle * -_signAngle), _castDelay * 2)
+                .SetEase(Ease.OutCubic);
+            });
 
         yield return new WaitForSeconds(_castDelay * 3);
 

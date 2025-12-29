@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -91,14 +92,15 @@ public class Player : MonoBehaviour, IDamageReceiver
     }
     private void Die()
     {
+        transform.rotation = new();
         _render.sortingLayerID = SortingLayer.NameToID("AboveEffect");
         _render.flipX = false;
 
         _animator.Play("death");
-        transform.SetRotation(new(0, 0, 0))
-            .SetScale(10, Duration)
-            .SetPosition(transform.position + new Vector3(0, 0.5f), Duration)
-            .SetRotation(new(0, 0, 370), Duration);
+
+        transform.DOScale(10, Duration);
+        transform.DOMove(transform.position + new Vector3(0, 0.5f), Duration);
+        transform.DORotate(new(0, 0, 370f), Duration);
     }
     private IEnumerator Init()
     {

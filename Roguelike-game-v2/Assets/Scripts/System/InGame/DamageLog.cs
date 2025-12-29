@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -52,8 +53,9 @@ public class DamageLog : MonoBehaviour
 
         UIElementUtility.SetTextAlpha(_log, 255);
         UIElementUtility.SetTextAlpha(_log, 150, Duration);
-        transform.SetPosition(targetPosition, Duration).
-            SetScale(TargetScale, Duration);
+
+        transform.DOScale(TargetScale, Duration);
+        transform.DOMove(targetPosition, Duration);
 
         _log.enabled = true;
 

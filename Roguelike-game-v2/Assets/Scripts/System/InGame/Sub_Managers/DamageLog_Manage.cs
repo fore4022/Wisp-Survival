@@ -24,14 +24,4 @@ public class DamageLog_Manage
         damageLogs[obj].SetInformation(position, damage);
         obj.SetActive(true);
     }
-    public void Clear()
-    {
-        foreach(PoolingObject obj in damageLogs.Keys)
-        {
-            if(obj.activeSelf)
-            {
-                obj.Transform.Kill();
-            }
-        }
-    }
 }

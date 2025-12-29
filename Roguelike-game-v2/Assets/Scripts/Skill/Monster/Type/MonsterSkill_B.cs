@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 /// <summary>
@@ -51,16 +52,12 @@ public class MonsterSkill_B : MonsterSkill_Damage, IFakeShadowSource
 
         gameObject.SetActive(false);
     }
-    protected override void Disable()
-    {
-        transform.Kill();
-
-        base.Disable();
-    }
     private IEnumerator Casting()
     {
-        transform.SetScale(_scaleValue / 5 * 3, _duration)
-            .SetPosition(_targetPosition, _duration, EaseType.InQuad);
+        transform.DOScale(_scaleValue / 5 * 3, _duration)
+            .SetLink(gameObject, LinkBehaviour.KillOnDisable);
+        transform.DOMove(_targetPosition, _duration)
+            .SetEase(Ease.InQuad).SetLink(gameObject, LinkBehaviour.KillOnDisable);
 
         StartCoroutine(ColorUtil.ChangeColor(_render, Color.white, _defaultColor, _duration));
 

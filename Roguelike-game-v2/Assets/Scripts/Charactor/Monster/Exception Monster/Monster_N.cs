@@ -16,7 +16,6 @@ public class Monster_N : BasicMonster_WithObject
     [SerializeField] private float _skillRange;
     [SerializeField] private float _skillCooldown;
 
-    private Sequence _sequence = DOTween.Sequence();
     private Coroutine _behavior = null;
     private WaitForSeconds _cooldown;
     private WaitForSeconds _delay;
@@ -56,12 +55,15 @@ public class Monster_N : BasicMonster_WithObject
             _canSwitchDirection = false;
             sign = _render.flipX ? 1 : -1;
 
-            transform.SetRotation(-_skillRotation * sign, _skillDuration, EaseType.InQuad)
-                .SetRotation(_skillRotation * sign, _skillDuration * 2, EaseType.InQuad, TweenOperation.Append);
-
-            transform.DORotate(-_skillRotation * sign, _skillDuration).SetEase(Ease.InQuad);
-
-            _sequence.Append().Append();
+            transform.DORotate(-_skillRotation * sign, _skillDuration)
+                .SetEase(Ease.InQuad)
+                .SetLink(gameObject, LinkBehaviour.KillOnDisable)
+                .OnComplete(() =>
+                {
+                    transform.DORotate(_skillRotation * sign, _skillDuration * 2)
+                    .SetEase(Ease.InQuad)
+                    .SetLink(gameObject, LinkBehaviour.KillOnDisable);
+                });
 
             yield return _delay;
 

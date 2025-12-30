@@ -15,10 +15,8 @@ public class EnterMainScene : MonoBehaviour, IPointerClickHandler
     {
         if(isLoad)
         {
-            if(_titleTW.IsTweenPlaying())
+            if(!_titleTW.CanEnterMain)
             {
-                _titleTW.AllSkipToEnd();
-
                 return;
             }
 

@@ -32,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1.175, y: 1.175, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.7625, y: 1.7625, z: 1.5000001}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -253,9 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878a735d2e249ae418ab341290b9c1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dashSpeed: 3.05
+  _dashSpeed: 2.5
   _dashDuration: 1.25
-  _dashCooldown: 2.75
+  _dashCooldown: 2.6
 --- !u!58 &5853464373331773155
 CircleCollider2D:
   m_ObjectHideFlags: 0

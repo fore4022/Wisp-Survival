@@ -64,7 +64,7 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
     {
         float totalTime = 0;
         
-        transform.DORotate(new(0, 0, Random.Range(InitialRotationAngleMin, InitialRotationAngleMax)), _castDelay * 2, RotateMode.FastBeyond360)
+        transform.DORotate(new(0, 0, Random.Range(InitialRotationAngleMin, InitialRotationAngleMax)), _castDelay * 2, RotateMode.LocalAxisAdd)
             .SetEase(Ease.OutCubic);
 
         while(totalTime != _castDelay)
@@ -88,11 +88,11 @@ public class Projectile_E : PlayerSkill_Projectile, IPlayerSkill
         direction = Default_Calculate.GetDirection(_targetPosition, (Vector2)Managers.Game.player.transform.position + _castingPosition);
         _signAngle = Random.Range(0, 2) == 1 ? -1 : 1;
 
-        transform.DORotate(Default_Calculate.GetQuaternion(direction).eulerAngles + new Vector3(0, 0, (360 + AnimationAngle * _signAngle) - transform.rotation.eulerAngles.z % 360), _castDelay, RotateMode.FastBeyond360)
+        transform.DORotate(Default_Calculate.GetQuaternion(direction).eulerAngles + new Vector3(0, 0, (360 + AnimationAngle * _signAngle) - transform.rotation.eulerAngles.z % 360), _castDelay, RotateMode.LocalAxisAdd)
             .SetEase(Ease.OutCirc)
             .OnComplete(() =>
             {
-                transform.DORotate(new(0, 0, AnimationAngle * -_signAngle), _castDelay * 2, RotateMode.FastBeyond360)
+                transform.DORotate(new(0, 0, AnimationAngle * -_signAngle), _castDelay * 2, RotateMode.LocalAxisAdd)
                 .SetEase(Ease.OutCubic);
             });
 

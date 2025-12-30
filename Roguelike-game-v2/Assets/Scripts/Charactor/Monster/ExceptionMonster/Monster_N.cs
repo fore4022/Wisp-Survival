@@ -55,12 +55,12 @@ public class Monster_N : BasicMonster_WithObject
             _canSwitchDirection = false;
             sign = _render.flipX ? 1 : -1;
 
-            transform.DORotate(-_skillRotation * sign, _skillDuration)
+            transform.DORotate(-_skillRotation * sign, _skillDuration, RotateMode.LocalAxisAdd)
                 .SetEase(Ease.InQuad)
                 .SetLink(gameObject, LinkBehaviour.KillOnDisable)
                 .OnComplete(() =>
                 {
-                    transform.DORotate(_skillRotation * sign, _skillDuration * 2)
+                    transform.DORotate(_skillRotation * sign, _skillDuration * 2, RotateMode.LocalAxisAdd)
                     .SetEase(Ease.InQuad)
                     .SetLink(gameObject, LinkBehaviour.KillOnDisable);
                 });

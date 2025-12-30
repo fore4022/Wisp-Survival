@@ -56,8 +56,10 @@ public class MonsterSkill_B : MonsterSkill_Damage, IFakeShadowSource
     {
         transform.DOScale(_scaleValue / 5 * 3, _duration)
             .SetLink(gameObject, LinkBehaviour.KillOnDisable);
+
         transform.DOMove(_targetPosition, _duration)
-            .SetEase(Ease.InQuad).SetLink(gameObject, LinkBehaviour.KillOnDisable);
+            .SetEase(Ease.InQuad)
+            .SetLink(gameObject, LinkBehaviour.KillOnDisable);
 
         StartCoroutine(ColorUtil.ChangeColor(_render, Color.white, _defaultColor, _duration));
 

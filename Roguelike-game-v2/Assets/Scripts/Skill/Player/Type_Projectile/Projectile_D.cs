@@ -22,7 +22,7 @@ public class Projectile_D : PlayerSkill_Projectile, IProjectile
         transform.position = Managers.Game.player.gameObject.transform.position;
         direction = Default_Calculate.GetRandomDirection();
 
-        transform.DOScale(5.75f, _duration)
+        transform.DOScale(_targetScale, _duration)
             .SetEase(Ease.OutCubic)
             .SetLink(gameObject, LinkBehaviour.KillOnDisable);
         

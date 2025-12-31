@@ -130,11 +130,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a2bc5411cbd23694aa69760f99f3b24f
-    m_Address: DamageLog
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aee5cbd67f1bcd7449b1d08d1160cd01
     m_Address: Assets/Prefabs/Monster/PotionI.prefab
     m_ReadOnly: 0

@@ -97,14 +97,19 @@ public class GameSetter
     private IEnumerator InstantiateCreating()
     {
         Object.Instantiate(_stage);
-
         Managers.Game.objectPool.Create(_monsterList, DefaultMonsterCount);
         Managers.Game.objectPool.Create(_skillList, DefaultSkillCount);
         Managers.Game.objectPool.Create(_damageText);
 
         int typeCount = _monsterList.Count + _skillList.Count;
 
-        yield return new WaitUntil(() => typeCount + 1 <= Managers.Game.objectPool.PoolingObjectsCount);
+        yield return new WaitUntil(() => typeCount + 1 == Managers.Game.objectPool.PoolingObjectsTypeCount);
+        
+        Debug.Log(_damageText);
+        Debug.Log(_damageText == null);
+        Debug.Log(_damageText.gameObject.name);
+        Debug.Log(Managers.Game.objectPool.GetObject(DamageLog_Manage.PrefabName));
+        Debug.Log(Managers.Game.objectPool.GetObject(DamageLog_Manage.PrefabName).GetComponent<DamageLog>());
 
         _poolingObjectInitializer.Start(_monsterList, _skillList);
         Managers.Game.damageLog_Manage.Set();

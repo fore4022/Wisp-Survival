@@ -32,7 +32,7 @@ public class ObjectPool
         _root = go.transform;
     }
     public Dictionary<string, List<PoolingObject>> PoolingObjects { get { return _poolingObjects; } }
-    public int PoolingObjectsCount { get { return _poolingObjects.Count; } }
+    public int PoolingObjectsTypeCount { get { return _poolingObjects.Count; } }
     // 프레임당 생성량 반환
     private int WorkPerFrame { get { return Mathf.Max(MaxWorkPerFrame / _coroutineCount, 1); } }
     // 키에 해당하는 오브젝트 활성화
@@ -136,6 +136,11 @@ public class ObjectPool
         {
             array[instanceCount + i] = Object.Instantiate(prefab, _root);
             array[instanceCount + i].SetActive(false);
+
+            if(prefab.name == "DamageLog")
+            {
+                Debug.Log(array[instanceCount + i]);
+            }
         }
     }
     // 인스턴스가 위치할 root를 생성 및 poolingObjects에 등록 또는 할당
@@ -189,6 +194,9 @@ public class ObjectPool
         {
             _poolingObjects[key].Add(new(array[i]));
         }
+
+
+        Debug.Log(key);
 
         _coroutineCount--;
     }

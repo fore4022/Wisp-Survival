@@ -57,7 +57,7 @@ public class Data_Manager
                     }
                     else
                     {
-                        user.StageClearInfo.Add(new(so.StagePath, StageState.Locked));
+                        user.StageClearInfo.Add(new(so.StagePath, StageState.Unlocked)); // Locked
                     }
                 }
             }

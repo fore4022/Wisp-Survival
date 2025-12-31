@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: UI
   m_GUID: 4ba626d8a5a779c46b5d9f0291b3b527
   m_SerializeEntries:
+  - m_GUID: a2bc5411cbd23694aa69760f99f3b24f
+    m_Address: DamageLog
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dbae4f254456a8e4b9f5f5f730201e6d
     m_Address: LoadingOverlay
     m_ReadOnly: 0

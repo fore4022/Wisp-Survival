@@ -52,6 +52,8 @@ public class GameSetter
 
         yield return new WaitForEndOfFrame();
 
+        yield return new WaitUntil(() => !Managers.Scene.IsSceneLoading);
+
         CoroutineHelper.Start(Setting(), CoroutineType.InGameSystem);
     }
     private IEnumerator Setting()

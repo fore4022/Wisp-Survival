@@ -16,13 +16,16 @@ public class Scene_Manager
 
     private string _sceneName = "Title";
     private bool _hasInitialization;
+    private bool _isSceneLoading;
 
     public string CurrentSceneName { get { return _sceneName; } }
+    public bool IsSceneLoading { get { return _isSceneLoading; } }
     // 이벤트 호출 및 기존 씬의 UI 정보 해제
     public void LoadScene(SceneNames sceneName, bool hasInitialization = true)
     {
         _sceneName = sceneName.ToString();
         _hasInitialization = hasInitialization;
+        _isSceneLoading = true;
 
         onLoad?.Invoke();
 
@@ -49,7 +52,9 @@ public class Scene_Manager
 
         yield return new WaitUntil(() => SceneManager.GetActiveScene().name == _sceneName);
 
-        if(!_hasInitialization)
+        _isSceneLoading = false;
+
+        if (!_hasInitialization)
         {
             LoadComplete();
         }

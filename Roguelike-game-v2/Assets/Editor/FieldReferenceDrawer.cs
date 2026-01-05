@@ -25,7 +25,7 @@ public class FieldReferenceDrawer : PropertyDrawer
 
         if(componentProp.objectReferenceValue != null)
         {
-            var type = EditorUtility.InstanceIDToObject(componentProp.objectReferenceValue.GetInstanceID()).GetType();
+            var type = EditorUtility.EntityIdToObject(componentProp.objectReferenceValue.GetInstanceID()).GetType();
             var fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             if(fields.Count() > 0)

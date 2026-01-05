@@ -98,7 +98,7 @@ public class Monster_H : BasicMonster_WithObject
                 go.SetActive(true);
                 _animator.Play(_skillAnimationName);
 
-                yield return new WaitUntil(() => !go.activeSelf);
+                yield return new WaitUntil(() => !go.ActiveSelf);
             }
         }
 

@@ -1,0 +1,5 @@
+# ninja log v5
+1257	1466	7892914421980056	C:/Users/fore4/Desktop/Roguelike-game-v2/Roguelike-game-v2/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1y661f4r/obj/arm64-v8a/libswappywrapper.so	2ebe31bf6953eb80
+1	1256	7892914419911609	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	3ac366c1f6fdf796
+5	746	7892924891916037	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	3ac366c1f6fdf796
+747	1134	7892924895752151	C:/Users/fore4/Desktop/Roguelike-game-v2/Roguelike-game-v2/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1y661f4r/obj/arm64-v8a/libswappywrapper.so	2ebe31bf6953eb80

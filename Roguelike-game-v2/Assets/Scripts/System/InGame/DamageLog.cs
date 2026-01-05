@@ -8,7 +8,7 @@ public class DamageLog : MonoBehaviour
 
     private readonly Vector3 _adjustmentPosition = new(0, AdjustmentYPos, 0);
     private readonly Vector3 _defaultScale = new(DefaultScaleSize, DefaultScaleSize);
-    private const float DefaultFontSize = 128;
+    private const float DefaultFontSize = 64;
     private const float Duration = 0.35f;
     private const float TargetScale = 0.003f;
     private const float DefaultScaleSize = 0.005f;

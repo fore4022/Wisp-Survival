@@ -74,7 +74,7 @@ public class Monster_N : BasicMonster_WithObject
 
             go.SetActive(true);
 
-            yield return new WaitUntil(() => !go.activeSelf);
+            yield return new WaitUntil(() => !go.ActiveSelf);
 
             _speedMultiplier = 1;
             _canSwitchDirection = true;

@@ -63,7 +63,7 @@ public class Monster_B : BasicMonster_WithObject
         visualizer.SetActive(true);
         skill.SetActive(true);
 
-        yield return new WaitUntil(() => !skill.activeSelf);
+        yield return new WaitUntil(() => !skill.ActiveSelf);
 
         visualizer.SetActive(false);
     }

@@ -20,7 +20,7 @@ public class PoolingObject
     public SpriteRenderer SpriteRenderer { get { return GetType(ref _spriteRenderer); } }
     public string Name { get { return _go.name; } }
     // 게임 오브젝트 활성화 여부 반환, 게임 종료 시 false 반환
-    public bool activeSelf 
+    public bool ActiveSelf 
     {
         get 
         {

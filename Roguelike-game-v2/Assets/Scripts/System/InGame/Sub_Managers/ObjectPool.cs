@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 /// <summary>
 /// <para>
@@ -13,8 +12,8 @@ public class ObjectPool
 
     private Transform _root;
 
-    private const int MaxWorkPerFrame = 360;
-    private const int DefaultObjectCount = 500;
+    private const int MaxWorkPerFrame = 20;
+    private const int DefaultObjectCount = 120;
 
     private int _activeCreateCoroutineCount = 0;
 

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3165732899109303551}
   - component: {fileID: 3025864033930958750}
   - component: {fileID: 770386095828039889}
-  - component: {fileID: 2772062233181515819}
   - component: {fileID: 5853464373331773155}
+  - component: {fileID: -7934760434391485364}
   m_Layer: 10
   m_Name: DogB
   m_TagString: Monster
@@ -39,6 +39,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3528289451118205231
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -84,6 +85,7 @@ SpriteRenderer:
   m_SortingLayerID: -317748147
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 481071bc151197b4fa9f7ba5ca576235, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -93,7 +95,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &3165732899109303551
 Rigidbody2D:
@@ -241,21 +242,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2772062233181515819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8106883834458166952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 878a735d2e249ae418ab341290b9c1a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dashSpeed: 2.5
-  _dashDuration: 1.25
-  _dashCooldown: 2.6
 --- !u!58 &5853464373331773155
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -292,3 +278,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.015, y: -0.035}
   m_Radius: 0.245
+--- !u!114 &-7934760434391485364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106883834458166952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40157765e4e4eff4d9b36180a11ea4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _directionMultiplierDefault: 0.025

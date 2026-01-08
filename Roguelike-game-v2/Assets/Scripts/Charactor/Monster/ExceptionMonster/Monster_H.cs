@@ -64,6 +64,7 @@ public class Monster_H : BasicMonster_WithObject
 
             float totalTime = 0;
 
+            _canFlipX = false;
             _animator.speed = 0;
             _speedMultiplier = 3;
 
@@ -90,6 +91,7 @@ public class Monster_H : BasicMonster_WithObject
 
                 float sign = _render.flipX ? 1 : -1;
 
+                _canFlipX = true;
                 _animator.speed = 1;
                 _speedMultiplier = 0;
                 go.Transform.position = transform.position + _skillPosition * sign;

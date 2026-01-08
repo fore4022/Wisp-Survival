@@ -39,6 +39,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5138851939805840734
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -84,6 +85,7 @@ SpriteRenderer:
   m_SortingLayerID: -317748147
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: f633c27c122797143bf4782f5c45d885, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -93,7 +95,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &183888476796134946
 Rigidbody2D:
@@ -290,5 +291,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dcbb33fe9fac1049b4eee1b0146a11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rushSpeed: 2.7
-  _rushCastingTime: 0.9
+  _rushSpeed: 2.6
+  _rushCastingTime: 1

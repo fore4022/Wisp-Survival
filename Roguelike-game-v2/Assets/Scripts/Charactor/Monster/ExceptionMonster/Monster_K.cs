@@ -4,7 +4,7 @@ using UnityEngine;
 /// 빠른 속도로 플레이어를 향해서 이동, 유효 회전 제한
 /// </summary>
 /// <remarks>
-/// 사용 객체 : GolemA
+/// 사용 객체 : 
 /// </remarks>
 public class Monster_K : BasicMonster
 {

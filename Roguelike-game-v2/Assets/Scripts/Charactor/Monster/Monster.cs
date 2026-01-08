@@ -27,6 +27,7 @@ public class Monster : MonoBehaviour, IScriptableData
     protected float _maxHealth;
     protected float _user_Experience;
     protected int _inGameExperience;
+    protected bool _canFlipX = true;
     protected bool _isVisible = false;
 
     private const float CollectDelay = 20;
@@ -51,6 +52,8 @@ public class Monster : MonoBehaviour, IScriptableData
 
             _didInit = true;
         }
+
+        _canFlipX = true;
     }
     // 체력 재생
     private void Update()
@@ -137,6 +140,11 @@ public class Monster : MonoBehaviour, IScriptableData
     // 위치를 기준으로 플레이어를 바라보는 방향으로 스프라이트를 플립
     protected virtual void FlipX()
     {
+        if(!_canFlipX)
+        {
+            return;
+        }
+
         if(transform.position.x != Managers.Game.player.transform.position.x)
         {
             _render.flipX = !(transform.position.x > Managers.Game.player.transform.position.x);

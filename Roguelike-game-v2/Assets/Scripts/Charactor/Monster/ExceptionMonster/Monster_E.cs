@@ -16,6 +16,7 @@ public class Monster_E : BasicMonster
         base.Enable();
 
         _speedMultiplier = SpeedMultiplierDefault;
+        _canFlipX = true;
         _canSwitchDirection = true;
 
         StartCoroutine(RepeatBehavior());
@@ -44,6 +45,7 @@ public class Monster_E : BasicMonster
             yield return null;
         }
 
+        _canFlipX = false;
         _speedMultiplier = _rushSpeed;
     }
 }

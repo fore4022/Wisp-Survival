@@ -10,16 +10,19 @@ using UnityEngine;
 public class Monster_I : BasicMonster_WithObject
 {
     [SerializeField] private List<Vector3> _skillOffset;
+    [SerializeField] private float _spawnDelay;
     [SerializeField] private float _coolTime;
     [SerializeField] private float _monsterCount;
 
     private Coroutine _behavior = null;
-    private WaitForSeconds _delay;
+    private WaitForSeconds _waitSpawnDelay;
+    private WaitForSeconds _waitCoolTime;
     private string _monsterKey;
 
     protected override void Init()
     {
-        _delay = new(_coolTime);
+        _waitSpawnDelay = new(_spawnDelay);
+        _waitCoolTime = new(_coolTime);
         _monsterKey = monsterSO.ExtraObjects[0].name;
 
         base.Init();
@@ -40,7 +43,7 @@ public class Monster_I : BasicMonster_WithObject
     {
         if(Random.Range(0, 2) == 1)
         {
-            yield return _delay;
+            yield return _waitCoolTime;
         }
 
         PoolingObject go;
@@ -50,12 +53,14 @@ public class Monster_I : BasicMonster_WithObject
             for(int i = 0; i < _monsterCount; i++)
             {
                 go = Managers.Game.objectPool.GetObject(_monsterKey);
-                go.Transform.position = transform.position + _skillOffset[i];
+                go.Transform.position = transform.position + _skillOffset[Random.Range(1, _skillOffset.Count)];
                 
                 go.SetActive(true);
+
+                yield return _spawnDelay;
             }
 
-            yield return _delay;
+            yield return _waitCoolTime;
         }
     }
 }

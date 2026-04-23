@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 /// <summary>
 /// InputSystem을 이용하여 구현
 /// 입력 이벤트에 따라서 CharactorController_UI를 제어
 /// </summary>
+
 public class PlayerMove : IMoveable
 {
     private IMoveable _moveable;
@@ -22,22 +24,29 @@ public class PlayerMove : IMoveable
     private bool _didStartMove = false;
 
     public Vector2 Direction { get { return _direction; } }
+
     public float SpeedAmount { get { return Managers.Game.player.Stat.moveSpeed * SlowDownAmount * Time.deltaTime; } }
+
     public float SlowDownAmount { get { return _moveable.SlowDownAmount; } }
+
     public bool IsPointerOverUI { set { _isPointerOverUI = value; } }
+
     public void Init()
     {
         CoroutineHelper.Start(Initalization(), CoroutineType.InGameSystem);
     }
+
     public void OnMove()
     {
         _touchPosition = _context.ReadValue<Vector2>();
         _direction = Default_Calculate.GetDirection(_touchPosition, _enterTouchPosition, false);
     }
+
     public void SetSlowDown(float slowDown, float duration)
     {
         _moveable.SetSlowDown(slowDown, duration);
     }
+
     public void SetDirection()
     {
         if(_direction.x > 0)
@@ -49,6 +58,7 @@ public class PlayerMove : IMoveable
             _render.flipX = true;
         }
     }
+
     private void CancelMove()
     {
         Managers.UI.Hide<CharactorController_UI>();
@@ -64,6 +74,7 @@ public class PlayerMove : IMoveable
 
         Managers.Game.player.AnimationPlay("idle");
     }
+
     private IEnumerator Initalization()
     {
         _touchControl = Input_Manage.CreateAndGetInputAction<TouchControls>();
@@ -104,6 +115,7 @@ public class PlayerMove : IMoveable
             OnMove();
         });
     }
+
     private void StartMove()
     {
         Managers.UI.Show<CharactorController_UI>();
@@ -112,11 +124,13 @@ public class PlayerMove : IMoveable
         _charactorController.EnterPosition = _enterTouchPosition;
         _moving = CoroutineHelper.Start(Moving(), CoroutineType.InGameSystem);
     }
+
     public PlayerMove(SpriteRenderer render, DefaultMoveable moveable)
     {
         _render = render;
         _moveable = moveable;
     }
+
     private IEnumerator Moving()
     {
         _didStartMove = true;

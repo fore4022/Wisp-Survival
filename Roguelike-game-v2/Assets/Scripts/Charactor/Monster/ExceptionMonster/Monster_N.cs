@@ -1,12 +1,14 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+
 /// <summary>
 /// 쿨타임마다 현재 위치에서 스킬 시전
 /// </summary>
 /// <remarks>
 /// 사용 객체 : SwordA
 /// </remarks>
+
 public class Monster_N : BasicMonster_WithObject
 {
     [SerializeField] private Vector3 _skillRotation;
@@ -29,6 +31,7 @@ public class Monster_N : BasicMonster_WithObject
 
         base.Init();
     }
+
     protected override void Enable()
     {
         _speedMultiplier = 1;
@@ -37,12 +40,14 @@ public class Monster_N : BasicMonster_WithObject
 
         base.Enable();
     }
+
     protected override void Die()
     {
         base.Die();
 
         StopCoroutine(_behavior);
     }
+
     private IEnumerator RepeatBehavior()
     {
         yield return _cooldown;

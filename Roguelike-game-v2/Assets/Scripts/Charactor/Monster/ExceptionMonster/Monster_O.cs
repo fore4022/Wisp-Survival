@@ -1,10 +1,12 @@
 using UnityEngine;
+
 /// <summary>
 /// 잃은 체력에 비해서 능력치 상승
 /// </summary>
 /// <remarks>
 /// 사용 객체 : CountA
 /// </remarks>
+
 public class Monster_O : BasicMonster
 {
     [SerializeField] private Color _targetColor;
@@ -19,10 +21,12 @@ public class Monster_O : BasicMonster
         _onDamaged += HealthLossRatioUpdate;
         _onDamaged += ColorUpdate;
     }
+
     private void ColorUpdate()
     {
         _render.color = Color.Lerp(_defaultColor, _targetColor, _healthLossRatio);
     }
+
     private void HealthLossRatioUpdate()
     {
         _healthLossRatio = 1 - (_health / _maxHealth);

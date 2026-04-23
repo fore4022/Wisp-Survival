@@ -1,7 +1,9 @@
 using UnityEngine;
+
 /// <summary>
 /// 플레이어 스킬의 정보 타입
 /// </summary>
+
 [System.Serializable]
 public class Skill_Information
 {
@@ -19,5 +21,6 @@ public class Skill_Information
         name = so.Info.name;
         explanation = so.Info.explanation;
     }
+
     public string type { get { return go.name; } }
 }

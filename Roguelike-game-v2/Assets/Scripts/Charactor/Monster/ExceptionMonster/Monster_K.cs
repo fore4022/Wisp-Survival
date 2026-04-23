@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+
 /// <summary>
 /// 빠른 속도로 플레이어를 향해서 이동, 유효 회전 제한
 /// </summary>
 /// <remarks>
 /// 사용 객체 : 
 /// </remarks>
+
 public class Monster_K : BasicMonster
 {
     [SerializeField] private float _dashSpeedMultiplier;
@@ -22,12 +24,14 @@ public class Monster_K : BasicMonster
 
         _delay = new(_dashDuration);
     }
+
     protected override void Enable()
     {
         base.Enable();
     
         _behavior = StartCoroutine(RepeatBehavior());
     }
+
     protected override void Die()
     {
         base.Die();
@@ -36,6 +40,7 @@ public class Monster_K : BasicMonster
 
         StopCoroutine(_behavior);
     }
+
     private IEnumerator RepeatBehavior()
     {
         _canSwitchDirection = true;

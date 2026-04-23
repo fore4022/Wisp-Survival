@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+
 /// <summary>
 /// 짧게 끊어서 플레이어를 향해 돌진
 /// </summary>
 /// <remarks>
 /// 사용 객체 : SnakeF
 /// </remarks>
+
 public class Monster_C : BasicMonster
 {
     [SerializeField] private float _dashSpeed;
@@ -22,6 +24,7 @@ public class Monster_C : BasicMonster
 
         StartCoroutine(RepeatBehavior());
     }
+
     // 일정 시간 간격으로 속도 배율 조절을 통해서 돌진
     private IEnumerator RepeatBehavior()
     {

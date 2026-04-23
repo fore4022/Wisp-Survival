@@ -1,7 +1,9 @@
 using System;
+
 /// <summary>
 /// 스킬의 투사체 속성
 /// </summary>
+
 [Serializable]
 public class Projectile_Information
 {

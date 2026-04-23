@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+
 /// <summary>
 /// 주기적으로 플레이어의 방향으로 돌진
 /// </summary>
 /// <remarks>
 /// 사용 객체 : 
 /// </remarks>
+
 public class Monster_D : BasicMonster
 {
     [SerializeField] private float _dashSpeed;
@@ -20,12 +22,14 @@ public class Monster_D : BasicMonster
 
         base.Init();
     }
+
     protected override void Enable()
     {
         base.Enable();
 
         StartCoroutine(RepeatBehavior());
     }
+
     private IEnumerator RepeatBehavior()
     {
         _canSwitchDirection = true;

@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 /// <summary>
 /// 플레이어 스킬 대상을 구하는 식 구현
 /// </summary>
+
 public static class MonsterDetection
 {
     public static float largeastRange = 1.15f;
@@ -23,6 +25,7 @@ public static class MonsterDetection
             return target.transform.position;
         }
     }
+
     public static Vector2 GetRandomMonsterPosition()
     {
         GameObject target = FindRandomMonster();
@@ -36,6 +39,7 @@ public static class MonsterDetection
             return target.transform.position;
         }
     }
+
     public static Vector2 GetLargestMonsterGroup()
     {
         GameObject target = FindLargestMonsterGroup();
@@ -49,6 +53,7 @@ public static class MonsterDetection
             return target.transform.position;
         }
     }
+
     public static List<Vector2> GetLargestMonsterGroup(int count)
     {
         List<GameObject> targetList = FindLargestMonsterGroup(count);
@@ -81,6 +86,7 @@ public static class MonsterDetection
 
         return targetPositionList;
     }
+
     public static Vector2 GetRandomVector()
     {
         _vec.x = Random.Range(-Default_Calculate.width, Default_Calculate.width);
@@ -88,6 +94,7 @@ public static class MonsterDetection
 
         return _vec + (Vector2)Managers.Game.player.gameObject.transform.position;
     }
+
     private static List<GameObject> FindLargestMonsterGroup(int count)
     {
         List<(GameObject obj, int enemyCount) > targetObjectList = new List<(GameObject obj, int enemyCount)>();
@@ -113,6 +120,7 @@ public static class MonsterDetection
 
         return gameObjectList.Take(count).ToList();
     }
+
     private static List<GameObject> FindMonstersOnScreen(float? range = null)
     {
         List<GameObject> resultList = new List<GameObject>();
@@ -141,6 +149,7 @@ public static class MonsterDetection
 
         return resultList;
     }
+
     private static GameObject FindRandomMonster()
     {
         List<GameObject> gameObjectList = FindMonstersOnScreen();
@@ -154,6 +163,7 @@ public static class MonsterDetection
 
         return gameObjectList[index];
     }
+
     private static GameObject FindNearestMonster(Transform transform = null)
     {
         List<GameObject> gameObjectList = FindMonstersOnScreen();
@@ -184,6 +194,7 @@ public static class MonsterDetection
 
         return targetObject;
     }
+
     private static GameObject FindLargestMonsterGroup()
     {
         List<GameObject> gameObjectList = FindMonstersOnScreen();
@@ -213,6 +224,7 @@ public static class MonsterDetection
 
         return targetObject;
     }
+
     private static float GetDistance(GameObject go, out float result, Transform transform = null)
     {
         float distance = 0;

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+
 public class Audio_Manager
 {
     private AudioMixer _audioMixer;
@@ -10,11 +11,13 @@ public class Audio_Manager
     private const float MinValue = -80;
 
     public AudioMixer Mixer { get { return _audioMixer; } set { _audioMixer = value; } }
+
     public void Init()
     {
         SetGroup(SoundTypes.FX, Managers.Data.user.FX);
         SetGroup(SoundTypes.BGM, Managers.Data.user.BGM);
     }
+
     public void InitializedAudio()
     {
         GameObject[] objs = Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -27,6 +30,7 @@ public class Audio_Manager
             }
         }
     }
+
     public void Registration(AudioSource source)
     {
         if(_audioMixer == null)
@@ -38,6 +42,7 @@ public class Audio_Manager
             SetOutputMixerGroup(source);
         }
     }
+
     public void SetGroup(SoundTypes type)
     {
         if(type == SoundTypes.FX)
@@ -49,6 +54,7 @@ public class Audio_Manager
             SetGroup(type, Managers.Data.user.SetBGM());
         }
     }
+
     private void SetGroup(SoundTypes type, bool isActive)
     {
         float value = default;
@@ -71,6 +77,7 @@ public class Audio_Manager
 
         _audioMixer.SetFloat(type.ToString(), value);
     }
+
     public void SetOutputMixerGroup(AudioSource audio)
     {
         if(audio.outputAudioMixerGroup == null)
@@ -97,6 +104,7 @@ public class Audio_Manager
             }
         }
     }
+
     private IEnumerator WaitForAudioMixer(AudioSource source)
     {
         source.Stop();

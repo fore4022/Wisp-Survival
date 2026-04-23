@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
 /// 자신의 주변에 몬스터를 소환
 /// </summary>
 /// <remarks>
 /// 사용 객체 : WitchE
 /// </remarks>
+
 public class Monster_I : BasicMonster_WithObject
 {
     [SerializeField] private List<Vector3> _skillOffset;
@@ -27,18 +29,21 @@ public class Monster_I : BasicMonster_WithObject
 
         base.Init();
     }
+
     protected override void Enable()
     {
         base.Enable();
 
         _behavior = StartCoroutine(RepeatBehavior());
     }
+
     protected override void Die()
     {
         base.Die();
 
         StopCoroutine(_behavior);
     }
+
     private IEnumerator RepeatBehavior()
     {
         if(Random.Range(0, 2) == 1)

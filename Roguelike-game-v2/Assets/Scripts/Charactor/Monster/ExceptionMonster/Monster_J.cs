@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+
 /// <summary>
 /// 수명동안 플레이어를 향해 이동
 /// </summary>
 /// <remarks>
 /// 사용 객체 : BugC
 /// </remarks>
+
 [RequireComponent(typeof(CircleCollider2D))]
 public class Monster_J : BasicMonster
 {
@@ -19,6 +21,7 @@ public class Monster_J : BasicMonster
 
         base.Init();
     }
+
     protected override void Enable()
     {
         _speedMultiplier = SpeedMultiplierDefault;
@@ -26,17 +29,20 @@ public class Monster_J : BasicMonster
         base.Enable();
         StartCoroutine(RepeatBehavior());
     }
+
     protected override void Die()
     {
         StartCoroutine(GradualSlowdown());
         StartCoroutine(Dieing());
     }
+
     private IEnumerator RepeatBehavior()
     {
         yield return _delay;
 
         Die();
     }
+
     private IEnumerator GradualSlowdown()
     {
         float totalTime = 0;

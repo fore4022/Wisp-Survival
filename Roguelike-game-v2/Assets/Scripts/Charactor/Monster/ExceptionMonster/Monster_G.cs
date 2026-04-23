@@ -1,10 +1,12 @@
 using UnityEngine;
+
 /// <summary>
 /// 일정한 확률로 사망시, 현재 위치에 공격 시전
 /// </summary>
 /// <remarks>
 /// 사용 객체 : EarthB, Potionl, ScorpionC
 /// </remarks>
+
 public class Monster_G : BasicMonster_WithObject
 {
     [SerializeField][Range(0, 100)] private float _skillCastChance;
@@ -17,6 +19,7 @@ public class Monster_G : BasicMonster_WithObject
 
         base.Init();
     }
+
     protected override void Die()
     {
         if(_skillCastChance == 100)
@@ -33,6 +36,7 @@ public class Monster_G : BasicMonster_WithObject
 
         base.Die();
     }
+
     protected virtual void SkillCast()
     {
         PoolingObject go = Managers.Game.objectPool.GetObject(_skillKey);

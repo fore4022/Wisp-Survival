@@ -1,7 +1,9 @@
 using UnityEngine;
+
 /// <summary>
 /// 플레이어 스탯 비율과 레벨
 /// </summary>
+
 [System.Serializable]
 public class PlayerStat
 {
@@ -22,6 +24,7 @@ public class PlayerStat
     {
         defaultStat = new(50, 10, 2, 0);
     }
+
     public float MoveSpeed
     {
         get
@@ -43,6 +46,7 @@ public class PlayerStat
             }
         }
     }
+
     public float IncreaseHealth
     {
         get
@@ -64,6 +68,7 @@ public class PlayerStat
             }
         }
     }
+
     public float IncreaseDamage
     {
         get
@@ -85,6 +90,7 @@ public class PlayerStat
             }
         }
     }
+
     public float HealthRegenPerSec
     {
         get
@@ -106,6 +112,7 @@ public class PlayerStat
             }
         }
     }
+
     public bool IsSceneMain()
     {
         return Managers.Scene.CurrentSceneName == SceneName;

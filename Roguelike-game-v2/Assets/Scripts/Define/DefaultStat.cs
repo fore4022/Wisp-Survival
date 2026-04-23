@@ -1,7 +1,9 @@
 using System;
+
 /// <summary>
 /// 플레이어와 몬스터가 가지는 기본 스탯
 /// </summary>
+
 [Serializable]
 public class DefaultStat
 {
@@ -20,6 +22,7 @@ public class DefaultStat
         this.moveSpeed = moveSpeed;
         this.healthRegenPerSec = healthRegenPerSec;
     }
+
     public DefaultStat(DefaultStat stat, bool isPlayer = false)
     {
         if(isPlayer)

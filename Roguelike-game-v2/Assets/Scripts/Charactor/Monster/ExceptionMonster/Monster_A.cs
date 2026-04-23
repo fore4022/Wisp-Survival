@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+
 /// <summary>
 /// 플레이어에게 원거리 투사체를 발사
 /// </summary>
 /// <remarks>
 /// 사용 객체 : MushroomB
 /// </remarks>
+
 public class Monster_A : BasicMonster_WithObject
 {
     [SerializeField] private float _coolTime = 2.5f;
@@ -21,18 +23,21 @@ public class Monster_A : BasicMonster_WithObject
 
         base.Init();
     }
+
     protected override void Enable()
     {
         base.Enable();
 
         _behavior = StartCoroutine(RepeatBehavior());
     }
+
     protected override void Die()
     {
         base.Die();
 
         StopCoroutine(_behavior);
     }
+
     private IEnumerator RepeatBehavior()
     {
         PoolingObject go;

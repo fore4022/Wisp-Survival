@@ -9,11 +9,11 @@ using System.Linq;
 [System.Serializable]
 public class StageDatas
 {
-    private StageList_SO _so;
+    private StageListSO _so;
 
-    public StageList_SO SO { set { _so = value; } }
-    public List<Stage_SO> StageList { get { return _so.StageList; } }
-    public Stage_SO GetSO(string stageName, int sign)
+    public StageListSO SO { set { _so = value; } }
+    public List<StageSO> StageList { get { return _so.StageList; } }
+    public StageSO GetSO(string stageName, int sign)
     {
         int index = 0;
 

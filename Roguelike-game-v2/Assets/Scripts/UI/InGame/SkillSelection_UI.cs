@@ -82,7 +82,7 @@ public class SkillSelection_UI : UserInterface
 
         _background.enabled = false;
 
-        Input_Manage.EnableInputAction<TouchControls>();
+        InputManage.EnableInputAction<TouchControls>();
     }
     private void CreateOptionUI()
     {
@@ -142,7 +142,7 @@ public class SkillSelection_UI : UserInterface
         Time.timeScale = 1f;
         Managers.Game.Playing = true;
 
-        Input_Manage.EnableInputAction<TouchControls>();
+        InputManage.EnableInputAction<TouchControls>();
         Managers.UI.Hide<SkillSelection_UI>();
     }
     private IEnumerator SkillListUpdate()

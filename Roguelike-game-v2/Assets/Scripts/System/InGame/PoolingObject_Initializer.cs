@@ -50,7 +50,7 @@ public class PoolingObject_Initializer
 
             _so = Managers.Game.so_Manage.GetScriptableObject<ScriptableObject>(_key);
 
-            if(_so is MonsterStat_WithObject_SO exceptionMonsterStatSO)
+            if(_so is MonsterStat_WithObjectSO exceptionMonsterStatSO)
             {
                 if(exceptionMonsterStatSO.ExtraObjects != null)
                 {
@@ -91,14 +91,14 @@ public class PoolingObject_Initializer
 
         yield return new WaitUntil(() => Managers.Game.objectPool.PoolingObjects.ContainsKey(key_extra));
 
-        if(extraObj.GetComponent<MonsterSkill_Damage>())
+        if(extraObj.GetComponent<MonsterSkillDamage>())
         {
             Monster monster = Managers.Game.objectPool.GetObject(key, false).GetComponent<Monster>();
-            MonsterSkill_Damage skillDamage;
+            MonsterSkillDamage skillDamage;
 
             foreach(PoolingObject poolingObj in Managers.Game.objectPool.PoolingObjects[key_extra])
             {
-                skillDamage = poolingObj.GetComponent<MonsterSkill_Damage>();
+                skillDamage = poolingObj.GetComponent<MonsterSkillDamage>();
                 skillDamage.Damage += monster.Damage;
             }
         }

@@ -11,8 +11,8 @@ using UnityEngine;
 
 public class UserData
 {
-    [SerializeField] private List<StageClear_Information> _stageClearInfos = new();
-    [SerializeField] private Setting_Information _setting = new();
+    [SerializeField] private List<StageClearInformation> _stageClearInfos = new();
+    [SerializeField] private SettingInformation _setting = new();
     [SerializeField] private PlayerStat _stat = new();
 
     [SerializeField] private string _currentStageName = "Prairie";
@@ -21,7 +21,7 @@ public class UserData
     [SerializeField] private int _statPoint = 1;
     [SerializeField] private bool _tutorial = false;
     
-    public List<StageClear_Information> StageClearInfo { get { return _stageClearInfos; } set { _stageClearInfos = value; } }
+    public List<StageClearInformation> StageClearInfo { get { return _stageClearInfos; } set { _stageClearInfos = value; } }
 
     public PlayerStat Stat { get { return _stat; } }
 
@@ -107,7 +107,7 @@ public class UserData
     // 스테이지 상태를 클리어로 변경, 다음 스테이지가 존재하는 경우에 해당 스테이지의 상태를 해제로 변경
     public void Clear(string stageName)
     {
-        StageClear_Information info = _stageClearInfos.Find(o => o.name == stageName);
+        StageClearInformation info = _stageClearInfos.Find(o => o.name == stageName);
 
         if(info != null)
         {

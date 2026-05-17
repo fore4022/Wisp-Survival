@@ -77,7 +77,7 @@ public class PlayerMove : IMoveable
 
     private IEnumerator Initalization()
     {
-        _touchControl = Input_Manage.CreateAndGetInputAction<TouchControls>();
+        _touchControl = InputManage.CreateAndGetInputAction<TouchControls>();
 
         _touchControl.Enable();
 

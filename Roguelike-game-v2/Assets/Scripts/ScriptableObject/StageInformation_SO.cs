@@ -3,7 +3,7 @@ using UnityEngine;
 public class StageInformation_SO : ScriptableObject
 {
     [SerializeField] private SpawnPatternList_SO _spawnPatternList;
-    [SerializeField] private SpawnMonsterList_SO _spawnMonsterList;
+    [SerializeField] private SpawnMonsterListSO _spawnMonsterList;
     [SerializeField] private AudioClip _bgm;
 
     [SerializeField][Tooltip("Damage Text")] private Color _damageTextColor = new(255, 255, 255, 255);
@@ -14,7 +14,7 @@ public class StageInformation_SO : ScriptableObject
     [SerializeField][Tooltip("Minute")] private int _requiredTime;
 
     public SpawnPatternList_SO SpawnPatternList { get { return _spawnPatternList; } }
-    public SpawnMonsterList_SO SpawnMonsterList { get { return _spawnMonsterList; } }
+    public SpawnMonsterListSO SpawnMonsterList { get { return _spawnMonsterList; } }
     public AudioClip BGM { get { return _bgm; } }
     public Color DamageTextColor { get { return _damageTextColor; } }
     public Color SkillRangeVisualizerColor { get { return _skillRangeVisualizerColor; } }

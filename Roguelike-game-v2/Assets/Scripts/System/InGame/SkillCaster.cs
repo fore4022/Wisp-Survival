@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 public class SkillCaster
 {
-    private Skill_SO _so = null;
+    private SkillSO _so = null;
     private WaitForSeconds _coolTime;
     private WaitForSeconds _delay;
 
@@ -40,7 +40,7 @@ public class SkillCaster
     }
     private IEnumerator Casting()
     {
-        _so = Managers.Game.so_Manage.GetScriptableObject<Skill_SO>(_attackType);
+        _so = Managers.Game.so_Manage.GetScriptableObject<SkillSO>(_attackType);
 
         yield return new WaitUntil(() => _so != null);
 

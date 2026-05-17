@@ -8,10 +8,10 @@ using UnityEngine;
 /// </summary>
 public static class CoroutineHelper
 {
-    private static Manage_Mono _manageMono = null;
-    private static UserInterface_Mono _userInterfaceMono = null;
-    private static InGameSystem_Mono _inGameSystemMono = null;
-    private static Etc_Mono _etcMono = null;
+    private static ManageMono _manageMono = null;
+    private static UserInterfaceMono _userInterfaceMono = null;
+    private static InGameSystemMono _inGameSystemMono = null;
+    private static EtcMono _etcMono = null;
 
     // 코루틴 실행
     public static Coroutine Start(IEnumerator coroutine, CoroutineType type)
@@ -35,10 +35,10 @@ public static class CoroutineHelper
         {
             GameObject go = new GameObject("@MonoScript");
 
-            _manageMono = go.AddComponent<Manage_Mono>();
-            _userInterfaceMono = go.AddComponent<UserInterface_Mono>();
-            _inGameSystemMono = go.AddComponent<InGameSystem_Mono>();
-            _etcMono = go.AddComponent<Etc_Mono>();
+            _manageMono = go.AddComponent<ManageMono>();
+            _userInterfaceMono = go.AddComponent<UserInterfaceMono>();
+            _inGameSystemMono = go.AddComponent<InGameSystemMono>();
+            _etcMono = go.AddComponent<EtcMono>();
 
             Object.DontDestroyOnLoad(go);
         }

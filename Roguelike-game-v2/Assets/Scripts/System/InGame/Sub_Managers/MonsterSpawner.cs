@@ -56,7 +56,7 @@ public class MonsterSpawner
             }
         }
     }
-    private void MonsterSpawn(SpawnPattern_SO spawnInformation) 
+    private void MonsterSpawn(SpawnPatternSO spawnInformation) 
     {
         int arrayIndexValue = _monsterSpawnProbabilityArray[Random.Range(0, 100)];
 
@@ -68,7 +68,7 @@ public class MonsterSpawner
 
         while(!Managers.Game.GameOver)
         {
-            foreach(SpawnPattern_SO spawnInformation in Managers.Game.stageInformation.SpawnPatternList.Patterns)
+            foreach(SpawnPatternSO spawnInformation in Managers.Game.stageInformation.SpawnPatternList.Patterns)
             {
                 _spawnGroup = CoroutineHelper.Start(MonsterSpawning(spawnInformation), CoroutineType.InGameSystem);
 
@@ -81,12 +81,12 @@ public class MonsterSpawner
             CoroutineHelper.Stop(_spawnGroup, CoroutineType.InGameSystem);
         }
     }
-    private IEnumerator MonsterSpawning(SpawnPattern_SO spawnInformation)
+    private IEnumerator MonsterSpawning(SpawnPatternSO spawnInformation)
     {
         int totalMinutes = Managers.Game.inGameTimer.GetTotalMinutes;
         int index = 0;
 
-        foreach(SpawnPattern_Information spawnInfo in spawnInformation.MonsterInformation)
+        foreach(SpawnPatternInformation spawnInfo in spawnInformation.MonsterInformation)
         {
             for(int i = 0; i < spawnInfo.spawnProbability; i++)
             {

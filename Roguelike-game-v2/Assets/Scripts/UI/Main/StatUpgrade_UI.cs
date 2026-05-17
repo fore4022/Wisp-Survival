@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-[RequireComponent(typeof(PlayerStat_Manage))]
+[RequireComponent(typeof(PlayerStatManage))]
 public class StatUpgrade_UI : UserInterface
 {
     [SerializeField] private Transform _statElement_parent;
@@ -14,7 +14,7 @@ public class StatUpgrade_UI : UserInterface
     public TextMeshProUGUI statPointText;
     public GameObject background;
 
-    private PlayerStat_Manage _statSelection;
+    private PlayerStatManage _statSelection;
     private RectTransform _rect;
 
     private const float Duration = 0.2f;
@@ -26,7 +26,7 @@ public class StatUpgrade_UI : UserInterface
     public AudioClip ActionUnavailableSound { get { return _actionUnavailableSound; } }
     public override void SetUserInterface()
     {
-        _statSelection = GetComponent<PlayerStat_Manage>();
+        _statSelection = GetComponent<PlayerStatManage>();
         _rect = GetComponent<RectTransform>();
         statPointText = transform.GetComponentInChild<TextMeshProUGUI>();
 

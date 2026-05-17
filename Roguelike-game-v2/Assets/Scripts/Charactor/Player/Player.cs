@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, IDamageReceiver
 
     private const float Duration = 0.4f;
 
-    private Player_Information _information = new();
+    private PlayerInformation _information = new();
     private DefaultStat _stat = null;
     private SpriteRenderer _render;
     private Animator _animator;

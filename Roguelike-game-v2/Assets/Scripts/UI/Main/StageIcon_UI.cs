@@ -10,7 +10,7 @@ public class StageIcon_UI : UserInterface
     [SerializeField] private Image _monster;
     [SerializeField] private GameObject _padlock;
 
-    private Stage_SO _so;
+    private StageSO _so;
 
     private const string LockedText = "???";
 
@@ -29,7 +29,7 @@ public class StageIcon_UI : UserInterface
     private void Set()
     {
         StageState state = Managers.Data.user.GetStageState();
-        Icon_SO icon = _so.IconSprite;
+        IconSO icon = _so.IconSprite;
 
         _ground.sprite = icon.Ground;
         _monster.sprite = icon.Monster;

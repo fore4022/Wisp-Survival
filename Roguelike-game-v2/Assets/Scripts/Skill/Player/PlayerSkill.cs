@@ -17,7 +17,7 @@ public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
     [SerializeField] protected bool _playColliderOnEnable = true;
 
     protected IPlayerSkill _skill;
-    protected Skill_SO _so;
+    protected SkillSO _so;
     protected SpriteRenderer _render;
     protected Animator _animator;
     protected AudioSource _audioSource;
@@ -27,7 +27,7 @@ public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
 
     private bool _isMaxLevel = false;
 
-    public ScriptableObject SO { set { _so = value as Skill_SO; } }
+    public ScriptableObject SO { set { _so = value as SkillSO; } }
     public float DamageAmount { get { return Managers.Game.player.Stat.damage * _so.DamageCoefficient[_level]; } }
     protected void Awake()
     {
@@ -82,7 +82,7 @@ public class PlayerSkill : MonoBehaviour, IScriptableData, IDamage
     {
         _level = Managers.Game.inGameData_Manage.skill.GetLevel(_so.TypePath);
 
-        if(_level == Skill_SO.MaxLevel - 1 && !_isMaxLevel)
+        if(_level == SkillSO.MaxLevel - 1 && !_isMaxLevel)
         {
             _render.color = _so.MaxLevelColor;
             _isMaxLevel = true;

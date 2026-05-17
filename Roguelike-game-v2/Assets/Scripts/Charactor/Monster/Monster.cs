@@ -15,7 +15,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Monster : MonoBehaviour, IScriptableData
 {
-    protected MonsterStat_SO _monsterSO = null;
+    protected MonsterStatSO _monsterSO = null;
     protected DefaultStat _stat;
     protected Rigidbody2D _rigid;
     protected Animator _animator;
@@ -39,7 +39,7 @@ public class Monster : MonoBehaviour, IScriptableData
     private WaitForSeconds _waitCollect = new(CollectDelay);
     private bool _didInit = false;
 
-    public ScriptableObject SO { set { _monsterSO = value as MonsterStat_SO; } }
+    public ScriptableObject SO { set { _monsterSO = value as MonsterStatSO; } }
 
     // OnEnable로 넘어가면서 초기화 작업을 하지 못하도록 비활성화
     protected virtual void Awake()

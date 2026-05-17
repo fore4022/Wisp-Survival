@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class EnterMainScene : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private Title_TW _titleTW;
+    [SerializeField] private TitleTW _titleTW;
     [HideInInspector] public bool isLoad = false;
 
     public void OnPointerClick(PointerEventData eventData)

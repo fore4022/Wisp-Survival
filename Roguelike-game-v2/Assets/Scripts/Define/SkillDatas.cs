@@ -17,7 +17,7 @@ public class SkillDatas
         }
     }
 
-    public void SetDictionaryItem(SkillInformation_SO so)
+    public void SetDictionaryItem(SkillInformationSO so)
     {
         if(!_infos.ContainsKey(so.Info.type))
         {
@@ -57,7 +57,7 @@ public class SkillDatas
     {
         List<SkillContext> info = _infos.Values.ToList();
 
-        info.RemoveAll(o => o.level == Skill_SO.MaxLevel - 1);
+        info.RemoveAll(o => o.level == SkillSO.MaxLevel - 1);
 
         return info;
     }

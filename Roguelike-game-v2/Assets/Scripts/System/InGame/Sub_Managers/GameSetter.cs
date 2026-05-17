@@ -22,13 +22,13 @@ public class GameSetter
 
     private async Task LoadSkillList()
     {
-        UserLevel_SO userLevel;
+        UserLevelSO userLevel;
 
         for(int i = 1; i <= Managers.Data.user.Level; i++)
         {
-            userLevel = await AddressableHelper.LoadingToPath<UserLevel_SO>($"{i}{UserLevelPath}");
+            userLevel = await AddressableHelper.LoadingToPath<UserLevelSO>($"{i}{UserLevelPath}");
 
-            foreach(SkillInformation_SO so in userLevel.SkillInformationList)
+            foreach(SkillInformationSO so in userLevel.SkillInformationList)
             {
                 Managers.Game.inGameData_Manage.skill.SetDictionaryItem(so);
 
@@ -38,7 +38,7 @@ public class GameSetter
     }
     private async Task LoadDamageText()
     {
-        _damageText = await AddressableHelper.LoadingToPath<GameObject>(DamageLog_Manage.PrefabName);
+        _damageText = await AddressableHelper.LoadingToPath<GameObject>(DamageLogManage.PrefabName);
     }
     private async Task LoadStage()
     {

@@ -63,6 +63,6 @@ public class DamageLog : MonoBehaviour
 
         _log.enabled = false;
 
-        Managers.Game.objectPool.DisableObject(gameObject, DamageLog_Manage.PrefabName);
+        Managers.Game.objectPool.DisableObject(gameObject, DamageLogManage.PrefabName);
     }
 }

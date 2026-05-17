@@ -19,7 +19,7 @@ public class InitGame : MonoBehaviour
     }
     private async Task LoadStageDatas()
     {
-        Managers.Main.stageDatas.SO = await AddressableHelper.LoadingToPath<StageList_SO>(StageDataPath, false);
+        Managers.Main.stageDatas.SO = await AddressableHelper.LoadingToPath<StageListSO>(StageDataPath, false);
     }
     private IEnumerator Initializing()
     {

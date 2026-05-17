@@ -4,5 +4,5 @@
 
 public class BasicMonster_WithObject : BasicMonster
 {
-    protected MonsterStat_WithObject_SO monsterSO { get { return _monsterSO as MonsterStat_WithObject_SO; } }
+    protected MonsterStat_WithObjectSO monsterSO { get { return _monsterSO as MonsterStat_WithObjectSO; } }
 }

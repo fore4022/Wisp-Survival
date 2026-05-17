@@ -1,5 +1,5 @@
 using UnityEditor;
-[CustomEditor(typeof(MonsterStat_WithObject_SO))]
+[CustomEditor(typeof(MonsterStat_WithObjectSO))]
 public class MonsterStatWithObjectSOEditor : Editor
 {
     private SerializedProperty show;

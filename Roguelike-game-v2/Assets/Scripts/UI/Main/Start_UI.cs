@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Start_UI : Button_Default
+public class Start_UI : ButtonDefault
 {
     [SerializeField] private AudioClip _actionAvailableSound;
     [SerializeField] private AudioClip _actionUnavailableSound;

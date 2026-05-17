@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Resume_UI : Button_A
+public class Resume_UI : ButtonA
 {
     protected override void PointerClick()
     {

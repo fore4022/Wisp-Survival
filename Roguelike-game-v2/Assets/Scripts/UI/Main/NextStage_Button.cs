@@ -1,5 +1,5 @@
 using UnityEngine;
-public class NextStage_Button : Button_Default
+public class NextStage_Button : ButtonDefault
 {
     [SerializeField] private int _sign;
 

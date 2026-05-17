@@ -5,7 +5,7 @@ using UnityEditor;
 /// </para>
 /// Skill_SO의 필드 이름이 변경 사항이 똑같이 적용되어야 함
 /// </summary>
-[CustomEditor(typeof(Skill_SO))]
+[CustomEditor(typeof(SkillSO))]
 public class SkillSOEditor : Editor
 {
     private SerializedProperty show_1;

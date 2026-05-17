@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Pause_Button : Button_A
+public class Pause_Button : ButtonA
 {
     protected override void PointerClick()
     {

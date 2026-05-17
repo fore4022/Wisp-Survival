@@ -9,8 +9,8 @@ public class GameEffect
     private readonly WaitForSeconds _delay = new(Duration);
     private const float Duration = 0.4f;
 
-    private float MaxOrthographicSize { get { return 6 * Camera_SizeScale.orthographicSizeScale; } }
-    private float MinOrthographicSize { get { return 1.25f * Camera_SizeScale.orthographicSizeScale; } }
+    private float MaxOrthographicSize { get { return 6 * CameraSizeScale.orthographicSizeScale; } }
+    private float MinOrthographicSize { get { return 1.25f * CameraSizeScale.orthographicSizeScale; } }
     public void StageFailed()
     {
         Managers.UI.Hide<LevelUp_UI>();
@@ -39,7 +39,7 @@ public class GameEffect
                 totalTime = Duration;
             }
 
-            Camera.main.orthographicSize = Mathf.Lerp(currentCameraSize, 1.25f * Camera_SizeScale.orthographicSizeScale, totalTime / Duration);
+            Camera.main.orthographicSize = Mathf.Lerp(currentCameraSize, 1.25f * CameraSizeScale.orthographicSizeScale, totalTime / Duration);
 
             yield return null;
         }
@@ -94,7 +94,7 @@ public class GameEffect
             yield return null;
         }
 
-        Input_Manage.EnableInputAction<TouchControls>();
+        InputManage.EnableInputAction<TouchControls>();
         Managers.UI.Show<HpSlider_UI>();
 
         if(Managers.Game.inGameData_Manage.player.LevelUpCount > 0)
